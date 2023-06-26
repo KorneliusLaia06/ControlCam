@@ -1,0 +1,23 @@
+{
+  "name": "controlcam_electron",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "package-win": "electron-packager . --overwrite --platform-win32 --arch=x64 --prune=true--out=release-builds"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@electron/asar": "^3.2.4",
+    "asar": "^3.2.0",
+    "electron-builder": "^23.6.0"
+  },
+  "devDependencies": {
+    "@rabbitholesyndrome/electron-forge-maker-portable": "^0.1.1",
+    "electron": "^25.0.1",
+    "electron-packager": "^17.1.1"
+  }
+}

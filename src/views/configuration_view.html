@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>VStream Connect - Configuration View</title>
+
+        <script>
+            window.nodeRequire = require;
+            delete window.exports;
+            delete window.module;
+        </script>
+
+        <!-- fonts -->
+        <link
+            href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
+
+        <!-- Font Awesome Icons -->
+        <link
+            rel="stylesheet"
+            href="../assets/AdminLTE-3.2.0/plugins/fontawesome-free/css/all.min.css">
+
+        <!-- bootstrap.css -->
+        <link
+            rel="stylesheet"
+            href="../assets/bootstrap-4.6.2/css/bootstrap.css"
+            type="text/css">
+
+        <!-- bootstrap-switch.css -->
+        <link
+            rel="stylesheet"
+            href="../assets/AdminLTE-3.2.0/plugins/bootstrap-switch/css/bootstrap3/bootstrap-switch.css"
+            type="text/css">
+
+        <!-- sweetalert2.min.css -->
+        <link
+        rel="stylesheet"
+        href="../assets/AdminLTE-3.2.0/plugins/sweetalert2/sweetalert2.min.css"
+        type="text/css">
+
+        <!-- adminlte.min.css -->
+        <link
+            rel="stylesheet"
+            href="../assets/AdminLTE-3.2.0/dist/css/adminlte.min.css"
+            type="text/css">
+
+
+        <!-- style.css -->
+        <link
+        rel="stylesheet"
+        href="../assets/css/style.css"
+        type="text/css">
+
+    </head>
+
+    <body class="hold-transition skin-red sidebar-mini">
+        <div class="wrapper">
+
+            <!-- Navbar -->
+            <nav class="main-header navbar navbar-expand navbar-white navbar-light bg-vstream-green">
+                <!-- Left navbar links -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" id="sidebarToggle" data-widget="pushmenu" href="#" role="button">
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Right navbar links -->
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" role="button" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"> Logout</i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- /.navbar --><!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4 sidebar-no-expand">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link logo-switch">
+        <img
+            src="../assets/img/VStreamLOGO_CircleSmall.png"
+            alt="VStream Logo Small"
+            class="brand-image-xl logo-xs">
+        <img
+            src="../assets/img/VStreamConnect-01.png"
+            alt="VStream Large"
+            class="brand-image-xs logo-xl"
+            style="left: 12px">
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul
+                class="nav nav-pills nav-sidebar flex-column"
+                data-widget="treeview"
+                role="menu">
+                <!-- Add icons to the links using the .nav-icon class with font-awesome or any
+                other icon font library -->
+                <li class="nav-item">
+                    <a href="#" onclick="configuration_view()" class="nav-link active">
+                        <i class="nav-icon fas fa-cog"></i>
+                        <p>
+                            Configuration View
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" onclick="show_mode_view()" class="nav-link ">
+                        <i class="nav-icon fas fa-camera"></i>
+                        <p>
+                            Show Mode View
+                        </p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside><!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper bg-vstream-grey">
+    <section class="content-header"></section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12" id="alert-message">
+            </div>            
+
+            <div class="col-4">
+                <div class="card card-default">
+                    <div class="card-header">
+                        <h3 class="card-title font-weight-bold swalDefaultSuccess">
+                            Camera List
+                        </h3>
+                        <div class="card-tools">
+                            <select class="form-control form-control-sm" id="changeCameraGroup">
+                                <option value="0">Group 1</option>
+                                <option value="1">Group 2</option>
+                                <option value="2">Group 3</option>
+                                <option value="3">Group 4</option>
+                                <option value="4">Group 5</option>
+                                <option value="5">Group 6</option>
+                                <option value="6">Group 7</option>
+                                <option value="7">Group 8</option>
+                                <option value="8">Group 9</option>
+                                <option value="9">Group 10</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="nav flex-column nav-tabs h-100" id="vert-tabs-tab" role="tablist" aria-orientation="vertical">
+
+                        </div>        
+                    </div>
+                    <div class="card-footer">
+                        <a data-toggle="modal" data-target="#modal-addCamera" id="showModalAddCamera" class='btn btn-primary btn-block'>Add new camera</a>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-8">
+                <div class="card card-default">
+                    <div class="card-header">
+                        <h3 class="card-title font-weight-bold">
+                            Camera Information
+                        </h3>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="tab-content" id="vert-tabs-tabContent">
+                        
+                
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>            <footer class="main-footer bg-vstream-green">
+
+                <div class="float-right d-none d-sm-inline">
+                    <!-- Anything you want -->
+                </div>
+
+                <strong>Copyright &copy;
+                    2023                    <a href="#">VStream Media</a>.</strong>
+                All rights reserved.
+            </footer>
+        </div>
+
+        <!--  Add Camera Modal -->
+        <div class="modal fade" id="modal-addCamera">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add camera</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="camera_name">Camera Name</label>
+                            <input type="text" id="add_cameraName" class="form-control">
+                            <code id="add_cameraName_error" class="text-danger"></code>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ip_address">IP Address</label>
+                            <input type="text" id="add_ipAddress" class="form-control">
+                            <code id="add_ipAddress_error" class="text-danger"></code>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="controller_name">Controller Name</label>
+                            <input type="text" id="add_controllerName" class="form-control">
+                            <code id="add_controllerName_error" class="text-danger"></code>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="keyboard_mapping">Keyboard Mapping (0-9, A-Z)</label>
+                            
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <input type="checkbox" class="inputKeyCode">
+                                    </span>
+                                </div>
+                                <input type="text" id="add_keyboardMapping" class="form-control bg-white inputKeycode" readonly>
+                                <input type="text" id="add_keyboardCode" class="form-control bg-white" readonly>
+                            </div>
+                            <code id="add_keyboardMapping_error" class="text-danger"></code>
+                            <code id="add_keyboardCode_error" class="text-danger"></code>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" id="close-modal" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="addCameraBtn" data-dismiss="modal">Add</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Delete Camera Modal -->
+        <div class="modal fade" id="modal-deleteCamera" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete Confirmation</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="text-confirmation"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="close-modal" data-dismiss="modal" aria-label="Close">No</button>
+                        <input type="hidden" id="idDelete"> 
+                        <button id="deleteCameraBtn" class="btn btn-danger deleteCameraBtn" data-dismiss="modal">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Camera Modal -->
+        <div class="modal fade" id="modal-editCamera" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Camera</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Camera Name</label>
+                                    <input type="hidden" id="edit_camera_id" class="form-control">
+                                    <input type="text" id="edit_camera_name" class="form-control bg-white">
+                                    <code id="edit_camera_name_error" class="text-danger"></code>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>IP Address</label>
+                                    <input type="text" id="edit_ip_address" class="form-control bg-white">
+                                    <code id="edit_ip_address_error" class="text-danger"></code>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Controller Name</label>
+                                    <input type="text" id="edit_controller_name" class="form-control bg-white">
+                                    <code id="edit_controller_name_error" class="text-danger"></code>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="keyboard_mapping">Keyboard Mapping (0-9, A-Z)</label>
+                                    
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <input type="checkbox" class="inputKeyCodeEditModal">
+                                            </span>
+                                        </div>
+                                        <input type="text" id="edit_keyboard_mapping" class="form-control bg-white inputKeycode" readonly>
+                                        <input type="text" id="edit_keyboard_code" class="form-control bg-white" readonly>
+                                    </div>
+                                    <code id="edit_keyboard_mapping_error" class="text-danger"></code>
+                                    <code id="edit_keyboard_code_error" class="text-danger"></code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="close-modal" data-dismiss="modal" aria-label="Close">Cancel</button>
+                        <button type="button" class="btn btn-success" id="editCameraBtn" data-dismiss="modal">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- menu.js -->
+<script src="../assets/js/menu.js"></script>
+
+<!-- jquery-3.3.1.slim.min.js -->
+<script src="../assets/js/jquery.min.js"></script>
+
+<!-- jquery-3.3.1.slim.min.js -->
+<!-- <script
+    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script> -->
+
+<!-- popper.min.js -->
+<script
+    src="../assets/js/popper.min.js"></script>
+
+<!-- bootstrap.bundle.min.js -->
+<script
+    type="text/javascript"
+    src="../assets/AdminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- bootstrap-switch.min.js -->
+<script
+    type="text/javascript"
+    src="../assets/AdminLTE-3.2.0/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+
+<!-- sweetalert2.min.js -->
+<script
+type="text/javascript"
+src="../assets/AdminLTE-3.2.0/plugins/sweetalert2/sweetalert2.min.js"></script>
+
+<!-- adminlte.min.js -->
+<script src="../assets/AdminLTE-3.2.0/dist/js/adminlte.min.js"></script>
+
+<!--script_configurationview.js -->
+<script src="../assets/js/script_configurationview.js"></script>
+
+        <script>
+            
+        </script>
+    </body>
+</html>

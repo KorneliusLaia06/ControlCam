@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            window.nodeRequire = require;
+            delete window.exports;
+            delete window.module;
+        </script>
+
+        <link
+            rel="stylesheet"
+            href="../assets/AdminLTE-3.2.0/plugins/fontawesome-free/css/all.min.css">
+        <link
+            rel="stylesheet"
+            href="../assets/bootstrap-4.6.2/css/bootstrap.min.css">
+
+        <link
+            rel="stylesheet"
+            href="../assets/AdminLTE-3.2.0/dist/css/adminlte.min.css">
+
+        <style>
+            .bg-vstream {
+                background: #a2d664 !important;
+                border: #a2d664 !important;
+            }
+        </style>
+        <title>VStream Connect - Login</title>
+    </head>
+    <body class="hold-transition login-page">
+        <div class="login-box">
+            <div class="card card-outline">
+                <div class="card-header text-center bg-vstream">
+                    <img
+                        src="../assets/img/VStreamConnect-01.png"
+                        alt="VStream Logo Small"
+                        class="brand-image">
+                </div>
+                <div class="card-body">
+                    <p class="login-box-msg">Log in to start your session</p>
+                    <form id="loginForm">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" name="username" id="username" value="admin" placeholder="Username">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input
+                                type="password"
+                                class="form-control"
+                                name="password"
+                                id="password"
+                                placeholder="Password"
+                                value="notforyou">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                          </div>
+                                                  <div class="row">
+                            <div class="col-12 mt-4">
+                                <button type="submit" class="btn btn-primary btn-block bg-vstream">Log In</button>
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/bootstrap-4.6.2/js/bootstrap.min.js"></script>
+        <script src="../assets/bootstrap-4.6.2/js/bootstrap.bundle.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('form:first *:input[type!=hidden]:first').focus();
+            });
+
+            // Define valid username and password
+            var validUsername = "admin";
+            var validPassword = "notforyou";
+            var loginForm = document.getElementById("loginForm");
+
+
+            // Attach event listener to the form's submit event
+            loginForm.addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get the entered username and password
+            var usernameInput = document.getElementById("username");
+            var passwordInput = document.getElementById("password");
+            var enteredUsername = usernameInput.value;
+            var enteredPassword = passwordInput.value;
+
+            // Check if the entered username and password are valid
+            if (enteredUsername === validUsername && enteredPassword === validPassword) {
+                // If valid, display success message
+                window.location.href = 'starter_page.html';
+            } else {
+                // If invalid, display error message
+                console.log("invalid");
+
+            }
+
+            // Clear the input fields
+            usernameInput.value = "";
+            passwordInput.value = "";
+            });
+        </script>
+    </body>
+</html>

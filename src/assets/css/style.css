@@ -1,0 +1,24 @@
+.bg-vstream-green {
+    background: #a2d664 !important;
+    border: #a2d664 !important;
+}
+
+.bg-vstream-grey {
+    background: #4e4c4d !important;
+}
+
+.nav-tabs.flex-column {
+    border:none !important;
+}
+
+.btn-app>.badge {
+    font-size:13px !important;
+}
+
+.row a:first-child {
+margin-left: 0 !important;
+}
+
+.brand-link .brand-image-xs {
+    max-height: none !important;
+}
