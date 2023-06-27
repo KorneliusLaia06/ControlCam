@@ -1,6 +1,4 @@
-
-    
-// seleksi elemen video
+ // seleksi elemen video
 let x = 0;
 let y = 0;
 let z = 0;
@@ -9,8 +7,8 @@ let default_value_focus_far = 0;
 let default_value_zoom_in = 0;
 let default_value_zoom_out = 0;
 
-// const json_location = "src/data";
-const json_location = "resources/data";
+const json_location = "src/data";
+// const json_location = "resources/data";
 
 let isFeaturePrevTallyActive = false;
 let interval_getCameraStatus;
@@ -821,7 +819,6 @@ function stopgetCameraStatus() {
 // get camera status prev or program 
 
 jQuery(document).ready(function() {
-    
     // PT Speed Slider
     var ptspeed_slider = $("#ptspeed_slider").ionRangeSlider({
         min: 500,
@@ -1846,21 +1843,38 @@ var placeholderImage = '../assets/img/video-output.svg';
 var video = document.querySelector('#video-webcam');
 video.poster = placeholderImage;
 
-    $('#list_webcam').change(function() {
-var webcam_selected = $(this).val();
-// Stop the current video stream
-var video = document.querySelector('#video-webcam');
-var stream = video.srcObject;
+$('#list_webcam').change(function() {
+    var webcam_selected = $(this).val();
+    localStorage.setItem("webcam_selected", webcam_selected);
+    if(webcam_selected == 'null'){
+        // Stop the current video stream and set the poster image
+        var video = document.querySelector('#video-webcam');
+        var stream = video.srcObject;
 
-// Start the selected webcam
-navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: webcam_selected } } })
-    .then(function(mediaStream) {
-    video.srcObject = mediaStream;
-    video.play();
-    })
-    .catch(function(err) {
-    console.log(err);
-    });
+        // Stop the video feed
+        if (stream) {
+            var tracks = stream.getTracks();
+            tracks.forEach(function(track) {
+                track.stop();
+            });
+        }
+        // Set the poster image
+        video.srcObject = null;
+        video.src = placeholderImage;
+    } else {
+        // Stop the current video stream
+        var video = document.querySelector('#video-webcam');
+        var stream = video.srcObject;
+        // Start the selected webcam
+        navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: webcam_selected } } })
+            .then(function(mediaStream) {
+            video.srcObject = mediaStream;
+            video.play();
+            })
+            .catch(function(err) {
+            console.log(err);
+        });
+    }
 });
 
 // get list of webcam
@@ -1874,6 +1888,7 @@ navigator.mediaDevices.enumerateDevices()
     select.innerHTML = '';
     
     var defaultOption = document.createElement('option');
+    defaultOption.value = 'null';
     defaultOption.text = 'Select output';
     select.appendChild(defaultOption);
     webcams.forEach(function(webcam) {
@@ -1882,11 +1897,19 @@ navigator.mediaDevices.enumerateDevices()
     option.text = webcam.label || 'Camera ' + (select.length + 1);
     select.appendChild(option);
     });
+    
+    if (localStorage.getItem('webcam_selected') == 'null') {
+        $("#list_webcam").val('null').change();
+    } else{
+        $("#list_webcam").val(localStorage.getItem('webcam_selected')).change();
+    }
 })
 .catch(function(err) {
     console.error('Error occurred while accessing media devices: ', err);
 });
 // get list of webcam
+
+
 
 //sidebar toggle
 var sidebarToggle = $('#sidebarToggle');

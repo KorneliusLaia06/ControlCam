@@ -1,5 +1,5 @@
-// const json_location = "src/data";
-            const json_location = "resources/data";
+const json_location = "src/data";
+            // const json_location = "resources/data";
 
            function getCameraList(groupIndex){
                 var fs = require('fs');        
