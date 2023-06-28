@@ -53,6 +53,12 @@
         href="../assets/AdminLTE-3.2.0/plugins/sweetalert2/sweetalert2.min.css"
         type="text/css">
 
+        <!-- icheck-bootstrap.min.css -->
+        <link
+        rel="stylesheet"
+        href="../assets/AdminLTE-3.2.0/plugins/icheck-bootstrap/icheck-bootstrap.min.css"
+        type="text/css">
+
         <!-- adminlte.min.css -->
         <link
             rel="stylesheet"
@@ -701,6 +707,21 @@
                         </div>
                         <div class="mt-2 d-none" id="containerslider_speedlevel">
                             <input id="speedlevel_slider"/>
+                        </div>
+                        <div class="border-top mt-3 mb-3"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="icheck-primary">
+                                    <input type="checkbox" class="checkbox_setpreset" id="checkbox_ptzf" checked/>
+                                    <label for="checkbox_ptzf">PTZF</label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="icheck-primary">
+                                    <input type="checkbox" class="checkbox_setpreset" id="checkbox_camerasettings" />
+                                    <label for="checkbox_camerasettings">Camera Settings</label>
+                                </div>  
+                            </div>
                         </div>
 
                         <input type="text" id="text_shootingmode" class="d-none" value="time">

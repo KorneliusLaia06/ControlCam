@@ -819,6 +819,17 @@ function stopgetCameraStatus() {
 // get camera status prev or program 
 
 jQuery(document).ready(function() {
+
+    $('.checkbox_setpreset').on('change', function() {
+        // Get the count of checked checkboxes with class "checkbox_setpreset"
+        var checkedCount = $('.checkbox_setpreset:checked').length;
+    
+        // Disable or enable checkboxes based on the count
+        if (checkedCount < 1) {
+          $(this).prop('checked', true);
+        }
+    });
+
     // PT Speed Slider
     var ptspeed_slider = $("#ptspeed_slider").ionRangeSlider({
         min: 500,
@@ -1195,7 +1206,7 @@ jQuery(document).ready(function() {
                     preset_list[dataIndexCamera][index].shootingmode = text_shootingmode;
                     preset_list[dataIndexCamera][index].shootingmode_value = text_shootingmodevalue;
 
-                    $.ajax(target_ip+"/-wvhttp-01-/preset/set?p=" + id_preset + "&all=enabled&name=Preset_"+id_preset);
+                    
 
                     // update array to file json
                     fs.writeFile(json_location + "/group"+groupIndex+"_presets.json", JSON.stringify(preset_list, null, 2), function(err) {
@@ -1207,6 +1218,20 @@ jQuery(document).ready(function() {
                         getPreset(groupIndex,dataIndexCamera);
                         notification('info','Preset Successfully Assigned');
                     });
+
+                    var checkedIDs = $('.checkbox_setpreset:checked').map(function() {
+                        return this.id;
+                    }).get();
+                    if (checkedIDs.length === 1) {
+                        if (checkedIDs[0] === 'checkbox_ptzf') {
+                            $.ajax(target_ip+"/-wvhttp-01-/preset/set?p=" + id_preset + "&name=Preset_"+id_preset+"&ptz=enabled&focus=enabled&exp=disabled&wb=disabled&is=disabled&cp=disabled");
+                        } else if (checkedIDs[0] === 'checkbox_camerasettings') {
+                            $.ajax(target_ip+"/-wvhttp-01-/preset/set?p=" + id_preset + "&name=Preset_"+id_preset+"&ptz=disabled&focus=disabled&exp=enabled&wb=enabled&is=enabled&cp=enabled");
+                        }
+                    } else if (checkedIDs.length === 2) {
+                        $.ajax(target_ip+"/-wvhttp-01-/preset/set?p=" + id_preset + "&name=Preset_"+id_preset+"&all=enabled");
+                    }      
+
                 } else {
                     notification('info','No Matching Data Found for the ID Preset');
                 }
