@@ -7,6 +7,9 @@ npm i electron-packager
 npm install --save-dev electron
 npx electron-packager ./ "Control Cam - 202306114" -–platform=win32 -–arch=x64
 
+
+npm install -g electron-packager
+
 //command to package the app and encrypt the files with asar
 electron-packager . --asar
 
