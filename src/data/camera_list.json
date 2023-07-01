@@ -7,6 +7,14 @@
       "controller_name": "Canon N300",
       "keyboard_mapping": "A",
       "keyboard_code": "65"
+    },
+    {
+      "id": 1688204768885,
+      "camera_name": "Venue #2",
+      "ip_address": "http://hq.vstream.asia:802",
+      "controller_name": "",
+      "keyboard_mapping": "B",
+      "keyboard_code": "66"
     }
   ],
   [],

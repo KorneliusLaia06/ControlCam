@@ -23,7 +23,7 @@ function createWindow () {
     preload: path.join(__dirname, 'preload.js')
   }})
   // win.webContents.openDevTools();
-  win.loadFile(path.join(__dirname, 'src/views/starter_page.html'));
+  win.loadFile(path.join(__dirname, 'src/views/index.html'));
 }
 
  

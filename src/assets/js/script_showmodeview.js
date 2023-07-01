@@ -58,6 +58,8 @@ let isButtonPressed_irisdown = false;
 
 const focus_button = document.getElementById('btn_one_shot_af');
 
+const home_button = document.getElementById('home_button');
+
 const near_button = document.getElementById('btn_near');
 let isButtonPressed_near = false;
 
@@ -156,6 +158,11 @@ if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
     focus_button.addEventListener('touchstart', () => {
         let target_ip = $('#target').val();
         $.ajax(target_ip+"/-wvhttp-01-/control.cgi?focus.action=one_shot");
+    });
+
+    home_button.addEventListener('touchstart', () => {
+        let target_ip = $('#target').val();
+        $.ajax(target_ip+"/-wvhttp-01-/control.cgi?pan=0&tilt=0");
     });
 
 } else {
@@ -395,6 +402,12 @@ if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
         setTimeout(() => {
             getStatusAutoFocus(target_ip);
         }, 500);
+    });
+
+    home_button.addEventListener('mousedown', () => {
+        let target_ip = $('#target').val();
+        $.ajax(target_ip+"/-wvhttp-01-/control.cgi?pan=0&tilt=0");
+
     });
 
     near_button.addEventListener('mousedown', () => {
