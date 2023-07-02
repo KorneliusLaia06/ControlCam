@@ -94,3 +94,23 @@ margin-left: 0 !important;
     max-height: none !important;
 }
 
+.logo-xsbottom.brand-image-xlbottom {
+  left: 16px;
+  bottom: 8px;
+}
+
+.logo-xlbottom.brand-image-xlbottom, .logo-xsbottom.brand-image-xlbottom {
+  left: 12px;
+  bottom: 6px;
+}
+
+.logo-xlbottom.brand-image-xsbottom, .logo-xsbottom.brand-image-xsbottom {
+  left: 18px;
+  bottom: 12px;
+}
+
+.brand-link .brand-image-xlbottom {
+  line-height: .8;
+  max-height: 40px;
+  width: auto;
+}

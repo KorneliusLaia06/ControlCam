@@ -56,7 +56,7 @@
 
     </head>
 
-    <body class="hold-transition skin-red sidebar-mini">
+    <body class="skin-red sidebar-mini layout-fixed">
         <div class="wrapper">
 
             <!-- Navbar -->
@@ -64,7 +64,7 @@
                 <!-- Left navbar links -->
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" id="sidebarToggle" data-widget="pushmenu" href="#" role="button">
+                        <a class="nav-link" id="sidebarToggle" data-widget="pushmenu" href="" role="button">
                             <i class="fas fa-arrow-left"></i>
                         </a>
                     </li>
@@ -79,53 +79,55 @@
                     </li>
                 </ul> -->
             </nav>
-            <!-- /.navbar --><!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4 sidebar-no-expand">
-    <!-- Brand Logo -->
-    <a href="#" class="brand-link logo-switch">
-        <img
-            src="../assets/img/VStreamLOGO_CircleSmall.png"
-            alt="VStream Logo Small"
-            class="brand-image-xl logo-xs">
-        <img
-            src="../assets/img/VStreamConnect-01.png"
-            alt="VStream Large"
-            class="brand-image-xs logo-xl"
-            style="left: 12px">
-    </a>
+            <!-- /.navbar -->
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <!-- Sidebar Menu -->
-        <nav class="mt-2">
-            <ul
-                class="nav nav-pills nav-sidebar flex-column"
-                data-widget="treeview"
-                role="menu">
-                <!-- Add icons to the links using the .nav-icon class with font-awesome or any
-                other icon font library -->
-                <li class="nav-item">
-                    <a href="#" onclick="configuration_view()" class="nav-link active">
-                        <i class="nav-icon fas fa-cog"></i>
-                        <p>
-                            Configuration View
-                        </p>
+            <!-- Main Sidebar Container -->
+            <aside class="main-sidebar main-sidebar-custom sidebar-dark-primary elevation-4 sidebar-no-expand">
+                <!-- Brand Logo -->
+                <a href="#" class="brand-link logo-switch">
+                    <img src="../assets/img/VStreamLOGO_CircleSmall.png" alt="VStream Logo Small" class="brand-image-xl logo-xs">
+                    <img src="../assets/img/CamConnect_SidebarTop.png" alt="VStream Large" class="brand-image-xs logo-xl" style="left: 0 !important;">
+                </a>
+
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <!-- Sidebar Menu -->
+                    <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+                            <!-- Add icons to the links using the .nav-icon class with font-awesome or any
+                            other icon font library -->
+                            <li class="nav-item">
+                                <a href="#" onclick="configuration_view()" class="nav-link active">
+                                    <i class="nav-icon fas fa-cog"></i>
+                                    <p>
+                                        Configuration View
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" onclick="show_mode_view()" class="nav-link">
+                                    <i class="nav-icon fas fa-camera"></i>
+                                    <p>
+                                        Show Mode View
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- /.sidebar-menu -->
+                </div>
+                <!-- /.sidebar -->
+
+                <div class="sidebar-custom">
+                    <!-- <img src="../assets/img/CamConnect_SidebarBottom.png" alt="VStream Large" class="img-fluid brand-image-xs" style="left: 12px"> -->
+                    <a href="#" class="brand-link logo-switch">
+                        <img src="../assets/img/VStreamLOGO_CircleSmall.png" alt="VStream Logo Small" class="brand-image-xl logo-xs logo-bottom-xl">
+                        <img src="../assets/img/CamConnect_SidebarBottom.png" alt="VStream Large" class="brand-image-xs logo-xl logo-bottom-xs" style="left: 0 !important;">
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" onclick="show_mode_view()" class="nav-link ">
-                        <i class="nav-icon fas fa-camera"></i>
-                        <p>
-                            Show Mode View
-                        </p>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-</aside><!-- Content Wrapper. Contains page content -->
+                </div>
+            </aside>
+            <!-- Main Sidebar Container -->
+
 <div class="content-wrapper bg-vstream-grey">
     <section class="content-header"></section>
     <!-- Main content -->

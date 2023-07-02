@@ -843,6 +843,40 @@ jQuery(document).ready(function() {
         }
     });
 
+    //refresh webcam-list
+    $('#refresh_list_webcam').click(function() {
+        navigator.mediaDevices.enumerateDevices()
+        .then(function(devices) {
+            var webcams = devices.filter(function(device) {
+            return device.kind === 'videoinput';
+            });
+            
+            var select = document.getElementById('list_webcam');
+            select.innerHTML = '';
+            
+            var defaultOption = document.createElement('option');
+            defaultOption.value = 'null';
+            defaultOption.text = 'Select output';
+            select.appendChild(defaultOption);
+            webcams.forEach(function(webcam) {
+            var option = document.createElement('option');
+            option.value = webcam.deviceId;
+            option.text = webcam.label || 'Camera ' + (select.length + 1);
+            select.appendChild(option);
+            });
+            
+            if (localStorage.getItem('webcam_selected') == 'null') {
+                $("#list_webcam").val('null').change();
+            } else{
+                $("#list_webcam").val(localStorage.getItem('webcam_selected')).change();
+            }
+        })
+        .catch(function(err) {
+            console.error('Error occurred while accessing media devices: ', err);
+        });
+    });
+    //refresh webcam-list
+
     // PT Speed Slider
     var ptspeed_slider = $("#ptspeed_slider").ionRangeSlider({
         min: 500,

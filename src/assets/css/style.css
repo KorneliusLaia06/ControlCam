@@ -22,3 +22,17 @@ margin-left: 0 !important;
 .brand-link .brand-image-xs {
     max-height: none !important;
 }
+
+.logo-bottom-xs{
+top:auto !important; 
+bottom:8px !important;
+}
+
+.logo-bottom-xl{
+top:auto !important;    
+bottom:8px !important;
+}
+
+.sidebar-custom{
+    overflow: hidden;
+}

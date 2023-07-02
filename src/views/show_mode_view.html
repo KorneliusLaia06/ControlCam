@@ -130,7 +130,7 @@
                 <!-- Brand Logo -->
                 <a href="#" class="brand-link logo-switch">
                     <img src="../assets/img/VStreamLOGO_CircleSmall.png" alt="VStream Logo Small" class="brand-image-xl logo-xs">
-                    <img src="../assets/img/CamConnect_SidebarTop.png" alt="VStream Large" class="brand-image-xs logo-xl" style="left: 12px">
+                    <img src="../assets/img/CamConnect_SidebarTop.png" alt="VStream Large" class="brand-image-xs logo-xl" style="left: 0 !important;">
                 </a>
 
                 <!-- Sidebar -->
@@ -163,9 +163,14 @@
                 <!-- /.sidebar -->
 
                 <div class="sidebar-custom">
-                    <img src="../assets/img/CamConnect_SidebarBottom.png" alt="VStream Large" class="img-fluid brand-image-xs" style="left: 12px">
+                    <!-- <img src="../assets/img/CamConnect_SidebarBottom.png" alt="VStream Large" class="img-fluid brand-image-xs" style="left: 12px"> -->
+                    <a href="#" class="brand-link logo-switch">
+                        <img src="../assets/img/VStreamLOGO_CircleSmall.png" alt="VStream Logo Small" class="brand-image-xl logo-xs logo-bottom-xl">
+                        <img src="../assets/img/CamConnect_SidebarBottom.png" alt="VStream Large" class="brand-image-xs logo-xl logo-bottom-xs" style="left: 0 !important;">
+                    </a>
                 </div>
             </aside>
+            <!-- Main Sidebar Container -->
             
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper bg-vstream-grey" style="min-height: 792px;">
@@ -652,8 +657,16 @@
                                                 <div class="card-header pb-1">
                                                     <h6 class="card-title col-6">PGM</h6>
                                                     <div class="card-tools col-6">
-                                                      <select class="form-control form-control-sm mb-0" id="list_webcam">
-                                                      </select>
+
+                                                      <div class="input-group mb-1">
+                                                          <select class="form-control form-control-sm" id="list_webcam">
+                                                        </select>
+                                                        <div class="input-group-prepend">
+                                                            <button class="btn btn-default btn-sm" id="refresh_list_webcam">
+                                                                <span class="fa fa-sync-alt"></span>
+                                                            </button>
+                                                        </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="card-body px-0 py-0">
