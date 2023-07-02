@@ -35,4 +35,5 @@ bottom:8px !important;
 
 .sidebar-custom{
     overflow: hidden;
+    border-top: none !important;
 }
