@@ -9,3 +9,5 @@ function configuration_view() {
 function logout() {
     window.location.href = 'index.html';
 }
+
+

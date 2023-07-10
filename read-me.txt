@@ -14,3 +14,6 @@ npm install -g electron-packager
 electron-packager . --asar
 
 electron-packager . --asar --overwrite
+
+// gunakan ini di powershell untuk membuka izin electron packager writedata pada folder
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser

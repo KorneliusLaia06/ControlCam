@@ -2042,3 +2042,89 @@ $('#recallpreset_speedlevel').click(function(){
 
 });
 // change value for #text_shootingmode and #text_shootingmode
+
+// export camera and preset data
+function export_data(){
+    const json_location = "src/data";
+    var fs = require('fs');        
+    
+    var mergedData = {
+        camera_data: [],
+        preset_data: []
+    };
+    
+    for (var i = 0; i < 10; i++) {
+      var jsonPreset = fs.readFileSync(json_location + `/group${i}_presets.json`);
+      var jsonPresetItem = JSON.parse(jsonPreset);
+      mergedData.preset_data.push(jsonPresetItem);
+    }
+    
+    var jsonCamera = fs.readFileSync(json_location + `/camera_list.json`);
+      var jsonCameraItem = JSON.parse(jsonCamera);
+      mergedData.camera_data.push(jsonCameraItem);
+    
+    
+    // download data
+    var jsonStr = JSON.stringify(mergedData, null, 2);
+    var blob = new Blob([jsonStr], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    
+    var downloadLink = document.createElement("a");
+    downloadLink.href = url;
+    downloadLink.download = "data.json";
+    downloadLink.click();
+}
+// export camera and preset data
+
+// import camera and preset data
+function importData(event){
+    const json_location = "src/data";
+    var fs = require('fs'); 
+    var file = event.target.files[0];
+    var reader = new FileReader();
+  
+    reader.onload = function() {
+      var importedData = JSON.parse(reader.result);
+      var cameraData = importedData.camera_data[0];
+      var presetData = importedData.preset_data;
+  
+      // Lakukan operasi yang diperlukan dengan cameraData dan presetData
+      // ...
+  
+      if (importedData.camera_data && importedData.camera_data.length > 0) {
+        console.log("camera_data exists.");
+        // console.log(cameraData);
+      } else {
+        console.log("camera_data does not exist or is empty.");
+      }
+      
+      if (importedData.preset_data && importedData.preset_data.length > 0) {
+        console.log("preset_data exists.");
+        // console.log(presetData);
+      } else {
+        console.log("preset_data does not exist or is empty.");
+      }
+  
+      for (var i = 0; i < 10; i++) {
+          fs.writeFile(json_location + `/group${i}_presets.json`, JSON.stringify(presetData[i]), 'utf8', function(err) {
+              if (err) {
+                  console.error(err);
+                  return;
+                }
+            });
+        }
+        fs.writeFile(json_location + '/camera_list.json', JSON.stringify(cameraData), 'utf8', function(err) {
+                if (err) {
+                    console.error(err);
+                    return;
+                } else {
+                    location.reload();
+                }
+        });
+        
+    };
+    
+    
+    reader.readAsText(file);
+}
+// import camera and preset data

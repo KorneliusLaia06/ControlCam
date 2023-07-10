@@ -65,12 +65,17 @@
 
                 <!-- Right navbar links -->
                 <!-- <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link" role="button" onclick="logout()">
-                            <i class="fas fa-sign-out-alt"> Logout</i>
-                        </a>
-                    </li>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default" onclick="export_data()">
+                            <i class="fas fa-download"></i> export
+                        </button>
+                        <button type="button" class="btn btn-default" onclick="document.getElementById('import_data').click()">                        
+                            <i class="nav-icon fas fa-upload"></i> import
+                            <input type="file" id="import_data" style="display: none;" accept=".json" onchange="importData(event)">
+                        </button>
+                    </div>
                 </ul> -->
+                
             </nav>
             <!-- /.navbar -->
 
@@ -114,7 +119,7 @@
                 <div class="sidebar-custom">
                     <!-- <img src="../assets/img/CamConnect_SidebarBottom.png" alt="VStream Large" class="img-fluid brand-image-xs" style="left: 12px"> -->
                     <a href="#" class="brand-link logo-switch">
-                        <img src="../assets/img/VStreamLOGO_CircleSmall.png" alt="VStream Logo Small" class="brand-image-xl logo-xs logo-bottom-xl">
+                        <!-- <img src="../assets/img/VStreamLOGO_CircleSmall.png" alt="VStream Logo Small" class="brand-image-xl logo-xs logo-bottom-xl"> -->
                         <img src="../assets/img/CamConnect_SidebarBottom.png" alt="VStream Large" class="brand-image-xs logo-xl logo-bottom-xs" style="left: 0 !important;">
                     </a>
                 </div>

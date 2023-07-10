@@ -72,11 +72,15 @@
 
                 <!-- Right navbar links -->
                 <!-- <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link" role="button" onclick="logout()">
-                            <i class="fas fa-sign-out-alt"> Logout</i>
-                        </a>
-                    </li>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default" onclick="export_data()">
+                            <i class="fas fa-download"></i> export
+                        </button>
+                        <button type="button" class="btn btn-default" onclick="document.getElementById('import_data').click()">                        
+                            <i class="nav-icon fas fa-upload"></i> import
+                            <input type="file" id="import_data" style="display: none;" accept=".json" onchange="importData(event)">
+                        </button>
+                    </div>
                 </ul> -->
             </nav>
             <!-- /.navbar -->
@@ -121,7 +125,7 @@
                 <div class="sidebar-custom">
                     <!-- <img src="../assets/img/CamConnect_SidebarBottom.png" alt="VStream Large" class="img-fluid brand-image-xs" style="left: 12px"> -->
                     <a href="#" class="brand-link logo-switch">
-                        <img src="../assets/img/VStreamLOGO_CircleSmall.png" alt="VStream Logo Small" class="brand-image-xl logo-xs logo-bottom-xl">
+                        <!-- <img src="../assets/img/VStreamLOGO_CircleSmall.png" alt="VStream Logo Small" class="brand-image-xl logo-xs logo-bottom-xl"> -->
                         <img src="../assets/img/CamConnect_SidebarBottom.png" alt="VStream Large" class="brand-image-xs logo-xl logo-bottom-xs" style="left: 0 !important;">
                     </a>
                 </div>
@@ -226,12 +230,6 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="controller_name">Controller Name</label>
-                            <input type="text" id="add_controllerName" class="form-control">
-                            <code id="add_controllerName_error" class="text-danger"></code>
-                        </div>
-
-                        <div class="form-group">
                             <label for="keyboard_mapping">Keyboard Mapping (0-9, A-Z)</label>
                             
                             <div class="input-group mb-3">
@@ -304,13 +302,6 @@
                                     <label>IP Address</label>
                                     <input type="text" id="edit_ip_address" class="form-control bg-white">
                                     <code id="edit_ip_address_error" class="text-danger"></code>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label>Controller Name</label>
-                                    <input type="text" id="edit_controller_name" class="form-control bg-white">
-                                    <code id="edit_controller_name_error" class="text-danger"></code>
                                 </div>
                             </div>
                             <div class="col-12">

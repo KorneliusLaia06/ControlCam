@@ -105,29 +105,6 @@ const json_location = "src/data";
                     formGroup2.appendChild(div2);
                     tabPane.appendChild(formGroup2);
 
-                    var formGroup3 = document.createElement("div");
-                    formGroup3.className = "form-group row";
-
-                    var label3 = document.createElement("label");
-                    label3.setAttribute("for", "controller_name");
-                    label3.className = "col-sm-2 col-form-label";
-                    label3.textContent = "Controller";
-
-                    var div3 = document.createElement("div");
-                    div3.className = "col-sm-10";
-
-                    var controllerNameInput = document.createElement("input");
-                    controllerNameInput.type = "text";
-                    controllerNameInput.id = "value_controller_name_" + camera.id;
-                    controllerNameInput.className = "form-control bg-white";
-                    controllerNameInput.value = camera.camera_name;
-                    controllerNameInput.disabled = true;
-
-                    div3.appendChild(controllerNameInput);
-                    formGroup3.appendChild(label3);
-                    formGroup3.appendChild(div3);
-                    tabPane.appendChild(formGroup3);
-
                     var formGroup4 = document.createElement("div");
                     formGroup4.className = "form-group row";
 
@@ -293,7 +270,6 @@ const json_location = "src/data";
                     var groupIndex = $('#changeCameraGroup').val();
                     var camera_name = $('#add_cameraName').val();
                     var ip_address = $('#add_ipAddress').val();
-                    var controller_name = $('#add_controllerName').val();
                     var keyboard_mapping = $('#add_keyboardMapping').val();
                     var keyboard_code = $('#add_keyboardCode').val();
 
@@ -313,7 +289,6 @@ const json_location = "src/data";
                       "id": timestampId,
                       "camera_name": camera_name,
                       "ip_address": ip_address,
-                      "controller_name": controller_name,
                       "keyboard_mapping": keyboard_mapping,
                       "keyboard_code": keyboard_code,
                     };
@@ -392,14 +367,12 @@ const json_location = "src/data";
                     
                     var camera_name = $('#value_camera_name_'+id).val();
                     var ip_address = $('#value_ip_address_'+id).val();
-                    var controller_name = $('#value_controller_name_'+id).val();
                     var keyboard_mapping = $('#value_keyboard_mapping_'+id).val();
                     var keyboard_code = $('#value_keyboard_code_'+id).val();
 
                     $('#edit_camera_id').val(id);
                     $('#edit_camera_name').val(camera_name);
                     $('#edit_ip_address').val(ip_address);
-                    $('#edit_controller_name').val(controller_name);
                     $('#edit_keyboard_mapping').val(keyboard_mapping);
                     $('#edit_keyboard_code').val(keyboard_code);
                 });
@@ -521,7 +494,6 @@ const json_location = "src/data";
                 var groupIndex = $("#changeCameraGroup").val();
                 var camera_name = $('#edit_camera_name').val();
                 var ip_address = $('#edit_ip_address').val();
-                var controller_name = $('#edit_controller_name').val();
                 var keyboard_mapping = $('#edit_keyboard_mapping').val();
                 var keyboard_code = $('#edit_keyboard_code').val();
 
@@ -540,7 +512,6 @@ const json_location = "src/data";
 
                     camera_list[groupIndex][index].camera_name = camera_name;
                     camera_list[groupIndex][index].ip_address = ip_address;
-                    camera_list[groupIndex][index].controller_name = controller_name;
                     camera_list[groupIndex][index].keyboard_mapping = keyboard_mapping;
                     camera_list[groupIndex][index].keyboard_code = keyboard_code;
 
