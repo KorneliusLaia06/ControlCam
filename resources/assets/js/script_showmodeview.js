@@ -7,8 +7,8 @@ let default_value_focus_far = 0;
 let default_value_zoom_in = 0;
 let default_value_zoom_out = 0;
 
-const json_location = "src/data";
-// const json_location = "resources/data";
+// const json_location = "src/data";
+const json_location = "resources/data";
 
 let isFeaturePrevTallyActive = false;
 let interval_getCameraStatus;
@@ -2045,7 +2045,6 @@ $('#recallpreset_speedlevel').click(function(){
 
 // export camera and preset data
 function export_data(){
-    const json_location = "src/data";
     var fs = require('fs');        
     
     var mergedData = {
@@ -2078,7 +2077,6 @@ function export_data(){
 
 // import camera and preset data
 function importData(event){
-    const json_location = "src/data";
     var fs = require('fs'); 
     var file = event.target.files[0];
     var reader = new FileReader();

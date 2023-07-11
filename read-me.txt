@@ -7,13 +7,15 @@ npm i electron-packager
 npm install --save-dev electron
 npx electron-packager ./ "Control Cam - 202306114" -–platform=win32 -–arch=x64
 
-
+// jalankan 2 command ini
+npm i  electron-packager
 npm install -g electron-packager
+
+// gunakan ini di powershell untuk membuka izin electron packager writedata pada folder
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 //command to package the app and encrypt the files with asar
 electron-packager . --asar
 
 electron-packager . --asar --overwrite
 
-// gunakan ini di powershell untuk membuka izin electron packager writedata pada folder
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
