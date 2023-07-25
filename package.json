@@ -13,7 +13,8 @@
   "dependencies": {
     "@electron/asar": "^3.2.4",
     "asar": "^3.2.0",
-    "electron-builder": "^23.6.0"
+    "electron-builder": "^23.6.0",
+    "systeminformation": "^5.18.7"
   },
   "devDependencies": {
     "@rabbitholesyndrome/electron-forge-maker-portable": "^0.1.1",
