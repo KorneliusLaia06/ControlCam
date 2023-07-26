@@ -41,20 +41,25 @@ async function createBackgroundTask () {
     const myBody = {
         hid
     }
-    const response = await Promise.race([
-      fetch('http://hq.vstream.asia:8002/backend/validateHid', {
-          method: 'POST',
-          body: JSON.stringify(myBody),
-          headers: {
-          'Content-Type': 'application/json'
-          }
-      }),
-      new Promise((_, reject) =>
-          setTimeout(() => reject(mainWindow.loadFile(path.join(__dirname, 'resources/views/index.html'))), 5000)
-      )
-    ]);
-    const res = await response.json();
-    if (!res.success) {
+    var rejected = false;
+    try {
+      const response = await Promise.race([
+        fetch('http://hq.vstream.asia:8002/backend/validateHid', {
+            method: 'POST',
+            body: JSON.stringify(myBody),
+            headers: {
+            'Content-Type': 'application/json'
+            }
+        }),
+        new Promise((_, reject) =>
+            setTimeout(() => reject(rejected = true), 5000)
+        )
+      ]);
+      const res = await response.json();
+      if (!res.success || rejected) {
+        mainWindow.loadFile(path.join(__dirname, 'resources/views/index.html'));
+      }
+    } catch {
       mainWindow.loadFile(path.join(__dirname, 'resources/views/index.html'));
     }
     await delay(24*60*60*1000);
