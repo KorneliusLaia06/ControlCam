@@ -19,59 +19,50 @@
             rel="stylesheet"
             href="../assets/AdminLTE-3.2.0/dist/css/adminlte.min.css">
 
-        <style>
-            .bg-vstream {
-                background: #a2d664 !important;
-                border: #a2d664 !important;
-            }
-        </style>
-        <title>VStream Connect - Login</title>
+            
+        <link
+        rel="stylesheet"
+        href="../assets/css/style.css">
+
+        <title>VStream Camera Connect</title>
     </head>
-    <body class="hold-transition login-page">
+    <body class="hold-transition login-page bg-main">
+        <img
+            src="../assets/img/CamConnect_LoginPage.png"
+            class="brand-image">
         <div class="login-box">
-            <div class="card card-outline">
-                <div class="card-header text-center bg-vstream">
-                    <img
-                        src="../assets/img/VStreamConnect-01.png"
-                        alt="VStream Logo Small"
-                        class="brand-image">
-                </div>
-                <div class="card-body">
-                    <p class="login-box-msg">Enter your license key</p>
+            <br/>
                     <form id="loginForm">
                         <div class="input-group mb-3">
-                            <input type="email" class="form-control" name="email" id="email" value="" placeholder="example@email.com">
                             <div class="input-group-append">
                                 <div class="input-group-text">
-                                    <span class="fas fa-user"></span>
+                                    <img src="../assets/img/asset_icon/email.png" class="asset_icon">
                                 </div>
                             </div>
+                            <input type="email" class="form-control" name="email" id="email" value="" placeholder="Email">
                         </div>
                         <div class="input-group mb-3">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <img src="../assets/img/asset_icon/license_key.png" class="asset_icon">
+                                </div>
+                            </div>
                             <input
                                 type="text"
                                 class="form-control"
                                 name="licensekey"
                                 id="licensekey"
-                                placeholder="Enter your license key"
-                                value="">
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-lock"></span>
-                                </div>
-                            </div>
+                                placeholder="License key"
+                                value=""
+                                >
                           </div>
-                                                  <div class="row">
-                            <div class="col-12 mt-4">
+                        <div class="row">
+                            <div class="col-12 mt-2">
                                 <button id="submit" type="submit" class="btn btn-primary btn-block bg-vstream">Submit</button>
                             </div>
-
                         </div>
                     </form>
 
-                </div>
-
-            </div>
 
         </div>
 

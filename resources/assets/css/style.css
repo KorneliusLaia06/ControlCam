@@ -4,7 +4,134 @@
 }
 
 .bg-vstream-grey {
-    background: #4e4c4d !important;
+    background: #A2D664 !important;
+}
+
+.main-sidebar{
+    background-color: rgba(255, 255, 255, 10%) !important;
+    box-shadow: none !important;
+}
+
+.brand-link{
+    border-bottom: transparent !important;
+}
+
+#loginForm .input-group-text{
+    border-top-left-radius: 4px !important;border-bottom-left-radius: 4px !important; 
+    border-bottom: #A2D664 1px solid !important;
+    border-top: #A2D664 1px solid !important;
+    border-left: #A2D664 1px solid !important;
+    border-right: transparent;
+    background-color: #272727;
+    color: #A2D664;
+}
+
+#loginForm .form-control{
+    background-color: #4F4F4F;
+}
+
+#loginForm #submit{
+    background-color: #272727;
+    border: #A2D664 2px solid !important;
+    font-weight: 500;
+}
+#licensekey, #email{ 
+    border: #A2D664 1px solid !important;
+    color:white;
+}
+#email, #licensekey{
+    background-color: rgba(158, 154, 154, 0.87) !important;
+}
+
+#email::-webkit-input-placeholder ,#licensekey::-webkit-input-placeholder { /* Edge */
+color: white;
+}
+
+#email:-ms-input-placeholder,#licensekey:-ms-input-placeholder { /* Internet Explorer 10-11 */
+color: white;
+}
+
+#email::placeholder,#licensekey::placeholder {
+color: white;
+}
+
+#sidebarToggle{
+    color:#A2D664;
+}
+
+.sidebar .nav .nav-item .nav-link{
+    border:0.1rem solid #A2D664 ;
+    font-weight: 500;
+    color:white;
+    background-color: transparent !important;
+    padding: 0.4rem 1rem;
+    border-radius: 8px !important;
+}
+
+.sidebar .nav .nav-item .active{
+    background-color: rgba(255, 255, 255, 20%) !important;
+}
+
+.sidebar .nav .nav-item:nth-child(1n+1){
+    margin-top: 4px !important;
+}
+
+.sidebar .nav .nav-item .nav-icon{
+    color:#A2D664;
+}
+
+.camera-information{
+    background-color: #565656 !important;
+    color: white !important;
+    box-shadow: none !important;
+    border-radius: 8px !important;
+}
+
+.camera-information label{
+    font-weight: 500 !important;
+}
+
+.camera-information .card-header {
+    border-color: transparent;
+}
+
+#vert-tabs-tab .btn{
+    background-color: #333 !important;
+    border:1px solid #fff !important;
+    color: white !important;
+    font-weight: 600 !important;
+    margin-left: 5px !important;
+    margin-bottom: 10px !important;
+    padding: 10px !important;
+}
+
+#vert-tabs-tab .active{
+    background-color: #333 !important;
+    border:3px solid #A2D664 !important;
+    color: white !important;
+}
+
+.showModalAddCamera, .btn-edit{
+    background-color: #A2D664 !important;
+    color:white !important;
+    font-weight: 600 !important;
+    cursor: pointer;
+    bottom:0px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+}
+
+.btn-delete{
+    background-color: #D10000 !important;
+    color:white !important;
+    font-weight: 600 !important;
+    border:1px solid #ffffff !important;
+}
+
+.bg-main{
+    background-color: #4E4C4D !important;
+    border:transparent;
 }
 
 .nav-tabs.flex-column {
@@ -37,3 +164,155 @@ bottom:8px !important;
     overflow: hidden;
     border-top: none !important;
 }
+
+.asset_icon{
+    width: 23px;
+    height:auto;
+    display: inline;
+}
+
+#vert-tabs-tabContent .form-control{
+    border-radius: 8px !important;
+    background-color: #333 !important;
+    color:#fff !important;
+    font-weight: 600 !important;
+}
+
+
+.addnewcamera {
+    margin-left: auto;
+    margin-right: auto;
+}
+.addnewcamera .input-group-text{
+background-color: #A2D664;
+
+}
+
+.input-group-text-left{
+    border-top-right-radius: 0px !important; 
+    border-bottom-right-radius: 0px !important;
+    border-right: 0px !important;
+    border-left: 2px white solid !important;
+    border-top: 2px white solid !important;
+    border-bottom: 2px white solid !important;
+}
+.input-group-text-right{
+    border-top-left-radius: 0px !important; 
+    border-bottom-left-radius: 0px !important; 
+    border-left: 0px !important;
+    border-right: 2px white solid !important;
+    border-top: 2px white solid !important;
+    border-bottom: 2px white solid !important;
+}
+
+
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#containerBtnCamera .btn-camera{
+    background-color: #333 !important;
+    border:1px solid #fff !important;
+    color: white !important;
+    font-weight: 600 !important;
+    font-size:1rem !important;
+    margin-left: 5px !important;
+    margin-bottom: 10px !important;
+    padding: 10px !important;
+    height: 46px !important;
+}
+
+#containerBtnCamera .active{
+    background-color: #333 !important;
+    border:3px solid #A2D664 !important;
+    color: white !important;
+}
+
+
+.navbar-nav .nav-item{
+    padding-left: 0 !important;
+}
+
+#button_showpreset{
+    background-color: #A2D664 !important;
+    color:white !important;
+    font-weight: 600 !important;
+    cursor: pointer;
+    bottom:0px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+    border: 1px solid white !important;
+}
+
+#button_editpreset{
+    background-color: #D10000 !important;
+    color:white !important;
+    font-weight: 600 !important;
+    cursor: pointer;
+    bottom:0px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+    border: 1px solid white !important;
+}
+
+
+#container_showpreset .btn{
+    background-color: #333 !important;
+    border:1px solid #fff !important;
+    color: white !important;
+    font-weight: 600 !important;
+    font-size:1rem !important;
+    margin-left: 5px !important;
+    margin-bottom: 1px !important;
+}
+
+#container_editpreset .btn-group{
+    background-color: #333 !important;
+    border:1px solid #fff !important;
+    margin-left: 5px !important;
+    margin-bottom: 1px !important;
+    border-radius: 0.2rem !important;
+
+}
+
+#container_editpreset .btn-group .btn {
+    color: white !important;
+    font-weight: 600 !important;
+    font-size:1rem !important;
+}
+.panel-video{
+background-color: transparent !important;
+box-shadow: none !important;
+}
+
+.panel-video .card-title{
+    color: white !important;
+    font-weight: 100;
+}
+
+.card-mainpanel{
+    background-color:transparent !important;
+    box-shadow: none !important;
+}
+
+#container_select_camera_first .jumbotron{
+background-color: transparent !important;
+}
+
+.panel-video label{
+    color:white !important;
+}
+/* #changeCameraGroup{
+    background-color: transparent !important;
+    border: 1px white solid !important;
+    color: white !important;
+}
+
+.changeCameraGroup:after{
+    background-color: transparent !important;
+} */

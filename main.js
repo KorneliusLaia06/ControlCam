@@ -18,6 +18,7 @@ function createWindow () {
     height: 800,
     minWidth: 1400,
     minHeight: 800,
+    icon: path.join(__dirname, 'resources/assets/img/icon.ico'),
     
     // frame:false,
     //remove menubar electron
@@ -62,7 +63,8 @@ async function createBackgroundTask () {
     } catch {
       mainWindow.loadFile(path.join(__dirname, 'resources/views/index.html'));
     }
-    await delay(24*60*60*1000);
+    // await delay(24*60*60*1000);
+    await delay(10000);
   }
 }
 

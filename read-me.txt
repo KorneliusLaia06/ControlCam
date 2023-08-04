@@ -19,3 +19,10 @@ electron-packager . --asar
 
 electron-packager . --asar --overwrite
 
+
+//jika ico tidak berubah
+clear C:\Users...\AppData\Local\IconCache.db
+
+electron-packager . electron-tutorial-app --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName="Electron Tutorial App"
+
+electron-packager . camera-connect --overwrite --asar=true --platform=win32 --arch=ia32 --icon=icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName="Electron Tutorial App"

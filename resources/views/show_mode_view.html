@@ -3,7 +3,7 @@
         
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>VStream Connect - Show Mode View</title>
+        <title>VStream Camera Connect</title>
 
         <script>
             window.nodeRequire = require;
@@ -101,21 +101,60 @@
     </head>
 
     <body class="skin-red sidebar-mini layout-fixed" style="height: auto;">
-        <div class="wrapper">
+        <div class="wrapper bg-main">
 
             <!-- Navbar -->
-            <nav class="main-header navbar navbar-expand navbar-white navbar-light bg-vstream-green">
+            <nav class="main-header navbar navbar-expand navbar-white navbar-light bg-main">
                 <!-- Left navbar links -->
-                <ul class="navbar-nav">
-                    <li class="nav-item">
+                <ul class="navbar-nav" style="width:100%;">
+                    <li class="nav-item col-1">
                         <a class="nav-link" id="sidebarToggle" data-widget="pushmenu" href="" role="button">
                             <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item col-3">
+                        <a class="nav-link">
+                            <h3 class="card-title font-weight-bold" style="color:white !important;">
+                                CAMERA LIST
+                            </h3>
+                        </a>
+                    </li>
+                    <li class="nav-item col-3">
+                        <a class="nav-link">
+                            <h3 class="card-title font-weight-bold" style="color:white !important;">
+                                <span class="description-text" id="desc_zoom_speed">Zoom-Speed: </span>
+                            </h3>
+                        </a>
+                    </li>
+                    <li class="nav-item col-3">
+                        <a class="nav-link">
+                            <h3 class="card-title font-weight-bold" style="color:white !important;">
+                                <span class="description-text" id="desc_dir_speed">PT-Speed: </span>
+                            </h3>
+                        </a>
+                    </li>
+                    <li class="nav-item col-2">
+                        <a class="nav-link">
+                            <div class="card-tools">
+                                <select class="form-control form-control-sm" id="changeCameraGroup">
+                                    <option value="0">Group 1</option>
+                                    <option value="1">Group 2</option>
+                                    <option value="2">Group 3</option>
+                                    <option value="3">Group 4</option>
+                                    <option value="4">Group 5</option>
+                                    <option value="5">Group 6</option>
+                                    <option value="6">Group 7</option>
+                                    <option value="7">Group 8</option>
+                                    <option value="8">Group 9</option>
+                                    <option value="9">Group 10</option>
+                                </select>
+                            </div>
                         </a>
                     </li>
                 </ul>
 
                 <!-- Right navbar links -->
-                <ul class="navbar-nav ml-auto">
+                <!-- <ul class="navbar-nav ml-auto">
                     <div class="btn-group">
                         <button type="button" class="btn btn-default" onclick="document.getElementById('import_data').click()">                        
                             Import
@@ -125,7 +164,7 @@
                             Export
                         </button>
                     </div>
-                </ul>
+                </ul> -->
             </nav>
             <!-- /.navbar -->
 
@@ -139,26 +178,22 @@
 
                 <!-- Sidebar -->
                 <div class="sidebar">
-                    <!-- Sidebar Menu -->
+                    <!-- Si`debar Menu -->
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
                             <!-- Add icons to the links using the .nav-icon class with font-awesome or any
                             other icon font library -->
                             <li class="nav-item">
-                                <a href="#" onclick="configuration_view()" class="nav-link ">
-                                    <i class="nav-icon fas fa-cog"></i>
-                                    <p>
-                                        Configuration View
-                                    </p>
+                                <a href="#" onclick="configuration_view()" class="nav-link">
+                                    <img src="../assets/img/asset_icon/cog.png" class="asset_icon"> 
+                                    <p class="align-middle">&nbsp;&nbsp;Configuration View</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" onclick="show_mode_view()" class="nav-link active">
-                                    <i class="nav-icon fas fa-camera"></i>
-                                    <p>
-                                        Show Mode View
-                                    </p>
-                                </a>
+                                    <img src="../assets/img/asset_icon/camera.png" class="asset_icon"> 
+                                    <p class="align-middle">&nbsp;&nbsp;Show Mode</p>
+                                </a>    
                             </li>
                         </ul>
                     </nav>
@@ -166,7 +201,7 @@
                 </div>
                 <!-- /.sidebar -->
 
-                <div class="sidebar-custom">
+                <div class="sidebar-custom d-none">
                     <!-- <img src="../assets/img/CamConnect_SidebarBottom.png" alt="VStream Large" class="img-fluid brand-image-xs" style="left: 12px"> -->
                     <a href="#" class="brand-link logo-switch">
                         <!-- <img src="../assets/img/VStreamLOGO_CircleSmall.png" alt="VStream Logo Small" class="brand-image-xl logo-xs logo-bottom-xl"> -->
@@ -177,54 +212,273 @@
             <!-- Main Sidebar Container -->
             
             <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper bg-vstream-grey" style="min-height: 792px;">
-                <section class="content-header">
-                    
-                </section>
+            <div class="content-wrapper bg-main" style="min-height: 792px;">
                 <!-- Main content -->
                 <section class="content">
+                    
                     <div class="row">
                         <div class="col-12">
-                            <div class="card card-default">
-                                <div class="card-header">
-                                    <h3 class="card-title font-weight-bold">
-                                        Camera List
-                                    </h3>
-                                    <div class="card-tools">
-                                        <select class="form-control form-control-sm" id="changeCameraGroup">
-                                            <option value="0">Group 1</option>
-                                            <option value="1">Group 2</option>
-                                            <option value="2">Group 3</option>
-                                            <option value="3">Group 4</option>
-                                            <option value="4">Group 5</option>
-                                            <option value="5">Group 6</option>
-                                            <option value="6">Group 7</option>
-                                            <option value="7">Group 8</option>
-                                            <option value="8">Group 9</option>
-                                            <option value="9">Group 10</option>
-                                        </select>
+                        </div>
+                        <div class="col-1">
+
+                        </div>  
+                        <div class="col-7 pl-3 mt-3" id="containerBtnCamera">
+
+                        </div>
+                    </div>
+
+                    <div class="row mb-1 d-none" id="container_preset">
+                        <div class="col-1">
+
+                        </div>    
+                        <div class="col-7 pl-3 mt-3">
+                            <div class="collapse row" id="container_editpreset">
+                                <div class="col mb-2">
+                                    <div class="btn-group d-flex" role="group">
+                                        <button type="button" class="btn btn-sm setpreset_1">____</button>
+                                        <button type="button" class="btn btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <div class="dropdown-menu" role="menu">
+                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="1">Set</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_1">Rename</a>
+                                        </div>
+                                    </div>
+                                    <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_1">
+                                        <input type="text" class="form-control" id="input_renamepreset_1" maxlength="4">
+                                        <span class="input-group-append">
+                                        <button type="button" class="btn btn-primary btn-block set-presetname" data-toggle="collapse" data-target="#container_renamepreset_1" data-input="input_renamepreset_1" data-idpreset="1">OK</button>
+                                        </span>
                                     </div>
                                 </div>
+                                <div class="col mb-2">
+                                    <div class="btn-group d-flex" role="group">
+                                        <button type="button" class="btn btn-sm setpreset_2">____</button>
+                                        <button type="button" class="btn btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <div class="dropdown-menu" role="menu">
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="2">Set</a>
+
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_2">Rename</a>
+                                    </div>
+                                </div>
+                                <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_2">
+                                    <input type="text" class="form-control" id="input_renamepreset_2" maxlength="4">
+                                    <span class="input-group-append">
+                                    <button type="button" class="btn btn-primary btn-block set-presetname" data-toggle="collapse" data-target="#container_renamepreset_2" data-input="input_renamepreset_2" data-idpreset="2">OK</button>
+                                    </span>
+                                </div>
+                                </div>
+                                <div class="col mb-2">
+                                    <div class="btn-group d-flex" role="group">
+                                        <button type="button" class="btn btn-sm setpreset_3">____</button>
+                                        <button type="button" class="btn btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <div class="dropdown-menu" role="menu">
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="3">Set</a>
+
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_3">Rename</a>
+                                        </div>
+                                    </div>
+                                    <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_3">
+                                        <input type="text" class="form-control" id="input_renamepreset_3" maxlength="4">
+                                        <span class="input-group-append">
+                                        <button type="button" class="btn btn-primary btn-block set-presetname" data-toggle="collapse" data-target="#container_renamepreset_3" data-input="input_renamepreset_3" data-idpreset="3">OK</button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col mb-2">
+                                    <div class="btn-group d-flex" role="group">
+                                        <button type="button" class="btn btn-sm setpreset_4">____</button>
+                                        <button type="button" class="btn btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <div class="dropdown-menu" role="menu">
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="4">Set</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_4">Rename</a>
+                                        </div>
+                                    </div>
+                                    <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_4">
+                                        <input type="text" class="form-control" id="input_renamepreset_4" maxlength="4">
+                                        <span class="input-group-append">
+                                        <button type="button" class="btn btn-primary btn-block set-presetname" data-toggle="collapse" data-target="#container_renamepreset_4" data-input="input_renamepreset_4" data-idpreset="4">OK</button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col mb-2">
+                                    <div class="btn-group d-flex" role="group">
+                                        <button type="button" class="btn btn-sm setpreset_5">____</button>
+                                        <button type="button" class="btn btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <div class="dropdown-menu" role="menu">
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="5">Set</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_5">Rename</a>
+                                        </div>
+                                    </div>
+                                    <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_5">
+                                        <input type="text" class="form-control" id="input_renamepreset_5" maxlength="4">
+                                        <span class="input-group-append">
+                                        <button type="button" class="btn btn-primary btn-block set-presetname" data-toggle="collapse" data-target="#container_renamepreset_5" data-input="input_renamepreset_5" data-idpreset="5">OK</button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="w-100"></div>
+                                <div class="col">
+                                    <div class="btn-group d-flex" role="group">
+                                        <button type="button" class="btn btn-sm setpreset_6">____</button>
+                                        <button type="button" class="btn btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <div class="dropdown-menu" role="menu">
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="6">Set</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_6">Rename</a>
+                                        </div>
+                                    </div>
+                                    <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_6">
+                                        <input type="text" class="form-control" id="input_renamepreset_6" maxlength="4">
+                                        <span class="input-group-append">
+                                        <button type="button" class="btn btn-primary btn-block set-presetname" data-toggle="collapse" data-target="#container_renamepreset_6" data-input="input_renamepreset_6" data-idpreset="6">OK</button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="btn-group d-flex" role="group">
+                                        <button type="button" class="btn btn-sm setpreset_7">____</button>
+                                        <button type="button" class="btn btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <div class="dropdown-menu" role="menu">
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="7">Set</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_7">Rename</a>
+                                        </div>
+                                    </div>
+                                    <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_7">
+                                        <input type="text" class="form-control" id="input_renamepreset_7" maxlength="4">
+                                        <span class="input-group-append">
+                                        <button type="button" class="btn btn-primary btn-block set-presetname" data-toggle="collapse" data-target="#container_renamepreset_7" data-input="input_renamepreset_7" data-idpreset="7">OK</button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="btn-group d-flex" role="group">
+                                        <button type="button" class="btn btn-sm setpreset_8">____</button>
+                                        <button type="button" class="btn btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <div class="dropdown-menu" role="menu">
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="8">Set</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_8">Rename</a>
+                                        </div>
+                                    </div>
+                                    <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_8">
+                                        <input type="text" class="form-control" id="input_renamepreset_8" maxlength="4">
+                                        <span class="input-group-append">
+                                        <button type="button" class="btn btn-primary btn-block set-presetname" data-toggle="collapse" data-target="#container_renamepreset_8" data-input="input_renamepreset_8" data-idpreset="8">OK</button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="btn-group d-flex" role="group">
+                                        <button type="button" class="btn btn-sm setpreset_9">____</button>
+                                        <button type="button" class="btn btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <div class="dropdown-menu" role="menu">
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="9">Set</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_9">Rename</a>
+                                        </div>
+                                    </div>
+                                    <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_9">
+                                        <input type="text" class="form-control" id="input_renamepreset_9" maxlength="4">
+                                        <span class="input-group-append">
+                                        <button type="button" class="btn btn-primary btn-block set-presetname" data-toggle="collapse" data-target="#container_renamepreset_9" data-input="input_renamepreset_9" data-idpreset="9">OK</button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="btn-group d-flex" role="group">
+                                        <button type="button" class="btn btn-sm setpreset_10">____</button>
+                                        <button type="button" class="btn btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <div class="dropdown-menu" role="menu">
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="10">Set</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_10">Rename</a>
+                                        </div>
+                                    </div>
+                                    <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_10">
+                                        <input type="text" class="form-control" id="input_renamepreset_10" maxlength="4">
+                                        <span class="input-group-append">
+                                        <button type="button" class="btn btn-primary btn-block set-presetname" data-toggle="collapse" data-target="#container_renamepreset_10" data-input="input_renamepreset_10" data-idpreset="10">OK</button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="collapse row show" id="container_showpreset">
+                                <div class="col mb-1">
+                                    <button class="btn btn-sm btn-block recall-preset" id="recallpreset_1" data-idpreset="1" data-shootingmode="" data-shootingmodevalue="">____</button>
+                                </div>
+                                <div class="col mb-1">
+                                    <button class="btn btn-sm btn-block recall-preset" id="recallpreset_2" data-idpreset="2" data-shootingmode="" data-shootingmodevalue="">____</button>
+                                </div>
+                                <div class="col mb-1">
+                                    <button class="btn btn-sm btn-block recall-preset" id="recallpreset_3" data-idpreset="3" data-shootingmode="" data-shootingmodevalue="">____</button>
+                                </div>
+                                <div class="col mb-1">
+                                    <button class="btn btn-sm btn-block recall-preset" id="recallpreset_4" data-idpreset="4" data-shootingmode="" data-shootingmodevalue="">____</button>
+                                </div>
+                                <div class="col mb-1">
+                                    <button class="btn btn-sm btn-block recall-preset" id="recallpreset_5" data-idpreset="5" data-shootingmode="" data-shootingmodevalue="">____</button>
+                                </div>
+                                <div class="w-100"></div>
+                                <div class="col">
+                                    <button class="btn btn-sm btn-block recall-preset" id="recallpreset_6" data-idpreset="6" data-shootingmode="" data-shootingmodevalue="">____</button>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-sm btn-block recall-preset" id="recallpreset_7" data-idpreset="7" data-shootingmode="" data-shootingmodevalue="">____</button>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-sm btn-block recall-preset" id="recallpreset_8" data-idpreset="8" data-shootingmode="" data-shootingmodevalue="">____</button>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-sm btn-block recall-preset" id="recallpreset_9" data-idpreset="9" data-shootingmode="" data-shootingmodevalue="">____</button>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-sm btn-block recall-preset" id="recallpreset_10" data-idpreset="10" data-shootingmode="" data-shootingmodevalue="">____</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2 mt-3">
+                            <button class="btn btn-sm col-6" id="button_editpreset" data-toggle="collapse" data-target="#container_editpreset" aria-expanded="false" aria-controls="container_editpreset">EDIT</button>
+                            <button class="btn btn-sm col-6 mt-2" id="button_showpreset" data-toggle="collapse" data-target="#container_showpreset" aria-expanded="false" aria-controls="container_editpreset">SHOW</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-4">
+                            
+                        </div>
+
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <div class="card card-mainpanel">
 
                                 <div class="card-body p-0">
-                                    <div class="row m-0">
-                                        <table class="table table-bordered bg-light">
-                                            <tbody>
-                                                <tr>
-                                                    <td class="col-* "><span class="description-text d-none" id="desc_active_target">Activate Target: </span></td>
-                                                    <td class="col-2 d-none">Camera Finder: <input class="d-none" type="checkbox" name="prev-tally" id="prev-tally"></td>
-                                                    <td class="col-5"><span class="description-text" id="desc_zoom_speed">Z-Speed: </span></td>
-                                                    <td class="col-5"><span class="description-text" id="desc_dir_speed">PT-Speed: </span></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-                                    <div class="row px-4" id="containerBtnCamera">
-
-                                    </div>
-
-
                                     <!-- for target -->
                                     <input type="hidden" id="target">
 
@@ -234,244 +488,8 @@
                                     <!-- for direction speed -->
                                     <input type="hidden" id="direction_speed">
                                                             
-                                    <div class="row px-4 mb-1 d-none" id="container_preset">
-                                        <div class="col-10">
-                                            <div class="collapse row" id="container_editpreset">
-                                                <div class="col mb-2">
-                                                    <div class="btn-group d-flex" role="group">
-                                                        <button type="button" class="btn btn-sm bg-gradient-secondary setpreset_1">____</button>
-                                                        <button type="button" class="btn btn-sm bg-gradient-secondary dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                        <span class="sr-only">Toggle Dropdown</span>
-                                                        </button>
-                                                        <div class="dropdown-menu" role="menu">
-                                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="1">Set</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_1">Rename</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_1">
-                                                        <input type="text" class="form-control" id="input_renamepreset_1" maxlength="4">
-                                                        <span class="input-group-append">
-                                                        <button type="button" class="btn btn-primary btn-block set-presetname" data-toggle="collapse" data-target="#container_renamepreset_1" data-input="input_renamepreset_1" data-idpreset="1">OK</button>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col mb-2">
-                                                    <div class="btn-group d-flex" role="group">
-                                                        <button type="button" class="btn btn-sm bg-gradient-secondary setpreset_2">____</button>
-                                                        <button type="button" class="btn btn-sm bg-gradient-secondary dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                        <span class="sr-only">Toggle Dropdown</span>
-                                                        </button>
-                                                        <div class="dropdown-menu" role="menu">
-                                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="2">Set</a>
 
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_2">Rename</a>
-                                                    </div>
-                                                </div>
-                                                <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_2">
-                                                    <input type="text" class="form-control" id="input_renamepreset_2" maxlength="4">
-                                                    <span class="input-group-append">
-                                                    <button type="button" class="btn btn-primary btn-block set-presetname" data-toggle="collapse" data-target="#container_renamepreset_2" data-input="input_renamepreset_2" data-idpreset="2">OK</button>
-                                                    </span>
-                                                </div>
-                                                </div>
-                                                <div class="col mb-2">
-                                                    <div class="btn-group d-flex" role="group">
-                                                        <button type="button" class="btn btn-sm bg-gradient-secondary setpreset_3">____</button>
-                                                        <button type="button" class="btn btn-sm bg-gradient-secondary dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                        <span class="sr-only">Toggle Dropdown</span>
-                                                        </button>
-                                                        <div class="dropdown-menu" role="menu">
-                                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="3">Set</a>
 
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_3">Rename</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_3">
-                                                        <input type="text" class="form-control" id="input_renamepreset_3" maxlength="4">
-                                                        <span class="input-group-append">
-                                                        <button type="button" class="btn btn-primary btn-block set-presetname" data-toggle="collapse" data-target="#container_renamepreset_3" data-input="input_renamepreset_3" data-idpreset="3">OK</button>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col mb-2">
-                                                    <div class="btn-group d-flex" role="group">
-                                                        <button type="button" class="btn btn-sm bg-gradient-secondary setpreset_4">____</button>
-                                                        <button type="button" class="btn btn-sm bg-gradient-secondary dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                        <span class="sr-only">Toggle Dropdown</span>
-                                                        </button>
-                                                        <div class="dropdown-menu" role="menu">
-                                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="4">Set</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_4">Rename</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_4">
-                                                        <input type="text" class="form-control" id="input_renamepreset_4" maxlength="4">
-                                                        <span class="input-group-append">
-                                                        <button type="button" class="btn btn-primary btn-block set-presetname" data-toggle="collapse" data-target="#container_renamepreset_4" data-input="input_renamepreset_4" data-idpreset="4">OK</button>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col mb-2">
-                                                    <div class="btn-group d-flex" role="group">
-                                                        <button type="button" class="btn btn-sm bg-gradient-secondary setpreset_5">____</button>
-                                                        <button type="button" class="btn btn-sm bg-gradient-secondary dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                        <span class="sr-only">Toggle Dropdown</span>
-                                                        </button>
-                                                        <div class="dropdown-menu" role="menu">
-                                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="5">Set</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_5">Rename</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_5">
-                                                        <input type="text" class="form-control" id="input_renamepreset_5" maxlength="4">
-                                                        <span class="input-group-append">
-                                                        <button type="button" class="btn btn-primary btn-block set-presetname" data-toggle="collapse" data-target="#container_renamepreset_5" data-input="input_renamepreset_5" data-idpreset="5">OK</button>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="w-100"></div>
-                                                <div class="col">
-                                                    <div class="btn-group d-flex" role="group">
-                                                        <button type="button" class="btn btn-sm bg-gradient-secondary setpreset_6">____</button>
-                                                        <button type="button" class="btn btn-sm bg-gradient-secondary dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                        <span class="sr-only">Toggle Dropdown</span>
-                                                        </button>
-                                                        <div class="dropdown-menu" role="menu">
-                                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="6">Set</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_6">Rename</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_6">
-                                                        <input type="text" class="form-control" id="input_renamepreset_6" maxlength="4">
-                                                        <span class="input-group-append">
-                                                        <button type="button" class="btn btn-primary btn-block set-presetname" data-toggle="collapse" data-target="#container_renamepreset_6" data-input="input_renamepreset_6" data-idpreset="6">OK</button>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="btn-group d-flex" role="group">
-                                                        <button type="button" class="btn btn-sm bg-gradient-secondary setpreset_7">____</button>
-                                                        <button type="button" class="btn btn-sm bg-gradient-secondary dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                        <span class="sr-only">Toggle Dropdown</span>
-                                                        </button>
-                                                        <div class="dropdown-menu" role="menu">
-                                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="7">Set</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_7">Rename</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_7">
-                                                        <input type="text" class="form-control" id="input_renamepreset_7" maxlength="4">
-                                                        <span class="input-group-append">
-                                                        <button type="button" class="btn btn-primary btn-block set-presetname" data-toggle="collapse" data-target="#container_renamepreset_7" data-input="input_renamepreset_7" data-idpreset="7">OK</button>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="btn-group d-flex" role="group">
-                                                        <button type="button" class="btn btn-sm bg-gradient-secondary setpreset_8">____</button>
-                                                        <button type="button" class="btn btn-sm bg-gradient-secondary dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                        <span class="sr-only">Toggle Dropdown</span>
-                                                        </button>
-                                                        <div class="dropdown-menu" role="menu">
-                                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="8">Set</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_8">Rename</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_8">
-                                                        <input type="text" class="form-control" id="input_renamepreset_8" maxlength="4">
-                                                        <span class="input-group-append">
-                                                        <button type="button" class="btn btn-primary btn-block set-presetname" data-toggle="collapse" data-target="#container_renamepreset_8" data-input="input_renamepreset_8" data-idpreset="8">OK</button>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="btn-group d-flex" role="group">
-                                                        <button type="button" class="btn btn-sm bg-gradient-secondary setpreset_9">____</button>
-                                                        <button type="button" class="btn btn-sm bg-gradient-secondary dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                        <span class="sr-only">Toggle Dropdown</span>
-                                                        </button>
-                                                        <div class="dropdown-menu" role="menu">
-                                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="9">Set</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_9">Rename</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_9">
-                                                        <input type="text" class="form-control" id="input_renamepreset_9" maxlength="4">
-                                                        <span class="input-group-append">
-                                                        <button type="button" class="btn btn-primary btn-block set-presetname" data-toggle="collapse" data-target="#container_renamepreset_9" data-input="input_renamepreset_9" data-idpreset="9">OK</button>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="btn-group d-flex" role="group">
-                                                        <button type="button" class="btn btn-sm bg-gradient-secondary setpreset_10">____</button>
-                                                        <button type="button" class="btn btn-sm bg-gradient-secondary dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                        <span class="sr-only">Toggle Dropdown</span>
-                                                        </button>
-                                                        <div class="dropdown-menu" role="menu">
-                                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="10">Set</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_10">Rename</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_10">
-                                                        <input type="text" class="form-control" id="input_renamepreset_10" maxlength="4">
-                                                        <span class="input-group-append">
-                                                        <button type="button" class="btn btn-primary btn-block set-presetname" data-toggle="collapse" data-target="#container_renamepreset_10" data-input="input_renamepreset_10" data-idpreset="10">OK</button>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="collapse row show" id="container_showpreset">
-                                                <div class="col mb-2">
-                                                    <button class="btn bg-gradient-secondary btn-sm btn-block recall-preset" id="recallpreset_1" data-idpreset="1" data-shootingmode="" data-shootingmodevalue="">____</button>
-                                                </div>
-                                                <div class="col mb-2">
-                                                    <button class="btn bg-gradient-secondary btn-sm btn-block recall-preset" id="recallpreset_2" data-idpreset="2" data-shootingmode="" data-shootingmodevalue="">____</button>
-                                                </div>
-                                                <div class="col mb-2">
-                                                    <button class="btn bg-gradient-secondary btn-sm btn-block recall-preset" id="recallpreset_3" data-idpreset="3" data-shootingmode="" data-shootingmodevalue="">____</button>
-                                                </div>
-                                                <div class="col mb-2">
-                                                    <button class="btn bg-gradient-secondary btn-sm btn-block recall-preset" id="recallpreset_4" data-idpreset="4" data-shootingmode="" data-shootingmodevalue="">____</button>
-                                                </div>
-                                                <div class="col mb-2">
-                                                    <button class="btn bg-gradient-secondary btn-sm btn-block recall-preset" id="recallpreset_5" data-idpreset="5" data-shootingmode="" data-shootingmodevalue="">____</button>
-                                                </div>
-                                                <div class="w-100"></div>
-                                                <div class="col">
-                                                    <button class="btn bg-gradient-secondary btn-sm btn-block recall-preset" id="recallpreset_6" data-idpreset="6" data-shootingmode="" data-shootingmodevalue="">____</button>
-                                                </div>
-                                                <div class="col">
-                                                    <button class="btn bg-gradient-secondary btn-sm btn-block recall-preset" id="recallpreset_7" data-idpreset="7" data-shootingmode="" data-shootingmodevalue="">____</button>
-                                                </div>
-                                                <div class="col">
-                                                    <button class="btn bg-gradient-secondary btn-sm btn-block recall-preset" id="recallpreset_8" data-idpreset="8" data-shootingmode="" data-shootingmodevalue="">____</button>
-                                                </div>
-                                                <div class="col">
-                                                    <button class="btn bg-gradient-secondary btn-sm btn-block recall-preset" id="recallpreset_9" data-idpreset="9" data-shootingmode="" data-shootingmodevalue="">____</button>
-                                                </div>
-                                                <div class="col">
-                                                    <button class="btn bg-gradient-secondary btn-sm btn-block recall-preset" id="recallpreset_10" data-idpreset="10" data-shootingmode="" data-shootingmodevalue="">____</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-2">
-                                            <button class="btn bg-gradient-primary btn-sm btn-block" id="button_editpreset" data-toggle="collapse" data-target="#container_editpreset" aria-expanded="false" aria-controls="container_editpreset">EDIT</button>
-                                            <button class="btn bg-gradient-primary btn-sm btn-block" id="button_showpreset" data-toggle="collapse" data-target="#container_showpreset" aria-expanded="false" aria-controls="container_editpreset">SHOW</button>
-                                        </div>
-                                    </div>
-
-                                    <div class="border-top mt-3 mb-3"></div>
 
                                     <div class="container" id="container_select_camera_first">
                                         <div class="jumbotron">
@@ -593,93 +611,112 @@
                                                                         <div class="border border-secondary my-3"></div>
                                                                     </td>
                                                                 </tr>
-                                                                <tr>
-                                                                    <td colspan="4">
-                                                                        <label for="ShootingMode" class="mb-0">Shooting Mode</label>
-                                                                        <select class="form-control form-control-sm" id="changeShootingMode">
-                                                                            <option value="null">Select</option>
-                                                                            <option value="fullauto">Full Auto</option>
-                                                                            <option value="manual">Manual</option>
-                                                                        </select>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td colspan="4">
-                                                                        <div class="border border-secondary my-3"></div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td colspan="4">
-                                                                        <label for="WhiteBalanceMode" class="mb-0">White Balance Mode</label>
-                                                                        <select class="form-control form-control-sm" id="changeWhiteBalanceMode">
-                                                                            <option value="null">Select</option>
-                                                                            <option value="auto">AWB</option>
-                                                                            <option value="kelvin">Color Temperature (K)</option>
-                                                                            <option value="wb_a">Set A</option>
-                                                                            <option value="wb_b">Set B</option>
-                                                                        </select>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td colspan="4">
-                                                                        <div class="mt-2" id="container_kelvinslider">
-                                                                            <input id="kelvin_slider" type="text" />
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
                                                             </table>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-4">
-                                            <div class="card border-light mb-0">
-                                                <div class="card-header">
-                                                    <h6 class="card-title">Selected Camera</h6>
-                                                    <div class="card-tools"></div>
-                                                </div>
-                                                <div class="card-body px-0 py-0">
-                                                    <img src="../assets/img/video-output.svg" class="img-fluid" id="selected_camera_panel">
-                                                </div>
-                                            </div>
-                                            <table class="mt-1">
-                                                <tr>
-                                                    <td colspan="2" class="text-center"><label class="mb-0" for="GAIN">GAIN</label></td>
-                                                    <td colspan="2" class="text-center"><label class="mb-0" for="IRIS">IRIS</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><button class="btn btn-secondary mr-1 btn-lg" id="gainup_button"><i class="fas fa-caret-up fa-lg"></i></button></td>
-                                                    <td><button class="btn btn-secondary ml-1  mr-2 btn-lg" id="gaindown_button"><i class="fas fa-caret-down fa-lg"></i></button></td>
-                                                    <td><button class="btn btn-secondary mr-1 ml-2 btn-lg" id="irisup_button"><i class="fas fa-caret-up fa-lg"></i></button></td>
-                                                    <td><button class="btn btn-secondary ml-1 btn-lg" id="irisdown_button"><i class="fas fa-caret-down fa-lg"></i></button></td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="card border-light">
-                                                <div class="card-header pb-1">
-                                                    <h6 class="card-title col-6">PGM</h6>
-                                                    <div class="card-tools col-6">
-
-                                                      <div class="input-group mb-1">
-                                                          <select class="form-control form-control-sm" id="list_webcam">
-                                                        </select>
-                                                        <div class="input-group-prepend">
-                                                            <button class="btn btn-default btn-sm" id="refresh_list_webcam">
-                                                                <span class="fa fa-sync-alt"></span>
-                                                            </button>
+                                       
+                                        <div class="col-8">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="card border-light mb-0 panel-video">
+                                                        <div class="card-header">
+                                                            <h6 class="card-title">Selected Camera</h6>
+                                                            <div class="card-tools"></div>
                                                         </div>
+                                                        <div class="card-body px-0 py-0">
+                                                            <img src="../assets/img/video-output.svg" class="img-fluid" id="selected_camera_panel">
+                                                        </div>
+                                                    </div>
+                                                    <table class="mt-3">
+                                                        <tr>
+                                                            <td colspan="4">
+                                                                <label for="ShootingMode" class="mb-0">Shooting Mode</label>
+                                                            </td>
+                                                            <td>
+                                                                :
+                                                            </td>
+                                                            <td>
+                                                                <select class="form-control form-control-sm ml-3" id="changeShootingMode">
+                                                                    <option value="null">Select</option>
+                                                                    <option value="fullauto">Full Auto</option>
+                                                                    <option value="manual">Manual</option>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="4">
+                                                                <label for="WhiteBalanceMode" class="mb-0">White Balance Mode</label>
+                                                            </td>
+                                                            <td>
+                                                                :
+                                                            </td>
+                                                            <td>
+                                                                <select class="form-control form-control-sm ml-3" id="changeWhiteBalanceMode">
+                                                                    <option value="null">Select</option>
+                                                                    <option value="auto">AWB</option>
+                                                                    <option value="kelvin">Color Temperature (K)</option>
+                                                                    <option value="wb_a">Set A</option>
+                                                                    <option value="wb_b">Set B</option>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="4">
+                                                                <label for="ColoutTemperatur" class="mb-0">Colour Temperatur</label>
+                                                            </td>
+                                                            <td>
+                                                                :
+                                                            </td>
+                                                            <td>
+                                                                <div class="mt-2" id="container_kelvinslider">
+                                                                    <input id="kelvin_slider" type="text" />
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <table class="mt-1">
+                                                        <tr>
+                                                            <td colspan="2" class="text-center"><label class="mb-0" for="GAIN">GAIN</label></td>
+                                                            <td colspan="2" class="text-center"><label class="mb-0" for="IRIS">IRIS</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><button class="btn btn-secondary mr-1 btn-lg" id="gainup_button"><i class="fas fa-caret-up fa-lg"></i></button></td>
+                                                            <td><button class="btn btn-secondary ml-1  mr-2 btn-lg" id="gaindown_button"><i class="fas fa-caret-down fa-lg"></i></button></td>
+                                                            <td><button class="btn btn-secondary mr-1 ml-2 btn-lg" id="irisup_button"><i class="fas fa-caret-up fa-lg"></i></button></td>
+                                                            <td><button class="btn btn-secondary ml-1 btn-lg" id="irisdown_button"><i class="fas fa-caret-down fa-lg"></i></button></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="card border-light panel-video">
+                                                        <div class="card-header pb-1">
+                                                            <h6 class="card-title col-6">PGM</h6>
+                                                            <div class="card-tools col-6">
+                
+                                                              <div class="input-group mb-1">
+                                                                  <select class="form-control form-control-sm" id="list_webcam">
+                                                                </select>
+                                                                <div class="input-group-prepend">
+                                                                    <button class="btn btn-default btn-sm" id="refresh_list_webcam">
+                                                                        <span class="fa fa-sync-alt"></span>
+                                                                    </button>
+                                                                </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-body px-0 py-0">
+                                                          <div class="embed-responsive embed-responsive-16by9">
+                                                              <video id="video-webcam" class="border-default" autoplay> </video>
+                                                          </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="card-body px-0 py-0">
-                                                  <div class="embed-responsive embed-responsive-16by9">
-                                                      <video id="video-webcam" class="border-default" autoplay> </video>
-                                                  </div>
-                                                </div>
                                             </div>
                                         </div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -704,6 +741,8 @@
                             </div>
                         </div>
                     </div>
+
+
                 </section>
             </div>
             
@@ -757,18 +796,6 @@
                 </div>
             </div>
             <!-- Modal Set Preset -->
-
-
-            <footer class="main-footer bg-vstream-green">
-
-                <div class="float-right d-none d-sm-inline">
-                    <!-- Anything you want -->
-                </div>
-
-                <strong>Copyright © 2023
-                    <a href="#">VStream Media</a>.</strong>
-                All rights reserved.
-            </footer>
 
             <div id="sidebar-overlay"></div>
         </div>

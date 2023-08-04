@@ -722,7 +722,7 @@ function getCameraList(groupIndex){
         var anchorElement = document.createElement("a");
 
         // Set the class attribute
-        anchorElement.className = "btn btn-app col btn-camera";
+        anchorElement.className = "btn btn-app btn-camera col-2 mb-1 mr-2";
 
         // Set the data attributes
         anchorElement.setAttribute("data-keydown", camera.keyboard_mapping);
@@ -734,20 +734,22 @@ function getCameraList(groupIndex){
         badgeSpan.className = "badge badge-shorcut bg-danger";
         badgeSpan.textContent = camera.keyboard_mapping;
 
-        // Create the i element for the camera icon
-        var cameraIcon = document.createElement("i");
-        cameraIcon.className = "fas fa-camera";
-
         // Set the text for the anchor
         anchorElement.textContent = camera.camera_name;
 
         // Append the elements to the anchor
         anchorElement.appendChild(badgeSpan);
-        anchorElement.appendChild(cameraIcon);
 
         // insert tabPane into ContainerTab
         var containerBtnCamera = document.getElementById("containerBtnCamera");
         containerBtnCamera.appendChild(anchorElement);
+
+        if (i === 4) {
+            // Create a new row for every 5th button
+            const breakColumn = document.createElement('div');
+            breakColumn.className = 'w-100';
+            containerBtnCamera.appendChild(breakColumn);
+        }
     }
 }
 
@@ -1094,12 +1096,12 @@ jQuery(document).ready(function() {
     // remove .bg-warning
     const buttons = document.querySelectorAll('.btn-camera');
     function removeBgSuccessClass() {
-    buttons.forEach(btn => btn.classList.remove('bg-warning'));
+    buttons.forEach(btn => btn.classList.remove('active'));
     }
     
     $(document).on('click', '.btn-camera', function() {
-        $('.btn-camera').removeClass('bg-warning'); // Remove the class from all buttons
-        $(this).addClass('bg-warning'); // Add the class to the clicked button
+        $('.btn-camera').removeClass('active'); // Remove the class from all buttons
+        $(this).addClass('active'); // Add the class to the clicked button
         $('#selected_camera_panel').removeClass('border-program border-preview');
 
         const dataIp = $(this).data('ip');
@@ -1182,7 +1184,7 @@ jQuery(document).ready(function() {
 
             const buttons = document.querySelectorAll('.btn-camera');
             buttons.forEach(function(button) {
-                if (button.classList.contains('bg-warning')) {
+                if (button.classList.contains('active')) {
                     const groupIndex = $("#changeCameraGroup").val();
                     const dataIndexCamera = button.dataset.indexcamera;
 
@@ -1334,7 +1336,7 @@ $(document).on('keydown', function(event) {
         // remove .bg-warning
         const buttons = document.querySelectorAll('.btn-camera');
         function removeBgSuccessClass() {
-            buttons.forEach(btn => btn.classList.remove('bg-warning'));
+            buttons.forEach(btn => btn.classList.remove('active'));
         }
         // remove .bg-warning
         
@@ -1358,7 +1360,7 @@ $(document).on('keydown', function(event) {
             const groupIndex = $("#changeCameraGroup").val();
             const cameraIndex = link.data('indexcamera');
             
-            link.addClass('bg-warning');
+            link.addClass('active');
             link.focus();
             
             // Update the previous button

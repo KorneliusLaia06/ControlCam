@@ -1,1 +1,722 @@
-[[{"id_camera":1687653769599,"id_preset":1,"name_button":"P11","name_preset":"P1","disabled":false,"shootingmode":"time","shootingmode_value":"2000"},{"id_camera":1687653769599,"id_preset":2,"name_button":"P22","name_preset":"P2","disabled":false,"shootingmode":"time","shootingmode_value":"2000"},{"id_camera":1687653769599,"id_preset":3,"name_button":"P3","name_preset":"P3","disabled":false,"shootingmode":"time","shootingmode_value":"2000"},{"id_camera":1687653769599,"id_preset":4,"name_button":"P4","name_preset":"P4","disabled":true},{"id_camera":1687653769599,"id_preset":5,"name_button":"P5","name_preset":"P5","disabled":true},{"id_camera":1687653769599,"id_preset":6,"name_button":"P6","name_preset":"P6","disabled":true},{"id_camera":1687653769599,"id_preset":7,"name_button":"P7","name_preset":"P7","disabled":true},{"id_camera":1687653769599,"id_preset":8,"name_button":"P8","name_preset":"P8","disabled":true},{"id_camera":1687653769599,"id_preset":9,"name_button":"P9","name_preset":"P9","disabled":true},{"id_camera":1687653769599,"id_preset":10,"name_button":"P10","name_preset":"P10","disabled":false,"shootingmode":"speedlevel","shootingmode_value":"26"}],[{"id_camera":1688204768885,"id_preset":1,"name_button":"P1","name_preset":"P1","disabled":true},{"id_camera":1688204768885,"id_preset":2,"name_button":"P2","name_preset":"P2","disabled":true},{"id_camera":1688204768885,"id_preset":3,"name_button":"P3","name_preset":"P3","disabled":true},{"id_camera":1688204768885,"id_preset":4,"name_button":"P4","name_preset":"P4","disabled":true},{"id_camera":1688204768885,"id_preset":5,"name_button":"P5","name_preset":"P5","disabled":true},{"id_camera":1688204768885,"id_preset":6,"name_button":"P6","name_preset":"P6","disabled":true},{"id_camera":1688204768885,"id_preset":7,"name_button":"P7","name_preset":"P7","disabled":true},{"id_camera":1688204768885,"id_preset":8,"name_button":"P8","name_preset":"P8","disabled":true},{"id_camera":1688204768885,"id_preset":9,"name_button":"P9","name_preset":"P9","disabled":true},{"id_camera":1688204768885,"id_preset":10,"name_button":"P10","name_preset":"P10","disabled":true}]]
+[
+  [
+    {
+      "id_camera": 1690700329108,
+      "id_preset": 1,
+      "name_button": "P1",
+      "name_preset": "P1",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690700329108,
+      "id_preset": 2,
+      "name_button": "P2",
+      "name_preset": "P2",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690700329108,
+      "id_preset": 3,
+      "name_button": "P3",
+      "name_preset": "P3",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690700329108,
+      "id_preset": 4,
+      "name_button": "P4",
+      "name_preset": "P4",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690700329108,
+      "id_preset": 5,
+      "name_button": "P5",
+      "name_preset": "P5",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690700329108,
+      "id_preset": 6,
+      "name_button": "P6",
+      "name_preset": "P6",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690700329108,
+      "id_preset": 7,
+      "name_button": "P7",
+      "name_preset": "P7",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690700329108,
+      "id_preset": 8,
+      "name_button": "P8",
+      "name_preset": "P8",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690700329108,
+      "id_preset": 9,
+      "name_button": "P9",
+      "name_preset": "P9",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690700329108,
+      "id_preset": 10,
+      "name_button": "P10",
+      "name_preset": "P10",
+      "disabled": true
+    }
+  ],
+  [
+    {
+      "id_camera": 1690772669313,
+      "id_preset": 1,
+      "name_button": "P1",
+      "name_preset": "P1",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772669313,
+      "id_preset": 2,
+      "name_button": "P2",
+      "name_preset": "P2",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772669313,
+      "id_preset": 3,
+      "name_button": "P3",
+      "name_preset": "P3",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772669313,
+      "id_preset": 4,
+      "name_button": "P4",
+      "name_preset": "P4",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772669313,
+      "id_preset": 5,
+      "name_button": "P5",
+      "name_preset": "P5",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772669313,
+      "id_preset": 6,
+      "name_button": "P6",
+      "name_preset": "P6",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772669313,
+      "id_preset": 7,
+      "name_button": "P7",
+      "name_preset": "P7",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772669313,
+      "id_preset": 8,
+      "name_button": "P8",
+      "name_preset": "P8",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772669313,
+      "id_preset": 9,
+      "name_button": "P9",
+      "name_preset": "P9",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772669313,
+      "id_preset": 10,
+      "name_button": "P10",
+      "name_preset": "P10",
+      "disabled": true
+    }
+  ],
+  [
+    {
+      "id_camera": 1690772676063,
+      "id_preset": 1,
+      "name_button": "P1",
+      "name_preset": "P1",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772676063,
+      "id_preset": 2,
+      "name_button": "P2",
+      "name_preset": "P2",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772676063,
+      "id_preset": 3,
+      "name_button": "P3",
+      "name_preset": "P3",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772676063,
+      "id_preset": 4,
+      "name_button": "P4",
+      "name_preset": "P4",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772676063,
+      "id_preset": 5,
+      "name_button": "P5",
+      "name_preset": "P5",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772676063,
+      "id_preset": 6,
+      "name_button": "P6",
+      "name_preset": "P6",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772676063,
+      "id_preset": 7,
+      "name_button": "P7",
+      "name_preset": "P7",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772676063,
+      "id_preset": 8,
+      "name_button": "P8",
+      "name_preset": "P8",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772676063,
+      "id_preset": 9,
+      "name_button": "P9",
+      "name_preset": "P9",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772676063,
+      "id_preset": 10,
+      "name_button": "P10",
+      "name_preset": "P10",
+      "disabled": true
+    }
+  ],
+  [
+    {
+      "id_camera": 1690772679683,
+      "id_preset": 1,
+      "name_button": "P1",
+      "name_preset": "P1",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772679683,
+      "id_preset": 2,
+      "name_button": "P2",
+      "name_preset": "P2",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772679683,
+      "id_preset": 3,
+      "name_button": "P3",
+      "name_preset": "P3",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772679683,
+      "id_preset": 4,
+      "name_button": "P4",
+      "name_preset": "P4",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772679683,
+      "id_preset": 5,
+      "name_button": "P5",
+      "name_preset": "P5",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772679683,
+      "id_preset": 6,
+      "name_button": "P6",
+      "name_preset": "P6",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772679683,
+      "id_preset": 7,
+      "name_button": "P7",
+      "name_preset": "P7",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772679683,
+      "id_preset": 8,
+      "name_button": "P8",
+      "name_preset": "P8",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772679683,
+      "id_preset": 9,
+      "name_button": "P9",
+      "name_preset": "P9",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772679683,
+      "id_preset": 10,
+      "name_button": "P10",
+      "name_preset": "P10",
+      "disabled": true
+    }
+  ],
+  [
+    {
+      "id_camera": 1690772685029,
+      "id_preset": 1,
+      "name_button": "P1",
+      "name_preset": "P1",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772685029,
+      "id_preset": 2,
+      "name_button": "P2",
+      "name_preset": "P2",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772685029,
+      "id_preset": 3,
+      "name_button": "P3",
+      "name_preset": "P3",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772685029,
+      "id_preset": 4,
+      "name_button": "P4",
+      "name_preset": "P4",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772685029,
+      "id_preset": 5,
+      "name_button": "P5",
+      "name_preset": "P5",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772685029,
+      "id_preset": 6,
+      "name_button": "P6",
+      "name_preset": "P6",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772685029,
+      "id_preset": 7,
+      "name_button": "P7",
+      "name_preset": "P7",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772685029,
+      "id_preset": 8,
+      "name_button": "P8",
+      "name_preset": "P8",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772685029,
+      "id_preset": 9,
+      "name_button": "P9",
+      "name_preset": "P9",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772685029,
+      "id_preset": 10,
+      "name_button": "P10",
+      "name_preset": "P10",
+      "disabled": true
+    }
+  ],
+  [
+    {
+      "id_camera": 1690772687648,
+      "id_preset": 1,
+      "name_button": "P1",
+      "name_preset": "P1",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772687648,
+      "id_preset": 2,
+      "name_button": "P2",
+      "name_preset": "P2",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772687648,
+      "id_preset": 3,
+      "name_button": "P3",
+      "name_preset": "P3",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772687648,
+      "id_preset": 4,
+      "name_button": "P4",
+      "name_preset": "P4",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772687648,
+      "id_preset": 5,
+      "name_button": "P5",
+      "name_preset": "P5",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772687648,
+      "id_preset": 6,
+      "name_button": "P6",
+      "name_preset": "P6",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772687648,
+      "id_preset": 7,
+      "name_button": "P7",
+      "name_preset": "P7",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772687648,
+      "id_preset": 8,
+      "name_button": "P8",
+      "name_preset": "P8",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772687648,
+      "id_preset": 9,
+      "name_button": "P9",
+      "name_preset": "P9",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772687648,
+      "id_preset": 10,
+      "name_button": "P10",
+      "name_preset": "P10",
+      "disabled": true
+    }
+  ],
+  [
+    {
+      "id_camera": 1690772691897,
+      "id_preset": 1,
+      "name_button": "P1",
+      "name_preset": "P1",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772691897,
+      "id_preset": 2,
+      "name_button": "P2",
+      "name_preset": "P2",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772691897,
+      "id_preset": 3,
+      "name_button": "P3",
+      "name_preset": "P3",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772691897,
+      "id_preset": 4,
+      "name_button": "P4",
+      "name_preset": "P4",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772691897,
+      "id_preset": 5,
+      "name_button": "P5",
+      "name_preset": "P5",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772691897,
+      "id_preset": 6,
+      "name_button": "P6",
+      "name_preset": "P6",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772691897,
+      "id_preset": 7,
+      "name_button": "P7",
+      "name_preset": "P7",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772691897,
+      "id_preset": 8,
+      "name_button": "P8",
+      "name_preset": "P8",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772691897,
+      "id_preset": 9,
+      "name_button": "P9",
+      "name_preset": "P9",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772691897,
+      "id_preset": 10,
+      "name_button": "P10",
+      "name_preset": "P10",
+      "disabled": true
+    }
+  ],
+  [
+    {
+      "id_camera": 1690772695090,
+      "id_preset": 1,
+      "name_button": "P1",
+      "name_preset": "P1",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772695090,
+      "id_preset": 2,
+      "name_button": "P2",
+      "name_preset": "P2",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772695090,
+      "id_preset": 3,
+      "name_button": "P3",
+      "name_preset": "P3",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772695090,
+      "id_preset": 4,
+      "name_button": "P4",
+      "name_preset": "P4",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772695090,
+      "id_preset": 5,
+      "name_button": "P5",
+      "name_preset": "P5",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772695090,
+      "id_preset": 6,
+      "name_button": "P6",
+      "name_preset": "P6",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772695090,
+      "id_preset": 7,
+      "name_button": "P7",
+      "name_preset": "P7",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772695090,
+      "id_preset": 8,
+      "name_button": "P8",
+      "name_preset": "P8",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772695090,
+      "id_preset": 9,
+      "name_button": "P9",
+      "name_preset": "P9",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772695090,
+      "id_preset": 10,
+      "name_button": "P10",
+      "name_preset": "P10",
+      "disabled": true
+    }
+  ],
+  [
+    {
+      "id_camera": 1690772699113,
+      "id_preset": 1,
+      "name_button": "P1",
+      "name_preset": "P1",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772699113,
+      "id_preset": 2,
+      "name_button": "P2",
+      "name_preset": "P2",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772699113,
+      "id_preset": 3,
+      "name_button": "P3",
+      "name_preset": "P3",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772699113,
+      "id_preset": 4,
+      "name_button": "P4",
+      "name_preset": "P4",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772699113,
+      "id_preset": 5,
+      "name_button": "P5",
+      "name_preset": "P5",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772699113,
+      "id_preset": 6,
+      "name_button": "P6",
+      "name_preset": "P6",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772699113,
+      "id_preset": 7,
+      "name_button": "P7",
+      "name_preset": "P7",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772699113,
+      "id_preset": 8,
+      "name_button": "P8",
+      "name_preset": "P8",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772699113,
+      "id_preset": 9,
+      "name_button": "P9",
+      "name_preset": "P9",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772699113,
+      "id_preset": 10,
+      "name_button": "P10",
+      "name_preset": "P10",
+      "disabled": true
+    }
+  ],
+  [
+    {
+      "id_camera": 1690772702371,
+      "id_preset": 1,
+      "name_button": "P1",
+      "name_preset": "P1",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772702371,
+      "id_preset": 2,
+      "name_button": "P2",
+      "name_preset": "P2",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772702371,
+      "id_preset": 3,
+      "name_button": "P3",
+      "name_preset": "P3",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772702371,
+      "id_preset": 4,
+      "name_button": "P4",
+      "name_preset": "P4",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772702371,
+      "id_preset": 5,
+      "name_button": "P5",
+      "name_preset": "P5",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772702371,
+      "id_preset": 6,
+      "name_button": "P6",
+      "name_preset": "P6",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772702371,
+      "id_preset": 7,
+      "name_button": "P7",
+      "name_preset": "P7",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772702371,
+      "id_preset": 8,
+      "name_button": "P8",
+      "name_preset": "P8",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772702371,
+      "id_preset": 9,
+      "name_button": "P9",
+      "name_preset": "P9",
+      "disabled": true
+    },
+    {
+      "id_camera": 1690772702371,
+      "id_preset": 10,
+      "name_button": "P10",
+      "name_preset": "P10",
+      "disabled": true
+    }
+  ]
+]

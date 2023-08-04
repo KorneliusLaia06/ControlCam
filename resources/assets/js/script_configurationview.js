@@ -28,7 +28,7 @@
                 // detect data < 10 or not
 
 
-                for (var i = 0; i < myObject[groupIndex].length; i++) {
+                for (let i = 0; i < myObject[groupIndex].length; i++) {
                     var camera = myObject[groupIndex][i];
                     
                     // Buat elemen <a> baru
@@ -37,7 +37,7 @@
                     link.setAttribute("data-link", camera.ip_address);
                     link.setAttribute("data-id", camera.id);
                     link.setAttribute("data-toggle", "pill");
-                    link.className = "btn btn-default mb-1 check-connection";
+                    link.className = "btn col-2 mb-1 mr-2 check-connection";
                     link.setAttribute("role", "tab");
                     link.setAttribute("aria-controls", "vert-tabs-1");
                     link.setAttribute("aria-selected", "false");
@@ -45,6 +45,7 @@
                     
                     // Tambahkan elemen <a> ke dalam kontainer
                     containerVertTabsTab.appendChild(link);
+
 
                     var tabPane = document.createElement("div");
                     tabPane.className = "tab-pane text-left fade";
@@ -57,11 +58,11 @@
 
                     var label1 = document.createElement("label");
                     label1.setAttribute("for", "camera_name");
-                    label1.className = "col-sm-2 col-form-label";
+                    label1.className = "col-sm-4 col-form-label";
                     label1.textContent = "Camera Name";
 
                     var div1 = document.createElement("div");
-                    div1.className = "col-sm-10";
+                    div1.className = "col-sm-8";
 
                     var hiddenInput = document.createElement("input");
                     hiddenInput.type = "hidden";
@@ -87,11 +88,11 @@
 
                     var label2 = document.createElement("label");
                     label2.setAttribute("for", "ip_address");
-                    label2.className = "col-sm-2 col-form-label";
+                    label2.className = "col-sm-4 col-form-label";
                     label2.textContent = "IP Address";
 
                     var div2 = document.createElement("div");
-                    div2.className = "col-sm-10";
+                    div2.className = "col-sm-8";
 
                     var ipAddressInput = document.createElement("input");
                     ipAddressInput.type = "text";
@@ -110,11 +111,11 @@
 
                     var label4 = document.createElement("label");
                     label4.setAttribute("for", "connection");
-                    label4.className = "col-sm-2 col-form-label";
+                    label4.className = "col-sm-4 col-form-label";
                     label4.textContent = "Connection";
 
                     var div4 = document.createElement("div");
-                    div4.className = "form-group col-sm-10";
+                    div4.className = " col-sm-8";
                     div4.id = "camera_status_" + camera.id;
                     div4.disabled = true;
 
@@ -134,11 +135,11 @@
 
                     var label5 = document.createElement("label");
                     label5.setAttribute("for", "keyboard_mapping");
-                    label5.className = "col-sm-2 col-form-label";
+                    label5.className = "col-sm-4 col-form-label";
                     label5.textContent = "Keyboard Mapping";
 
                     var div5 = document.createElement("div");
-                    div5.className = "col-sm-10";
+                    div5.className = "col-sm-8";
 
                     var inputGroup = document.createElement("div");
                     inputGroup.className = "input-group";
@@ -147,45 +148,57 @@
                     var keyboardMappingInput = document.createElement("input");
                     keyboardMappingInput.type = "text";
                     keyboardMappingInput.id = "value_keyboard_mapping_" + camera.id;
-                    keyboardMappingInput.className = "form-control bg-white";
+                    keyboardMappingInput.className = "form-control bg-white d-none";
                     keyboardMappingInput.value = camera.keyboard_mapping;
                     keyboardMappingInput.disabled = true;
 
                     var keyboardCodeInput = document.createElement("input");
                     keyboardCodeInput.type = "text";
                     keyboardCodeInput.id = "value_keyboard_code_" + camera.id;
-                    keyboardCodeInput.className = "form-control bg-white";
+                    keyboardCodeInput.className = "form-control bg-white d-none";
                     keyboardCodeInput.value = camera.keyboard_code;
+                    keyboardCodeInput.disabled = true;
+
+                    var div6 = document.createElement("div");
+                    div6.className = "col-sm-8";
+
+                    var combine_keyboardMappingInput_keyboardCodeInput = document.createElement("input");
+                    keyboardCodeInput.type = "text";
+                    keyboardCodeInput.className = "form-control bg-white";
+                    keyboardCodeInput.value = camera.keyboard_mapping + " (" + camera.keyboard_code +")";
                     keyboardCodeInput.disabled = true;
 
                     inputGroup.appendChild(keyboardMappingInput);
                     inputGroup.appendChild(keyboardCodeInput);
+                    div6.appendChild(combine_keyboardMappingInput_keyboardCodeInput);
+
                     div5.appendChild(inputGroup);
                     formGroup5.appendChild(label5);
                     formGroup5.appendChild(div5);
                     tabPane.appendChild(formGroup5);
 
                     var borderDiv = document.createElement("div");
-                    borderDiv.className = "border-top mt-5 mb-3";
+                    borderDiv.className = "mt-5 mb-3";
+                    
 
                     tabPane.appendChild(borderDiv);
 
                     var editLink = document.createElement("a");
-                    editLink.className = "btn btn-success float-right";
+                    editLink.className = "btn btn-edit float-right";
                     editLink.setAttribute("data-href", "#");
                     editLink.setAttribute("data-toggle", "modal");
                     editLink.setAttribute("data-target", "#modal-editCamera");
                     editLink.setAttribute("data-id", camera.id);
-                    editLink.textContent = "Edit";
+                    editLink.textContent = "EDIT";
 
                     var deleteLink = document.createElement("a");
-                    deleteLink.className = "btn btn-danger float-right mr-1";
+                    deleteLink.className = "btn btn-delete float-right mr-1";
                     deleteLink.setAttribute("data-href", "#");
                     deleteLink.setAttribute("data-toggle", "modal");
                     deleteLink.setAttribute("data-target", "#modal-deleteCamera");
                     deleteLink.setAttribute("data-text", "Are you sure you want to delete?&nbsp;&nbsp; <span class='badge badge-danger'>" + camera.camera_name + "</span><p class='text-danger font-italic'>*This camera will be permanently deleted</p>");
                     deleteLink.setAttribute("data-id", camera.id);
-                    deleteLink.textContent = "Delete";
+                    deleteLink.textContent = "DELETE";
 
                     tabPane.appendChild(editLink);
                     tabPane.appendChild(deleteLink);
@@ -194,6 +207,14 @@
                     // insert tabPane into ContainerTab
                     var containerTab = document.getElementById("vert-tabs-tabContent");
                     containerTab.appendChild(tabPane);
+
+                    if (i === 4) {
+                        // Create a new row for every 5th button
+                        const breakColumn = document.createElement('div');
+                        breakColumn.className = 'w-100';
+                        containerVertTabsTab.appendChild(breakColumn);
+                    }
+
                 }
 
                 // Create the tab content element
@@ -205,7 +226,7 @@
 
                 // Create the span element
                 var spanElement = document.createElement("span");
-                spanElement.textContent = "please select the button on the left to view the camera details";
+                spanElement.textContent = "please select the button on the top to view the camera details";
 
                 // Append the span element to the tab content
                 tabContent.appendChild(spanElement);
@@ -234,6 +255,8 @@
 
                 //checking camera on or off
                 $(document).on('click', '.check-connection', function() {
+                    $('[href^="#vert-tabs-"]').removeClass('active'); // Remove the class from all buttons
+                    $(this).addClass('active'); // Add the class to the clicked button
                     var link = $(this).data('link');
                     var id = $(this).data('id');
                     const xhr = new XMLHttpRequest();
