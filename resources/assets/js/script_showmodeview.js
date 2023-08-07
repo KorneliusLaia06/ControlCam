@@ -60,11 +60,13 @@ const focus_button = document.getElementById('btn_one_shot_af');
 
 const home_button = document.getElementById('home_button');
 
-const near_button = document.getElementById('btn_near');
+const near_button = document.getElementById('near_button');
 let isButtonPressed_near = false;
 
-const far_button = document.getElementById('btn_far');
+const far_button = document.getElementById('far_button');
 let isButtonPressed_far = false;
+
+const awb_button = document.getElementById('btn_awb');
 
 //detect mobile or desktop browser
 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
@@ -163,6 +165,12 @@ if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
     home_button.addEventListener('touchstart', () => {
         let target_ip = $('#target').val();
         $.ajax(target_ip+"/-wvhttp-01-/control.cgi?pan=0&tilt=0");
+    });
+
+    awb_button.addEventListener('touchstart', () => {
+        let target_ip = $('#target').val();
+        $.ajax(target_ip + "/-wvhttp-01-/control.cgi?shooting=manual");
+        $.ajax(target_ip + "/-wvhttp-01-/control.cgi?wb=auto");
     });
 
 } else {
@@ -404,20 +412,20 @@ if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
         }, 500);
     });
 
+    awb_button.addEventListener('mousedown', () => {
+        let target_ip = $('#target').val();
+        $.ajax(target_ip + "/-wvhttp-01-/control.cgi?shooting=manual");
+        $.ajax(target_ip + "/-wvhttp-01-/control.cgi?wb=auto");
+
+        //delay caling function getStatusWhiteBalanceMode() to get data more acurate
+        setTimeout(() => {
+            getStatusWhiteBalanceMode(target_ip);
+        }, 500);
+    });
+
     home_button.addEventListener('mousedown', () => {
         let target_ip = $('#target').val();
         $.ajax(target_ip+"/-wvhttp-01-/control.cgi?pan=0&tilt=0");
-
-    });
-
-    near_button.addEventListener('mousedown', () => {
-        let target_ip = $('#target').val();
-        $.ajax(target_ip+"/-wvhttp-01-/control.cgi?focus.action=near");
-    });
-
-    far_button.addEventListener('mousedown', () => {
-        let target_ip = $('#target').val();
-        $.ajax(target_ip+"/-wvhttp-01-/control.cgi?focus.action=far");
     });
 }
 //detect mobile or desktop browser
@@ -632,16 +640,18 @@ function trigger_irisdown() {
 
 function trigger_near() {
     if (isButtonPressed_near) {
-        let target_ipb = $('#target').val();
-        $.ajax(target_ipb+"/-wvhttp-01-/control.cgi?focus.action=near");
+        let target_ip = $('#target').val();
+        $.ajax(target_ip+"/-wvhttp-01-/control.cgi?focus=manual");
+        $.ajax(target_ip+"/-wvhttp-01-/control.cgi?focus.action=near");
         setTimeout(trigger_near, 500);
     }
 }
 
 function trigger_far() {
     if (isButtonPressed_far) {
-        let target_ipb = $('#target').val();
-        $.ajax(target_ipb+"/-wvhttp-01-/control.cgi?focus.action=far");
+        let target_ip = $('#target').val();
+        $.ajax(target_ip+"/-wvhttp-01-/control.cgi?focus=manual");
+        $.ajax(target_ip+"/-wvhttp-01-/control.cgi?focus.action=far");
         setTimeout(trigger_far, 500);
     }
 }
@@ -1026,6 +1036,29 @@ jQuery(document).ready(function() {
     });
     // Kelvin Slider
 
+    // Zoom Slider
+    var zoom_slider = $("#zoom_slider").ionRangeSlider({
+        min: 2000,
+        max: 15000,
+        step: 10,
+        skin: "round",
+        hide_min_max: true,
+        vertical: true,
+        values: [
+            2000, 2020, 2040, 2060, 2080, 2110, 2130, 2150, 2170, 2200, 2220, 2250, 2270, 2300, 2330, 2350, 2380, 2410,
+            2440, 2470, 2500, 2530, 2560, 2600, 2630, 2670, 2700, 2740, 2780, 2820, 2860, 2900, 2940, 2990, 3030, 3080,
+            3130, 3200, 3230, 3280, 3330, 3390, 3450, 3510, 3570, 3640, 3700, 3770, 3850, 3920, 4000, 4080, 4170, 4300,
+            4350, 4440, 4550, 4650, 4760, 4880, 5000, 5130, 5260, 5410, 5600, 5710, 5880, 6060, 6300, 6450, 6670, 6900,
+            7140, 7410, 7690, 8000, 8330, 8700, 9090, 9520, 10000, 10530, 11110, 11760, 12500, 13330, 14290, 15000
+        ],
+        onFinish: function (data) {
+            var value = data.from_value;
+            let target_ip = $('#target').val();
+            $.ajax(target_ip+"/-wvhttp-01-/control.cgi?wb.kelvin="+value);
+        },
+    });
+    // Zoom Slider
+
     //get list of cameras with index 0 on page first load
     getCameraList(0);
     //get list of cameras with index 0 on page first load
@@ -1079,6 +1112,35 @@ jQuery(document).ready(function() {
     });
     //detect #changeShootingMode when changed
 
+    var previousValue = 0; 
+    $("#telewide_slider").on("input", function() {
+        let z_speed = $('#zoom_speed_range').val();
+        let target_ip = $('#target').val();
+
+        var value = $(this).val();
+        console.log(value);
+
+
+        // $.ajax(target_ip + "/-wvhttp-01-/control.cgi?c.1.wb="+value);
+        // kelvin_slider = $("#kelvin_slider").data("ionRangeSlider");
+        // kelvin_slider.update({ from: value });
+        // kelvin_slider.options.onFinish(kelvin_slider.result);
+        
+        var currentValue = $(this).val();
+        
+        if (currentValue > previousValue) {
+            $.ajax(target_ip+"/-wvhttp-01-/control.cgi?zoom=tele&zoom.speed.dir=" + z_speed);
+            console.log("Slider is wide bawah" + currentValue);
+        } else if (currentValue < previousValue) {
+          console.log("Slider is tele atas" + currentValue);
+        } else {
+        //   console.log("Slider is not sliding" + currentValue);
+        }
+      
+        previousValue = currentValue;
+
+    });
+
     //detect #changeWhiteBalanceMode when changed
     $('#changeWhiteBalanceMode').change(function() {
         let target_ip = $('#target').val();
@@ -1089,6 +1151,7 @@ jQuery(document).ready(function() {
             $('#container_kelvinslider').removeClass('d-none');
         } else {
             $('#container_kelvinslider').addClass('d-none');
+            console.log("aa");
         }
     });
     //detect #changeWhiteBalanceMode when changed
@@ -1116,6 +1179,7 @@ jQuery(document).ready(function() {
         getStatusAutoFocus(dataIp);
         getStatusShootingMode(dataIp);
         getStatusWhiteBalanceMode(dataIp);
+        getTeleWideValue(dataIp);
         getPreset(groupIndex,cameraIndex);
         stopgetCameraStatus();
         getCameraStatus(dataIp);
@@ -1370,6 +1434,7 @@ $(document).on('keydown', function(event) {
             getStatusAutoFocus(dataIp);
             getStatusShootingMode(dataIp);
             getStatusWhiteBalanceMode(dataIp);
+            getTeleWideValue(dataIp);
             getPreset(groupIndex,cameraIndex);
             stopgetCameraStatus();
             getCameraStatus(dataIp);
@@ -1563,13 +1628,39 @@ function getKelvinValue(){
         kelvin_slider.update({
             from: index
         });
-
+console.log(index);
         } else {
         console.log(`Error: ${xhr.status}`);
         }
     };
 }
 //Get kelvin value
+
+//Get far near value
+function getTeleWideValue(dataIp){
+    const xhr = new XMLHttpRequest();
+    xhr.open(
+        "GET",
+        dataIp + "/-wvhttp-01-/info.cgi"
+    );
+    xhr.send();
+    xhr.onload = () => {
+
+        if (xhr.readyState == 4 && xhr.status == 200) {
+        const responseResult = xhr.responseText;
+
+        const startIndex = responseResult.indexOf("c.1.zoom");
+        const endIndex = responseResult.indexOf("\n", startIndex);
+        var result = responseResult.slice(startIndex + 10, endIndex);
+
+        $("#telewide_slider").val(result);
+        console.log(result);
+        } else {
+        console.log(`Error: ${xhr.status}`);
+        }
+    };
+}
+//Get far near value
 
 //get preset based on group index and camera index
 function getPreset(groupIndex,cameraIndex){
@@ -2128,3 +2219,4 @@ function importData(event){
     reader.readAsText(file);
 }
 // import camera and preset data
+

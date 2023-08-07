@@ -45,7 +45,7 @@ async function createBackgroundTask () {
     var rejected = false;
     try {
       const response = await Promise.race([
-        fetch('http://hq.vstream.asia:8002/backend/validateHid', {
+        fetch('http://db.vstream.asia/backend/validateHid', {
             method: 'POST',
             body: JSON.stringify(myBody),
             headers: {

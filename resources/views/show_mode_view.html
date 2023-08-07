@@ -107,7 +107,7 @@
             <nav class="main-header navbar navbar-expand navbar-white navbar-light bg-main">
                 <!-- Left navbar links -->
                 <ul class="navbar-nav" style="width:100%;">
-                    <li class="nav-item col-1">
+                    <li class="nav-item">
                         <a class="nav-link" id="sidebarToggle" data-widget="pushmenu" href="" role="button">
                             <i class="fas fa-arrow-left"></i>
                         </a>
@@ -154,17 +154,17 @@
                 </ul>
 
                 <!-- Right navbar links -->
-                <!-- <ul class="navbar-nav ml-auto">
-                    <div class="btn-group">
+                <ul class="navbar-nav">
+                    <div class="btn-group mt-1">
                         <button type="button" class="btn btn-default" onclick="document.getElementById('import_data').click()">                        
                             Import
                             <input type="file" id="import_data" style="display: none;" accept=".json" onchange="importData(event)">
-                        </button>
+                        </button>   
                         <button type="button" class="btn btn-default" onclick="export_data()">
                             Export
                         </button>
                     </div>
-                </ul> -->
+                </ul>
             </nav>
             <!-- /.navbar -->
 
@@ -217,21 +217,15 @@
                 <section class="content">
                     
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 pl-5">
                         </div>
-                        <div class="col-1">
-
-                        </div>  
-                        <div class="col-7 pl-3 mt-3" id="containerBtnCamera">
+                        <div class="col-12 pl-5 mt-3" id="containerBtnCamera">
 
                         </div>
                     </div>
 
                     <div class="row mb-1 d-none" id="container_preset">
-                        <div class="col-1">
-
-                        </div>    
-                        <div class="col-7 pl-3 mt-3">
+                        <div class="col-8 pl-5 mt-3">
                             <div class="collapse row" id="container_editpreset">
                                 <div class="col mb-2">
                                     <div class="btn-group d-flex" role="group">
@@ -491,7 +485,7 @@
 
 
 
-                                    <div class="container" id="container_select_camera_first">
+                                    <div class="container col-10" id="container_select_camera_first">
                                         <div class="jumbotron">
                                             <h1 class="text-center text-white">please select camera first</h1>
                                         </div>
@@ -506,8 +500,213 @@
                                         </div>
                                         <!-- joystick_visualize -->
 
+
                                         <div class="col-4">
-                                            <div class="card">
+                                            <div class="card card-controller">
+                                                <div class="card-header text-center text-white text-bold">
+                                                    PTZ
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-8">
+                                                            <div class="row">
+                                                                <div class="col-6">
+                                                                    <span class="text-white">Pan/Tilt Speed</span>
+                                                                    <input class="" id="ptspeed_slider" type="text"/>
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    <span for="zoom-speed" class="text-white">Zoom Speed</span>
+                                                                    <input id="zoomspeed_slider" type="text"/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-6 text-center">
+                                                                    <label class="mb-1 text-white" for="GAIN">GAIN</label>
+                                                                    <div class="row">
+                                                                        <div class="col-6">
+                                                                            <button class="btn btn-secondary mr-1 btn-lg" id="gainup_button"><i class="fas fa-caret-up fa-lg"></i></button>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <button class="btn btn-secondary ml-1  mr-2 btn-lg" id="gaindown_button"><i class="fas fa-caret-down fa-lg"></i></button>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-6 text-center">
+                                                                    <label class="mb-1 text-white" for="IRIS">IRIS</label>
+                                                                    <div class="row">
+                                                                        <div class="col-6">
+                                                                            <button class="btn btn-secondary mr-1 ml-2 btn-lg" id="irisup_button"><i class="fas fa-caret-up fa-lg"></i></button>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <button class="btn btn-secondary ml-1 btn-lg" id="irisdown_button"><i class="fas fa-caret-down fa-lg"></i></button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-4">
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <button class="btn btn-block mb-2 d-block text-bold" id="btn_one_shot_af">AF</button>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <button class="btn btn-block mb-2 d-block text-bold" id="btn_awb">AWB</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-4">
+                                                        <div class="col-8 text-center">
+                                                            <svg width="80%" height="auto" viewBox=" 0 0 240 240" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                                <g class="box">
+                                                                    <!-- Defining a Pattern -->
+                                                                    <defs>
+                                                                        <pattern id="circlePattern" patternUnits="objectBoundingBox" width="1" height="1">
+                                                                        <image href="../assets/img/asset_icon/ellipse.png" width="100%" height="100%" />
+                                                                        </pattern>
+                                                                    </defs>
+                                                                    <circle cx="120" cy="120" r="120" fill="url(#circlePattern)" />
+
+                                                                    <!-- Inner Circle -->
+                                                                    <g id="home_button">
+                                                                        <circle cx="120" cy="120" r="50" fill="#4E4C4D" />
+                                                                        <image href="../assets/img/asset_icon/home.png" x="95" y="95" width="50" height="50"/>
+                                                                    </g>
+
+                                                                    <!-- Top Arrow -->
+                                                                    <g transform="rotate(0 120 120)">
+                                                                    <polygon points="120,20 105,50 135,50" fill="#FFF" id="moveup_button"/>
+                                                                    </g>
+
+                                                                    <!-- Top-Left Arrow -->
+                                                                    <g transform="rotate(-45 120 120)">
+                                                                        <polygon points="117,20 105,40 129,40" fill="#FFF" id="moveleftup_button"/>
+                                                                    </g>
+
+                                                                    <!-- Left Arrow -->
+                                                                    <g transform="rotate(-90 120 120)">
+                                                                        <polygon points="120,20 105,50 135,50" fill="#FFF" id="moveleft_button"/>
+                                                                    </g>
+
+                                                                    <!-- Down-Left Arrow -->
+                                                                    <g transform="rotate(-135 120 120)">
+                                                                        <polygon points="117,20 105,40 129,40" fill="#FFF" id="moveleftdown_button"/>
+                                                                    </g>
+                                                                
+
+                                                                    <!-- Down Arrow -->
+                                                                    <g transform="rotate(-180 120 120)">
+                                                                    <polygon points="120,20 105,50 135,50" fill="#FFF" id="movedown_button"/>
+                                                                    </g>
+
+                                                                    <!-- Down-Right Arrow -->
+                                                                    <g transform="rotate(135 120 120)">
+                                                                        <polygon points="117,20 105,40 129,40" fill="#FFF" id="moverightdown_button"/>
+                                                                    </g>
+
+                                                                    <!-- Right Arrow -->
+                                                                    <g transform="rotate(90 120 120)">
+                                                                        <polygon points="120,20 105,50 135,50" fill="#FFF" id="moveright_button"/>
+                                                                    </g>
+
+                                                                    <!-- Top-Right Arrow -->
+                                                                    <g transform="rotate(45 120 120)">
+                                                                        <polygon points="117,20 105,40 129,40" fill="#FFF" id="moverightup_button"/>
+                                                                    </g>
+                                                                </g>
+                                                              </svg>
+                                                            <div class="circle d-none">
+                                                                <table class="tbl-coba text-center">
+                                                                    <tr>
+                                                                        <td>
+                                                                            <button class="btn btn-secondary btn-block btn-lg"><i class="fas fa-angle-up fa-lg" style="transform: rotate(-45deg);"></i></button>
+                                                                        </td>
+                                                                        <td>
+                                                                            <button class="btn btn-secondary btn-block btn-lg"><i class="fas fa-angle-up fa-lg"></i></button>
+                                                                        </td>
+                                                                        <td>
+                                                                            <button class="btn btn-secondary btn-block btn-lg"><i class="fas fa-angle-up fa-lg" style="transform: rotate(45deg);"></i></button>
+                                                                        </td>
+                   
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <button class="btn btn-secondary btn-block btn-lg"><i class="fas fa-angle-left fa-lg"></i></button>
+                                                                        </td>
+                                                                        <td>
+                                                                            <button class="btn btn-secondary btn-block btn-lg"><i class="fas fa-home"></i></button>
+                                                                        </td>
+                                                                        <td>
+                                                                            <button class="btn btn-secondary btn-block btn-lg"><i class="fas fa-angle-right fa-lg"></i></button>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <button class="btn btn-secondary btn-block btn-lg"><i class="fas fa-angle-down fa-lg" style="transform: rotate(45deg);"></i></button>
+                                                                        </td>
+                                                                        <td>
+                                                                            <button class="btn btn-secondary btn-block btn-lg"><i class="fas fa-angle-down fa-lg"></i></button>
+                                                                        </td>
+                                                                        <td>
+                                                                            <button class="btn btn-secondary btn-block btn-lg"><i class="fas fa-angle-down fa-lg" style="transform: rotate(-45deg);"></i></button>
+                                                                        </td>
+                                                                    </tr>   
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-4 my-auto">
+                                                            <div class="row d-none">
+                                                                <div class="col-6">
+                                                                    <div class="container_verticalslider text-center text-white">
+                                                                        <span>FAR</span>
+                                                                        <div class="vertical-slider mt-4">
+                                                                            <input type="range" min="340" max="6340" value="1" step="1" class="slider" id="farnear_slider" orient="vertical">
+                                                                        </div>
+                                                                        <span>NEAR</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    <div class="container_verticalslider text-center text-white">
+                                                                        <span>T</span>
+                                                                        <div class="vertical-slider mt-4">
+                                                                            <input type="range" min="340" max="6340" value="1" step="1" class="slider" id="telewide_slider" orient="vertical">
+                                                                        </div>
+                                                                        <span>W</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <button class="btn btn-block mb-2 text-bold d-none" id="btn_near">Near</button>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <button class="btn btn-block mb-2 text-bold d-none" id="btn_far">Far</button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <button class="btn btn-block mb-2 text-bold" id="zoomin_button">T</button>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <button class="btn btn-block mb-2 text-bold" id="zoomout_button">W</button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="w-100 mt-3 mb-3"></div>
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <button class="btn btn-block mb-2 text-bold" id="near_button">Near</button>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <button class="btn btn-block mb-2 text-bold" id="far_button">Far</button>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-4 d-none">
+                                            <div class="card card-controller">
                                                 <div class="card-header">
                                                     <div class="card-tools">
                                                         <ul class="nav nav-pills ml-auto">
@@ -523,72 +722,7 @@
                                                 <div class="card-body">
                                                     <div class="tab-content p-0">
                                                         <div class="tab-pane active" id="ptz_tab">
-                                                            <table class="mx-auto w-auto">
-                                                                <tr>
-                                                                    <td colspan="3" class="pb-0">
-                                                                        <label for="pt-speed">Pan/Tilt Speed</label>
-                                                                        <input id="ptspeed_slider" type="text"/>
-                                                                        <br/>
-                                                                        <br/>
-                                                                    </td>
-                                                                    <td colspan="3" class="pl-3">
-                                                                        <label for="zoom-speed">Zoom Speed</label>
-                                                                        <input id="zoomspeed_slider" type="text"/>
-                                                                        <br/>
-                                                                        <br/>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td colspan="6">
-                                                                        <div class="border border-secondary"></div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td colspan="3" class="pb-1">
-                                                                        <label for="ptz-speed">Pan/Tilt</label>
-                                                                    </td>
-                                                                    <td colspan="3" class="pb-1 px-3">
-                                                                        <label for="ptz-speed">Zoom</label>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <button class="btn btn-secondary btn-block btn-lg" id="moveleftup_button"><i class="fas fa-angle-up fa-lg" style="transform: rotate(-45deg);"></i></button>
-                                                                    </td>
-                                                                    <td>
-                                                                        <button class="btn btn-secondary btn-block btn-lg" id="moveup_button"><i class="fas fa-angle-up fa-lg"></i></button>
-                                                                    </td>
-                                                                    <td>
-                                                                        <button class="btn btn-secondary btn-block btn-lg" id="moverightup_button"><i class="fas fa-angle-up fa-lg" style="transform: rotate(45deg);"></i></button>
-                                                                    </td>
-                                                                    <td colspan="3" rowspan="2" class="pl-3">
-                                                                        <button class="btn btn-secondary btn-block btn-lg" id="zoomin_button">T</button>
-                                                                        <button class="btn btn-secondary btn-block btn-lg" id="zoomout_button">w</button>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <button class="btn btn-secondary btn-block btn-lg" id="moveleft_button"><i class="fas fa-angle-left fa-lg"></i></button>
-                                                                    </td>
-                                                                    <td>
-                                                                        <button class="btn btn-secondary btn-block btn-lg" id="home_button"><i class="fas fa-home"></i></button>
-                                                                    </td>
-                                                                    <td>
-                                                                        <button class="btn btn-secondary btn-block btn-lg" id="moveright_button"><i class="fas fa-angle-right fa-lg"></i></button>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <button class="btn btn-secondary btn-block btn-lg" id="moveleftdown_button"><i class="fas fa-angle-down fa-lg" style="transform: rotate(45deg);"></i></button>
-                                                                    </td>
-                                                                    <td>
-                                                                        <button class="btn btn-secondary btn-block btn-lg" id="movedown_button"><i class="fas fa-angle-down fa-lg"></i></button>
-                                                                    </td>
-                                                                    <td>
-                                                                        <button class="btn btn-secondary btn-block btn-lg" id="moverightdown_button"><i class="fas fa-angle-down fa-lg" style="transform: rotate(-45deg);"></i></button>
-                                                                    </td>
-                                                                </tr>
-                                                            </table>
+
                                                         </div>
                                                         <div class="tab-pane p-0" id="more_tab">
                                                             <table class="mx-auto w-100">
@@ -596,13 +730,13 @@
                                                                     <td colspan="2">
                                                                         <label for="AF">AF:&nbsp;&nbsp;</label><input class="d-none" type="checkbox" name="auto-focus">
                                                                     </td>
-                                                                    <td colspan="2"><button class="btn btn-secondary btn-block btn-sm d-none mb-2" id="btn_one_shot_af">One Shot AF</button></td>
+                                                                    <td colspan="2"></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td colspan="4">
                                                                         <div class="btn-group btn-block" role="group" aria-label="Basic example">
-                                                                            <button type="button" class="btn btn-secondary border" id="btn_near">Near</button>
-                                                                            <button type="button" class="btn btn-secondary border" id="btn_far">Far</button>
+                                                                            <button type="button" class="btn btn-secondary border">Nearr</button>
+                                                                            <button type="button" class="btn btn-secondary border">Far</button>
                                                                         </div>
                                                                     </td>
                                                                 </tr>
@@ -620,11 +754,10 @@
                                        
                                         <div class="col-8">
                                             <div class="row">
-                                                <div class="col-6">
-                                                    <div class="card border-light mb-0 panel-video">
-                                                        <div class="card-header">
-                                                            <h6 class="card-title">Selected Camera</h6>
-                                                            <div class="card-tools"></div>
+                                                <div class="col-6 panel-video">
+                                                    <div class="card mb-0">
+                                                        <div class="card-header text-center text-white text-bold">
+                                                            Selected Camera
                                                         </div>
                                                         <div class="card-body px-0 py-0">
                                                             <img src="../assets/img/video-output.svg" class="img-fluid" id="selected_camera_panel">
@@ -639,7 +772,7 @@
                                                                 <span class="text-white">:</span>
                                                             </td>
                                                             <td>
-                                                                <select class="form-control form-control-sm ml-3" id="changeShootingMode">
+                                                                <select class="form-control form-control-sm ml-3 col-10 mt-2" id="changeShootingMode">
                                                                     <option value="null">Select</option>
                                                                     <option value="fullauto">Full Auto</option>
                                                                     <option value="manual">Manual</option>
@@ -654,7 +787,7 @@
                                                                 <span class="text-white">:</span>
                                                             </td>
                                                             <td>
-                                                                <select class="form-control form-control-sm ml-3" id="changeWhiteBalanceMode">
+                                                                <select class="form-control form-control-sm ml-3 col-10 mt-2" id="changeWhiteBalanceMode">
                                                                     <option value="null">Select</option>
                                                                     <option value="auto">AWB</option>
                                                                     <option value="kelvin">Color Temperature (K)</option>
@@ -665,35 +798,24 @@
                                                         </tr>
                                                         <tr>
                                                             <td colspan="4">
-                                                                <span class="mb-0 text-white text-end">Colour Temperatur</span>
+                                                                <span class="mb-0 text-white text-end">Color Temperature</span>
                                                             </td>
                                                             <td>
                                                                 <span class="text-white">:</span>
                                                             </td>
                                                             <td>
-                                                                <div class="mt-2" id="container_kelvinslider">
+                                                                <div id="container_kelvinslider col-10 ml-3">
                                                                     <input id="kelvin_slider" type="text" />
                                                                 </div>
                                                             </td>
                                                         </tr>
                                                     </table>
-                                                    <table class="mt-1">
-                                                        <tr>
-                                                            <td colspan="2" class="text-center"><label class="mb-0" for="GAIN">GAIN</label></td>
-                                                            <td colspan="2" class="text-center"><label class="mb-0" for="IRIS">IRIS</label></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><button class="btn btn-secondary mr-1 btn-lg" id="gainup_button"><i class="fas fa-caret-up fa-lg"></i></button></td>
-                                                            <td><button class="btn btn-secondary ml-1  mr-2 btn-lg" id="gaindown_button"><i class="fas fa-caret-down fa-lg"></i></button></td>
-                                                            <td><button class="btn btn-secondary mr-1 ml-2 btn-lg" id="irisup_button"><i class="fas fa-caret-up fa-lg"></i></button></td>
-                                                            <td><button class="btn btn-secondary ml-1 btn-lg" id="irisdown_button"><i class="fas fa-caret-down fa-lg"></i></button></td>
-                                                        </tr>
-                                                    </table>
+
                                                 </div>
-                                                <div class="col-6">
-                                                    <div class="card border-light panel-video">
+                                                <div class="col-6 panel-video">
+                                                    <div class="card border-light">
                                                         <div class="card-header pb-1">
-                                                            <h6 class="card-title col-6">PGM</h6>
+                                                            <h6 class="col-6 card-title text-white text-bold">PGM</h6>
                                                             <div class="card-tools col-6">
                 
                                                               <div class="input-group mb-1">
@@ -840,7 +962,12 @@
        <!-- ion-slider.min.js -->
        <script
        type="text/javascript"
-       src="../assets/AdminLTE-3.2.0/plugins//ion-rangeslider/js/ion.rangeSlider.min.js"></script>
+       src="../assets/AdminLTE-3.2.0/plugins/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
+
+       <!-- ion-slider.min.js -->
+       <script
+       type="text/javascript"
+       src="../assets/AdminLTE-3.2.0/plugins/jquery-knob/jquery.knob.min.js"></script>
 
        <!-- adminlte.min.js -->
        <script src="../assets/AdminLTE-3.2.0/dist/js/adminlte.min.js"></script>

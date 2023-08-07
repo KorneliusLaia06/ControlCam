@@ -20,10 +20,10 @@
                 const showModalAddCamera = $('#showModalAddCamera');
                 if (myObject[groupIndex].length == 10){
                     showModalAddCamera.addClass('disabled');
-                    showModalAddCamera.text("Add new camera (10/10)");
+                    showModalAddCamera.text("Add camera (10/10)");
                 } else {
                     showModalAddCamera.removeClass('disabled');
-                    showModalAddCamera.text("Add new camera (" + myObject[groupIndex].length + "/10)");
+                    showModalAddCamera.text("Add camera (" + myObject[groupIndex].length + "/10)");
                 }
                 // detect data < 10 or not
 
@@ -37,7 +37,7 @@
                     link.setAttribute("data-link", camera.ip_address);
                     link.setAttribute("data-id", camera.id);
                     link.setAttribute("data-toggle", "pill");
-                    link.className = "btn col-2 mb-1 mr-2 check-connection";
+                    link.className = "btn col-2 mb-1 mr-2 check-connection text-nowrap";
                     link.setAttribute("role", "tab");
                     link.setAttribute("aria-controls", "vert-tabs-1");
                     link.setAttribute("aria-selected", "false");
@@ -397,7 +397,7 @@
                     $('#edit_camera_name').val(camera_name);
                     $('#edit_ip_address').val(ip_address);
                     $('#edit_keyboard_mapping').val(keyboard_mapping);
-                    $('#edit_keyboard_code').val(keyboard_code);
+                    $('#edit_keyboard_code').val(parseInt(keyboard_code.match(/\d+/)[0]));
                 });
                 //funtion will active when detect #modal-editCamera opened
 

@@ -80,7 +80,7 @@ color: white;
     color:#A2D664;
 }
 
-.camera-information{
+.camera-information, #container_select_camera_first{
     background-color: #565656 !important;
     color: white !important;
     box-shadow: none !important;
@@ -102,7 +102,8 @@ color: white;
     font-weight: 600 !important;
     margin-left: 5px !important;
     margin-bottom: 10px !important;
-    padding: 10px !important;
+    padding: 10px 0 !important;
+    font-size: auto !important;
 }
 
 #vert-tabs-tab .active{
@@ -126,6 +127,10 @@ color: white;
     background-color: #D10000 !important;
     color:white !important;
     font-weight: 600 !important;
+    border:1px solid #ffffff !important;
+}
+
+.btn-edit{
     border:1px solid #ffffff !important;
 }
 
@@ -179,30 +184,11 @@ bottom:8px !important;
 }
 
 
-.addnewcamera {
-    margin-left: auto;
-    margin-right: auto;
-}
-.addnewcamera .input-group-text{
-background-color: #A2D664;
 
-}
-
-.input-group-text-left{
-    border-top-right-radius: 0px !important; 
-    border-bottom-right-radius: 0px !important;
-    border-right: 0px !important;
-    border-left: 2px white solid !important;
-    border-top: 2px white solid !important;
-    border-bottom: 2px white solid !important;
-}
-.input-group-text-right{
-    border-top-left-radius: 0px !important; 
-    border-bottom-left-radius: 0px !important; 
-    border-left: 0px !important;
-    border-right: 2px white solid !important;
-    border-top: 2px white solid !important;
-    border-bottom: 2px white solid !important;
+.addnewcamera .showModalAddCamera a{
+background-color: #A2D664 !important;
+padding: 0.2rem 0.75rem !important;
+color:white !important;
 }
 
 
@@ -222,7 +208,7 @@ background-color: #A2D664;
     margin-left: 5px !important;
     margin-bottom: 10px !important;
     padding: 10px !important;
-    height: 46px !important;
+    height: auto !important;
 }
 
 #containerBtnCamera .active{
@@ -271,13 +257,16 @@ background-color: #A2D664;
     margin-bottom: 1px !important;
 }
 
+#container_showpreset .btn:active{
+    border: 1px #A2D664 solid !important;
+}
+
 #container_editpreset .btn-group{
     background-color: #333 !important;
     border:1px solid #fff !important;
     margin-left: 5px !important;
     margin-bottom: 1px !important;
     border-radius: 0.2rem !important;
-
 }
 
 #container_editpreset .btn-group .btn {
@@ -285,14 +274,17 @@ background-color: #A2D664;
     font-weight: 600 !important;
     font-size:1rem !important;
 }
-.panel-video{
+.panel-video .card{
 background-color: transparent !important;
 box-shadow: none !important;
 }
 
 .panel-video .card-title{
     color: white !important;
-    font-weight: 100;
+}
+
+.panel-video label{
+    color:white !important;
 }
 
 .card-mainpanel{
@@ -304,15 +296,147 @@ box-shadow: none !important;
 background-color: transparent !important;
 }
 
-.panel-video label{
-    color:white !important;
-}
-/* #changeCameraGroup{
-    background-color: transparent !important;
+
+#changeCameraGroup, #changeShootingMode, #changeWhiteBalanceMode{
+    background-color: #4E4C4D !important;
     border: 1px white solid !important;
     color: white !important;
 }
 
-.changeCameraGroup:after{
-    background-color: transparent !important;
+#changeCameraGroup, #changeShootingMode, #changeWhiteBalanceMode *{
+    background-color: #4E4C4D !important;
+}
+
+#container_editpreset .input-group{
+    margin-left: 5px !important;
+}
+
+.card-controller{
+    background-color:#272727 !important;
+    box-shadow: none !important;
+}
+
+.card-controller .card-header{
+        border: 0 !important;
+}
+
+#btn_one_shot_af, #btn_awb, #near_button, #far_button, #zoomin_button, #zoomout_button{
+    border: 1px white solid !important;
+    color: white !important
+}
+
+#btn_one_shot_af:active, #btn_awb:active, #near_button:active, #far_button:active, #zoomin_button:active, #zoomout_button:active{
+    border:1px solid #A2D664 !important;
+    color: white !important
+}
+
+.irs--round .irs-bar{
+    background-color: white !important;
+}
+
+.irs--round .irs-line{
+    background-color: #a8acb3 !important;
+}
+
+.circle{
+    background-color: red !important;
+    height:220px;
+    width:220px;
+    border-radius: 220px;
+    position: relative;
+}
+
+.card-controller .irs--round {
+    height: 50px;
+    top: -20px;
+}
+
+.panel-video .irs--round {
+    height: 50px;
+    top: -15px;
+    margin-left: 1rem!important;
+    margin-right: 1rem!important;
+}
+
+
+#gainup_button, #gaindown_button, #irisup_button, #irisdown_button{
+    background-color: #333 !important;
+    border:1px solid #fff !important;
+    color: white !important;
+    font-weight: 600 !important;
+    font-size:1rem !important;
+    margin-left: 5px !important;
+    margin-bottom: 1px !important;
+}
+
+#gainup_button:active, #gaindown_button:active, #irisup_button:active, #irisdown_button:active{
+    background-color: #474747 !important;
+    border:1px solid #A2D664 !important;
+}
+
+#moveup_button:hover,#movedown_button:hover,#moveleft_button:hover,#moveright_button:hover,#moveleftup_button:hover,
+#moverightup_button:hover,#moveleftdown_button:hover,#moverightdown_button:hover,#home_button:hover{
+    fill:#665d5d;
+    cursor: pointer;
+}
+
+.container_verticalslider{
+    background-color: #0C0C0C;
+    border-radius: 8px;
+    padding:5px 0 5px 0;
+}
+
+.vertical-slider {
+    height: 200px;
+    width: 10px !important;
+    position: relative;
+    transform: rotate(180deg);
+    transform-origin: top left;
+}
+  
+.slider {
+    position: absolute;
+    /* background-color: #c23232 !important;
+    border-radius: 8px;
+    padding:5px; */
+}
+
+input[type=range]{
+    -webkit-appearance: none;
+}
+
+input[type=range][orient=vertical]
+{
+    -webkit-appearance: slider-vertical; /* Chromium */
+    width: 8px;
+    left: -39px;
+    bottom: 197px;
+    height: 175px;
+    padding: 0 5px;
+}
+
+/* input[type=range]::-webkit-slider-runnable-track {
+    width: 10px;
+    height: 5px;
+    background: #ddd;
+    border: none;
+    border-radius: 3px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: goldenrod !important;
+    margin-top: -4px;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #ccc;
 } */

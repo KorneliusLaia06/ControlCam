@@ -74,7 +74,7 @@
                 const myBody = {
                     hid: localStorage.getItem("hid")
                 }
-                const response = await fetch('http://hq.vstream.asia:8002/backend/validateHid', {
+                const response = await fetch('http://db.vstream.asia/backend/validateHid', {
                     method: 'POST',
                     body: JSON.stringify(myBody),
                     headers: {
@@ -116,7 +116,7 @@
             };
 
             const response = await Promise.race([
-                fetch('http://hq.vstream.asia:8002/backend/enterlk', {
+                fetch('http://db.vstream.asia/backend/enterlk', {
                     method: 'POST',
                     body: JSON.stringify(myBody),
                     headers: {
