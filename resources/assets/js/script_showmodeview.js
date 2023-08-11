@@ -1298,7 +1298,7 @@ jQuery(document).ready(function() {
 
         const buttons = document.querySelectorAll('.btn-camera');
         buttons.forEach(function(button) {
-            if (button.classList.contains('bg-warning')) {
+            if (button.classList.contains('active')) {
             const groupIndex = $("#changeCameraGroup").val();
             const dataIndexCamera = button.dataset.indexcamera;
 
@@ -1361,10 +1361,10 @@ jQuery(document).ready(function() {
         const shootingmodevalue = $(this).data('shootingmodevalue');
         var element = $(this);
 
-        $(this).removeClass('bg-gradient-secondary').addClass('bg-gradient-warning');
+        $(this).addClass('bg-gradient-warning');
 
         setTimeout(function() {
-            element.removeClass('bg-gradient-warning').addClass('bg-gradient-secondary');
+            element.removeClass('bg-gradient-warning');
         }, 250);
 
         if(shootingmode=="time"){
