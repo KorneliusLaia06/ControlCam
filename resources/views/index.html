@@ -84,6 +84,7 @@
                 const res = await response.json();
                 if (res.success) {
                     // If valid, display success message
+                    localStorage.setItem("package", res.response.pricingPackage.packageName);
                     window.location.href = 'starter_page.html';
                 }
                 $('form:first *:input[type!=hidden]:first').focus();
@@ -131,6 +132,7 @@
             if (res) {
                 if (res.success) {
                     // If valid, display success message
+                    localStorage.setItem("package", res.response.package.packageName);
                     window.location.href = 'starter_page.html';
                 } else {
                     alert(res.response.message);
