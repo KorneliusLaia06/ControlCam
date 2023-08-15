@@ -320,12 +320,12 @@ background-color: transparent !important;
         border: 0 !important;
 }
 
-#btn_one_shot_af, #btn_awb, #near_button, #far_button, #zoomin_button, #zoomout_button{
+#btn_one_shot_af, #btn_awb, #near_button, #far_button, #zoomin_button, #zoomout_button, #wbCalibration_button{
     border: 1px white solid !important;
     color: white !important
 }
 
-#btn_one_shot_af:active, #btn_awb:active, #near_button:active, #far_button:active, #zoomin_button:active, #zoomout_button:active{
+#btn_one_shot_af:active, #btn_awb:active, #near_button:active, #far_button:active, #zoomin_button:active, #zoomout_button:active, #wbCalibration_button:active{
     border:1px solid #A2D664 !important;
     color: white !important
 }

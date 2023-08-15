@@ -68,6 +68,9 @@ let isButtonPressed_far = false;
 
 const awb_button = document.getElementById('btn_awb');
 
+const wbCalibration_button = document.getElementById('wbCalibration_button');
+
+
 //detect mobile or desktop browser
 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
     // alert("mobile");
@@ -171,6 +174,16 @@ if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
         let target_ip = $('#target').val();
         $.ajax(target_ip + "/-wvhttp-01-/control.cgi?shooting=manual");
         $.ajax(target_ip + "/-wvhttp-01-/control.cgi?wb=auto");
+    });
+
+    wbCalibration_button.addEventListener('touchstart', () => {
+        let target_ip = $('#target').val();
+        let value = $('#changeWhiteBalanceMode').val();
+        if(value == "wb_a"){
+            $.ajax(target_ip + "/-wvhttp-01-/control.cgi?wb.action=one_shot_a");
+        } else if (value == "wb_b"){
+            $.ajax(target_ip + "/-wvhttp-01-/control.cgi?wb.action=one_shot_b");
+        }
     });
 
 } else {
@@ -421,6 +434,16 @@ if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
         setTimeout(() => {
             getStatusWhiteBalanceMode(target_ip);
         }, 500);
+    });
+
+    wbCalibration_button.addEventListener('mousedown', () => {
+        let target_ip = $('#target').val();
+        let value = $('#changeWhiteBalanceMode').val();
+        if(value == "wb_a"){
+            $.ajax(target_ip + "/-wvhttp-01-/control.cgi?wb.action=one_shot_a");
+        } else if (value == "wb_b"){
+            $.ajax(target_ip + "/-wvhttp-01-/control.cgi?wb.action=one_shot_b");
+        }
     });
 
     home_button.addEventListener('mousedown', () => {
@@ -741,7 +764,7 @@ function getCameraList(groupIndex){
 
         // Create the span element for the badge
         var badgeSpan = document.createElement("span");
-        badgeSpan.className = "badge badge-shorcut bg-danger";
+        badgeSpan.className = "badge badge-shorcut bg-primary";
         badgeSpan.textContent = camera.keyboard_mapping;
 
         // Set the text for the anchor
@@ -1089,6 +1112,7 @@ jQuery(document).ready(function() {
         $.ajax(target_ip + "/-wvhttp-01-/control.cgi?shooting="+value);
         if(value == "fullauto"){
             $('#changeWhiteBalanceMode').attr('disabled', 'disabled');
+            $('#wbCalibration_button').addClass('d-none');
             
             //disable kelvin slider when shooting mode is fullauto
             kelvin_slider = $("#kelvin_slider").data("ionRangeSlider");
@@ -1103,7 +1127,7 @@ jQuery(document).ready(function() {
             kelvin_slider.update({
                 from_fixed: false
             });
-        }
+        } 
 
         //delay caling function getStatusWhiteBalanceMode() to get data more acurate
         setTimeout(() => {
@@ -1145,13 +1169,20 @@ jQuery(document).ready(function() {
     $('#changeWhiteBalanceMode').change(function() {
         let target_ip = $('#target').val();
         let value = $(this).val();
-        $.ajax(target_ip + "/-wvhttp-01-/control.cgi?c.1.wb="+value);
+        $.ajax(target_ip + "/-wvhttp-01-/control.cgi?wb="+value);
         if(value == "kelvin"){
             getKelvinValue();
             $('#container_kelvinslider').removeClass('d-none');
-        } else {
+        } 
+        else if(value == "wb_a"){
+            $('#wbCalibration_button').removeClass('d-none');
+        } 
+        else if(value == "wb_b"){
+            $('#wbCalibration_button').removeClass('d-none');
+        } 
+        else {
             $('#container_kelvinslider').addClass('d-none');
-            console.log("aa");
+            $('#wbCalibration_button').addClass('d-none');
         }
     });
     //detect #changeWhiteBalanceMode when changed
@@ -1167,7 +1198,7 @@ jQuery(document).ready(function() {
         $(this).addClass('active'); // Add the class to the clicked button
         $('#selected_camera_panel').removeClass('border-program border-preview');
 
-        const dataIp = $(this).data('ip');
+        const dataIp = "http://" + $(this).data('ip');
         const groupIndex = $("#changeCameraGroup").val();
         const cameraIndex = $(this).data('indexcamera');
 
@@ -1210,7 +1241,7 @@ jQuery(document).ready(function() {
         }
         // To disable the event listener
         eventListenerEnabled_keydown = false;
-        $('.badge-shorcut').removeClass('bg-danger');
+        $('.badge-shorcut').removeClass('bg-primary');
         $('.badge-shorcut').addClass('bg-secondary');
 
     });
@@ -1228,7 +1259,7 @@ jQuery(document).ready(function() {
         // To ENABLE the event listener
         eventListenerEnabled_keydown = true;
         $('.badge-shorcut').removeClass('bg-secondary');
-        $('.badge-shorcut').addClass('bg-danger');
+        $('.badge-shorcut').addClass('bg-primary');
     });
     //hide container_editpreset
 
@@ -1417,7 +1448,7 @@ $(document).on('keydown', function(event) {
             // call removeBgSuccessClass()
             removeBgSuccessClass();
             
-            var dataIp = link.data('ip');
+            var dataIp = "http://" + link.data('ip');
             $('#target').val(dataIp);
             $('#desc_active_target').html("Activate Target: " + dataIp);
 
@@ -1576,8 +1607,10 @@ function getStatusWhiteBalanceMode(dataIp){
             if (result == "auto") {
                 $('#changeWhiteBalanceMode').val('auto');
             } else if (result == "wb_a") {
+                $('#wbCalibration_button').removeClass('d-none')
                 $('#changeWhiteBalanceMode').val('wb_a');
             } else if (result == "wb_b") {
+                $('#wbCalibration_button').removeClass('d-none')
                 $('#changeWhiteBalanceMode').val('wb_b');
             } else if (result == "kelvin") {
                 getKelvinValue();
@@ -1654,7 +1687,7 @@ function getTeleWideValue(dataIp){
         var result = responseResult.slice(startIndex + 10, endIndex);
 
         $("#telewide_slider").val(result);
-        console.log(result);
+        // console.log(result);
         } else {
         console.log(`Error: ${xhr.status}`);
         }

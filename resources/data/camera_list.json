@@ -1,5 +1,20 @@
 [
-  [],
+  [
+    {
+      "id": 1692013717321,
+      "camera_name": "Cam 01",
+      "ip_address": "hq.vstream.asia:801",
+      "keyboard_mapping": "1",
+      "keyboard_code": "49"
+    },
+    {
+      "id": 1692013784916,
+      "camera_name": "Cam 02",
+      "ip_address": "hq.vstream.asia:802",
+      "keyboard_mapping": "2",
+      "keyboard_code": "50"
+    }
+  ],
   [],
   [],
   [],

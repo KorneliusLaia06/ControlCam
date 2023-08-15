@@ -779,7 +779,7 @@
                                                                 </select>
                                                             </td>
                                                         </tr>
-                                                        <tr>
+                                                        <tr class="pt-2 pb-2">
                                                             <td colspan="4">
                                                                 <span class="mb-0 text-white text-end">White Balance Mode</span>
                                                             </td>
@@ -787,7 +787,7 @@
                                                                 <span class="text-white">:</span>
                                                             </td>
                                                             <td>
-                                                                <select class="form-control form-control-sm ml-3 col-10 mt-2" id="changeWhiteBalanceMode">
+                                                                <select class="form-control form-control-sm ml-3 col-10" id="changeWhiteBalanceMode">
                                                                     <option value="null">Select</option>
                                                                     <option value="auto">AWB</option>
                                                                     <option value="kelvin">Color Temperature (K)</option>
@@ -796,7 +796,7 @@
                                                                 </select>
                                                             </td>
                                                         </tr>
-                                                        <tr>
+                                                        <tr class="pt-2 pb-2">
                                                             <td colspan="4">
                                                                 <span class="mb-0 text-white text-end">Color Temperature</span>
                                                             </td>
@@ -804,9 +804,14 @@
                                                                 <span class="text-white">:</span>
                                                             </td>
                                                             <td>
-                                                                <div id="container_kelvinslider col-10 ml-3">
+                                                                <div id="container_kelvinslider col-10 ml-3 mt-4">
                                                                     <input id="kelvin_slider" type="text" />
                                                                 </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="6" style="padding-right: 0.6rem !important;">
+                                                                    <button class="btn text-bold btn-sm col-12 mt-2 d-none" id="wbCalibration_button">White Balance Calibration</button>
                                                             </td>
                                                         </tr>
                                                     </table>

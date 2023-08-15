@@ -159,18 +159,19 @@
                     keyboardCodeInput.value = camera.keyboard_code;
                     keyboardCodeInput.disabled = true;
 
+                    var combine_keyboardMappingInput_keyboardCodeInput = document.createElement("input");
+                    combine_keyboardMappingInput_keyboardCodeInput.type = "text";
+                    combine_keyboardMappingInput_keyboardCodeInput.className = "form-control bg-white";
+                    combine_keyboardMappingInput_keyboardCodeInput.value = camera.keyboard_mapping + " (" + camera.keyboard_code +")";
+                    combine_keyboardMappingInput_keyboardCodeInput.disabled = true;
+
                     var div6 = document.createElement("div");
                     div6.className = "col-sm-8";
 
-                    var combine_keyboardMappingInput_keyboardCodeInput = document.createElement("input");
-                    keyboardCodeInput.type = "text";
-                    keyboardCodeInput.className = "form-control bg-white";
-                    keyboardCodeInput.value = camera.keyboard_mapping + " (" + camera.keyboard_code +")";
-                    keyboardCodeInput.disabled = true;
 
                     inputGroup.appendChild(keyboardMappingInput);
                     inputGroup.appendChild(keyboardCodeInput);
-                    div6.appendChild(combine_keyboardMappingInput_keyboardCodeInput);
+                    inputGroup.appendChild(combine_keyboardMappingInput_keyboardCodeInput);
 
                     div5.appendChild(inputGroup);
                     formGroup5.appendChild(label5);
@@ -257,7 +258,7 @@
                 $(document).on('click', '.check-connection', function() {
                     $('[href^="#vert-tabs-"]').removeClass('active'); // Remove the class from all buttons
                     $(this).addClass('active'); // Add the class to the clicked button
-                    var link = $(this).data('link');
+                    var link = "http://" + $(this).data('link');
                     var id = $(this).data('id');
                     const xhr = new XMLHttpRequest();
                     xhr.open(
@@ -397,7 +398,7 @@
                     $('#edit_camera_name').val(camera_name);
                     $('#edit_ip_address').val(ip_address);
                     $('#edit_keyboard_mapping').val(keyboard_mapping);
-                    $('#edit_keyboard_code').val(parseInt(keyboard_code.match(/\d+/)[0]));
+                    $('#edit_keyboard_code').val(keyboard_code);
                 });
                 //funtion will active when detect #modal-editCamera opened
 
