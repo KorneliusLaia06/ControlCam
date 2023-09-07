@@ -557,6 +557,7 @@ function trigger_gainup() {
             //     newvalue = 800;
             // };
             $.ajax(target_ip + "/-wvhttp-01-/control.cgi?me.gain=" + (gainValue+5));
+            $('#gain_value').text(((gainValue+5)/10));
         // Gunakan nilai gainValue di sini
 
         // Lanjutkan dengan operasi lain jika diperlukan
@@ -578,6 +579,7 @@ function trigger_gaindown() {
             //     newvalue = 800;
             // };
             $.ajax(target_ip + "/-wvhttp-01-/control.cgi?me.gain=" + (gainValue-5));
+            $('#gain_value').text(((gainValue-5)/10));
         // Gunakan nilai gainValue di sini
 
         // Lanjutkan dengan operasi lain jika diperlukan
@@ -610,6 +612,7 @@ function trigger_irisup() {
             url: target_ip + "/-wvhttp-01-/control.cgi?me.diaphragm=" + newvalue,
             method: "GET",
             success: function(response) {
+                $('#iris_value').text((newvalue/100));
             // Tindakan setelah request berhasil
             // console.log("New value sent:", newvalue);
             },
@@ -647,6 +650,7 @@ function trigger_irisdown() {
             url: target_ip + "/-wvhttp-01-/control.cgi?me.diaphragm=" + newvalue,
             method: "GET",
             success: function(response) {
+                $('#iris_value').text((newvalue/100));
             // Tindakan setelah request berhasil
             // console.log("New value sent:", newvalue);
             },
@@ -1440,6 +1444,12 @@ jQuery(document).ready(function() {
         stopgetCameraStatus();
         getCameraStatus(dataIp);
         getKelvinValue();
+        getGainValue(dataIp, function(gainValue) {
+            $('#gain_value').text(((gainValue+5)/10));
+        });
+        getIrisValue(dataIp, function(irisValue) {
+            $('#iris_value').text((irisValue/100));
+        });
         $("#container_select_camera_first").addClass("d-none");
         $("#main_container").removeClass("d-none");
     });
@@ -1704,7 +1714,13 @@ $(document).on('keydown', function(event) {
             getPreset(groupIndex,cameraIndex);
             stopgetCameraStatus();
             getCameraStatus(dataIp);
-        getKelvinValue();
+            getKelvinValue();
+            getGainValue(dataIp, function(gainValue) {
+                $('#gain_value').text(((gainValue+5)/10));
+            });
+            getIrisValue(dataIp, function(irisValue) {
+                $('#iris_value').text((irisValue/100));
+            });
 
             $("#container_select_camera_first").addClass("d-none");
             $("#main_container").removeClass("d-none");

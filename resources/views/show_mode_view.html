@@ -2392,9 +2392,9 @@
                                                                     <input id="zoomspeed_slider" type="text"/>
                                                                 </div>
                                                             </div>
-                                                            <div class="row">
+                                                            <div class="row mt-4">
                                                                 <div class="col-6 text-center">
-                                                                    <label class="mb-1 text-white" for="GAIN">GAIN</label>
+                                                                    <label class="mb-1 text-white" for="GAIN">GAIN - &nbsp;<span id="gain_value"></span></label>
                                                                     <div class="row">
                                                                         <div class="col-6">
                                                                             <button class="btn btn-secondary mr-1 btn-lg" id="gainup_button"><i class="fas fa-caret-up fa-lg"></i></button>
@@ -2406,7 +2406,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-6 text-center">
-                                                                    <label class="mb-1 text-white" for="IRIS">IRIS</label>
+                                                                    <label class="mb-1 text-white" for="IRIS">IRIS - &nbsp;<span id="iris_value"></span></label>
                                                                     <div class="row">
                                                                         <div class="col-6">
                                                                             <button class="btn btn-secondary mr-1 ml-2 btn-lg" id="irisup_button"><i class="fas fa-caret-up fa-lg"></i></button>
@@ -2841,7 +2841,7 @@
                             </li>
                         </ul>
 
-                        <button data-toggle="collapse" data-target="#changes_license_container" class="btn btn-block btn-primary mt-4">Changes license</button>
+                        <button data-toggle="collapse" data-target="#changes_license_container" class="btn btn-block btn-primary mt-4">Change license</button>
 
                         <div id="changes_license_container" class="collapse mt-2">
                             <form id="changes_license_form">

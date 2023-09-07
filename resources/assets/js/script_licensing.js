@@ -140,9 +140,10 @@ if (res) {
           if (error) {
             console.error('Failed to set item in local storage:', error);
           } else {
+            $('#submit').html('<i class="fas fa-spinner fa-spin">&nbsp;</i> Submit');
             setTimeout(function(){
               window.location.reload();
-           }, 3000);
+           }, 5000);
             // You can perform your desired action here
           }
         });
