@@ -133,6 +133,8 @@
                 if (res.success) {
                     // If valid, display success message
                     localStorage.setItem("package", res.response.package.packageName);
+                    localStorage.setItem("license_key", myBody.key);
+                    localStorage.setItem("email", myBody.email);
                     window.location.href = 'starter_page.html';
                 } else {
                     alert(res.response.message);

@@ -232,6 +232,7 @@ color:white !important;
     margin-right: auto !important;
     display: block !important;
     border: 1px solid white !important;
+    padding:6px 10px;
 }
 
 #button_editpreset{
@@ -244,6 +245,7 @@ color:white !important;
     margin-right: auto !important;
     display: block !important;
     border: 1px solid white !important;
+    padding:6px 10px;
 }
 
 
@@ -367,11 +369,36 @@ background-color: transparent !important;
     font-size:1rem !important;
     margin-left: 5px !important;
     margin-bottom: 1px !important;
+    border-radius: 4px;
 }
 
 #gainup_button:active, #gaindown_button:active, #irisup_button:active, #irisdown_button:active{
     background-color: #474747 !important;
     border:1px solid #A2D664 !important;
+}
+
+#prevBtn_editpreset, #nextBtn_editpreset{
+    background-color: #333 !important;
+    border:1px solid #fff !important;
+    color: white !important;
+    font-weight: 600 !important;
+    font-size:1rem !important;
+    margin-left: 5px !important;
+    margin-bottom: 1px !important;
+    border-radius: 4px;
+    padding: 5px 10px;
+}
+
+#prevBtn_recallpreset, #nextBtn_recallpreset{
+    background-color: #333 !important;
+    border:1px solid #fff !important;
+    color: white !important;
+    font-weight: 600 !important;
+    font-size:1rem !important;
+    margin-left: 5px !important;
+    margin-bottom: 1px !important;
+    border-radius: 4px;
+    padding: 4px 10px;
 }
 
 #moveup_button:hover,#movedown_button:hover,#moveleft_button:hover,#moveright_button:hover,#moveleftup_button:hover,
@@ -413,6 +440,10 @@ input[type=range][orient=vertical]
     bottom: 197px;
     height: 175px;
     padding: 0 5px;
+}
+
+#value_kelvin_slider{
+    margin-top:-13px !important;
 }
 
 /* input[type=range]::-webkit-slider-runnable-track {

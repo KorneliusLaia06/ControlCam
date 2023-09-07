@@ -1,8 +1,12 @@
+
+
 // const json_location = "src/data";
             const json_location = "resources/data";
 
            function getCameraList(groupIndex){
-                var fs = require('fs');        
+                const showModalAddCamera = $('#showModalAddCamera');
+
+                var fs = require('fs');      
 
                 // // Baca file JSON
                 var data = fs.readFileSync(json_location + "/camera_list.json");
@@ -16,28 +20,75 @@
                 var containerTab = document.getElementById("vert-tabs-tabContent");
                 containerTab.innerHTML ="";
 
-                // detect data in array < 10 or not
-                const showModalAddCamera = $('#showModalAddCamera');
-                if (myObject[groupIndex].length == 10){
-                    showModalAddCamera.addClass('disabled');
-                    showModalAddCamera.text("Add camera (10/10)");
-                } else {
-                    showModalAddCamera.removeClass('disabled');
-                    showModalAddCamera.text("Add camera (" + myObject[groupIndex].length + "/10)");
+                // const package = "Camera Connect Ultra (CCU)";
+                const package = localStorage.getItem('package');
+                console.log(package);
+                let total_camera_license;
+                switch (package){
+                    case "Camera Connect Lite (CCL)":
+                        // only access group 1 and 1 cam only
+                        total_camera_license = 1;
+                        showModalAddCamera.text("Add camera (0/1)");
+                        $('#changeCameraGroup').addClass('d-none');
+                        break;
+                    case "Camera Connect Pro (CCP)":
+                        // only access group 1 and 2 cam only
+                        total_camera_license = 2;
+                        showModalAddCamera.text("Add camera (0/2)");
+                        $('#changeCameraGroup').addClass('d-none');
+                        break;
+                    case "Camera Connect Ultra (CCU)":
+                        // able access all group and all cam
+                        showModalAddCamera.text("Add camera (0/10)");
+                        total_camera_license = 10;
+                        break;
                 }
-                // detect data < 10 or not
 
+                
+                $('.showModalAddCamera').attr('disabled',false);
 
-                for (let i = 0; i < myObject[groupIndex].length; i++) {
+                for (let i = 0; i < myObject[groupIndex].length ; i++) {
                     var camera = myObject[groupIndex][i];
-                    
+                    var total_camera_from_json = myObject[groupIndex].length;
+
+                    switch (package){
+                        case "Camera Connect Lite (CCL)":
+                                if(total_camera_from_json >= total_camera_license){
+                                    $('.showModalAddCamera').attr('disabled','disabled');
+                                    showModalAddCamera.text("Add camera (1/1)");
+                                } else {
+                                    showModalAddCamera.text("Add camera (" + total_camera_from_json + "/1)");
+                                }
+                            break;
+                        case "Camera Connect Pro (CCP)":
+                            if(total_camera_from_json >= total_camera_license){
+                                $('.showModalAddCamera').attr('disabled','disabled');
+                                showModalAddCamera.text("Add camera (2/2)");
+                            } else {
+                                showModalAddCamera.text("Add camera (" + total_camera_from_json + "/2)");
+                            }
+                            break;
+                        case "Camera Connect Ultra (CCU)":
+                            if(total_camera_from_json >= total_camera_license){
+                                $('.showModalAddCamera').attr('disabled','disabled');
+                                showModalAddCamera.text("Add camera (10/10)");
+                            } else {
+                                showModalAddCamera.text("Add camera (" + total_camera_from_json + "/10)");
+                            }
+                            break;
+                    }
+
                     // Buat elemen <a> baru
                     var link = document.createElement("a");
                     link.href = "#vert-tabs-" + camera.id;
                     link.setAttribute("data-link", camera.ip_address);
                     link.setAttribute("data-id", camera.id);
                     link.setAttribute("data-toggle", "pill");
-                    link.className = "btn col-2 mb-1 mr-2 check-connection text-nowrap";
+                    if(i > total_camera_license-1){
+                        link.className = "btn col-2 mb-1 mr-2 check-connection text-nowrap d-none";
+                    } else {
+                        link.className = "btn col-2 mb-1 mr-2 check-connection text-nowrap";
+                    }
                     link.setAttribute("role", "tab");
                     link.setAttribute("aria-controls", "vert-tabs-1");
                     link.setAttribute("aria-selected", "false");
@@ -217,6 +268,7 @@
                     }
 
                 }
+                
 
                 // Create the tab content element
                 var tabContent = document.createElement("div");
@@ -347,7 +399,7 @@
 
                     var newData = [];
 
-                    for (let i = 1; i <= 10; i++) {
+                    for (let i = 1; i <= 100; i++) {
                     newData.push({
                         "id_camera": timestampId,
                         "id_preset": i,
@@ -430,87 +482,89 @@
                 });
                 //for mapping keyboard - modal edit
 
+                //submit data to delete camera  
+                $('#deleteCameraBtn').click(function() {
+                    var groupIndex = $("#changeCameraGroup").val();
+                    var id = $("#idDelete").val();
+                    var fs = require('fs');        
+
+                    // read file JSON
+                    var data = fs.readFileSync(json_location + "/camera_list.json");
+
+                    /// Parse JSON to objek JavaScript
+                    var camera_list = JSON.parse(data);
+
+                    // find data based on id from #valueDelete
+                    var index = camera_list[groupIndex].findIndex(obj => obj.id == id);
+
+                    if (index !== -1) {
+                        // delete data based on index value that already filtered
+                        camera_list[groupIndex].splice(index, 1);
+
+                        // re-input new array to file json
+                        fs.writeFile(json_location + "/camera_list.json", JSON.stringify(camera_list, null, 2), function(err) {
+                            if (err) {
+                                notification('info','Failed to Delete Camera');
+                                return;
+                                // console.error(err);
+                            }
+                            deletepreset(groupIndex,id);
+                            getCameraList(groupIndex);
+                            notification('info','Camera Successfully Deleted');
+                            // console.log("Data berhasil disimpan ke file JSON.");
+                        });
+                        // re-input new array to file json
+                        
+                    } else {
+                        notification('info','No Matching Data Found for the ID');
+                    }
+                });
+                //submit data to delete camera  
+
+                function deletepreset(groupIndex,id){
+                    const fs = require('fs');
+
+                    // Read the JSON file
+                    fs.readFile(json_location + "/group" + groupIndex + "_presets.json", 'utf8', (err, data) => {
+                    if (err) {
+                        console.error('Error reading file:', err);
+                        return;
+                    }
+
+                    try {
+                        // Parse the JSON data
+                        const jsonData = JSON.parse(data);
+
+                        // Remove the array with id_camera 1687529168499
+                        const filteredData = jsonData.map(arr => {
+                        return arr.filter(obj => obj.id_camera != id);
+                        });
+
+                        // Remove empty arrays from the filtered data
+                        const nonEmptyData = filteredData.filter(arr => arr.length > 0);
+
+                        // Convert the non-empty data back to JSON
+                        const updatedJsonData = JSON.stringify(nonEmptyData, null, 2);
+
+                        // Write the updated JSON back to the file
+                        fs.writeFile(json_location + "/group" + groupIndex + "_presets.json", updatedJsonData, 'utf8', err => {
+                        if (err) {
+                            console.error('Error writing file:', err);
+                            return;
+                        }
+                        console.log('JSON file updated successfully.' + id);
+                        });
+                    } catch (err) {
+                        console.error('Error parsing JSON:', err);
+                    }
+                });
+
+                }
+
             });
            
                           
-            //submit data to delete camera  
-            jQuery(document).on('click', '.deleteCameraBtn', function() {
-                var groupIndex = $("#changeCameraGroup").val();
-                var id = $("#idDelete").val();
-                var fs = require('fs');        
 
-                // read file JSON
-                var data = fs.readFileSync(json_location + "/camera_list.json");
-
-                /// Parse JSON to objek JavaScript
-                var camera_list = JSON.parse(data);
-
-                // find data based on id from #valueDelete
-                var index = camera_list[groupIndex].findIndex(obj => obj.id == id);
-
-                if (index !== -1) {
-                    // delete data based on index value that already filtered
-                    camera_list[groupIndex].splice(index, 1);
-
-                    // re-input new array to file json
-                    fs.writeFile(json_location + "/camera_list.json", JSON.stringify(camera_list, null, 2), function(err) {
-                        if (err) {
-                            notification('info','Failed to Delete Camera');
-                            return;
-                            // console.error(err);
-                        }
-                        deletepreset(groupIndex,id);
-                        getCameraList(groupIndex);
-                        notification('info','Camera Successfully Deleted');
-                        // console.log("Data berhasil disimpan ke file JSON.");
-                    });
-                    // re-input new array to file json
-                    
-                } else {
-                    notification('info','No Matching Data Found for the ID');
-                }
-            });
-            //submit data to delete camera  
-
-            function deletepreset(groupIndex,id){
-                const fs = require('fs');
-
-                // Read the JSON file
-                fs.readFile(json_location + "/group" + groupIndex + "_presets.json", 'utf8', (err, data) => {
-                if (err) {
-                    console.error('Error reading file:', err);
-                    return;
-                }
-
-                try {
-                    // Parse the JSON data
-                    const jsonData = JSON.parse(data);
-
-                    // Remove the array with id_camera 1687529168499
-                    const filteredData = jsonData.map(arr => {
-                    return arr.filter(obj => obj.id_camera != id);
-                    });
-
-                    // Remove empty arrays from the filtered data
-                    const nonEmptyData = filteredData.filter(arr => arr.length > 0);
-
-                    // Convert the non-empty data back to JSON
-                    const updatedJsonData = JSON.stringify(nonEmptyData, null, 2);
-
-                    // Write the updated JSON back to the file
-                    fs.writeFile(json_location + "/group" + groupIndex + "_presets.json", updatedJsonData, 'utf8', err => {
-                    if (err) {
-                        console.error('Error writing file:', err);
-                        return;
-                    }
-                    console.log('JSON file updated successfully.' + id);
-                    });
-                } catch (err) {
-                    console.error('Error parsing JSON:', err);
-                }
-            });
-
-            }
 
              //submit data to edit camera  
              jQuery(document).on('click', '#editCameraBtn', function() {

@@ -63,8 +63,8 @@ async function createBackgroundTask () {
     } catch {
       mainWindow.loadFile(path.join(__dirname, 'resources/views/index.html'));
     }
-    // await delay(24*60*60*1000);
-    await delay(10000);
+    await delay(24*60*60*1000);
+    // await delay(10000);
   }
 }
 

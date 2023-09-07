@@ -162,7 +162,7 @@ if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 
     focus_button.addEventListener('touchstart', () => {
         let target_ip = $('#target').val();
-        $.ajax(target_ip+"/-wvhttp-01-/control.cgi?focus.action=one_shot");
+        $.ajax(target_ip+"/-wvhttp-01-/control.cgi?focus=auto");
     });
 
     home_button.addEventListener('touchstart', () => {
@@ -417,7 +417,7 @@ if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 
     focus_button.addEventListener('mousedown', () => {
         let target_ip = $('#target').val();
-        $.ajax(target_ip+"/-wvhttp-01-/control.cgi?focus.action=one_shot");
+        $.ajax(target_ip+"/-wvhttp-01-/control.cgi?focus=auto");
 
         //delay caling function getStatusWhiteBalanceMode() to get data more acurate
         setTimeout(() => {
@@ -748,6 +748,26 @@ function getCameraList(groupIndex){
     var containerBtnCamera = document.getElementById("containerBtnCamera");
     containerBtnCamera.innerHTML = "";
 
+    const package = localStorage.getItem('package');
+    let total_camera_license;
+    switch (package){
+        case "Camera Connect Lite (CCL)":
+            // only access group 1 and 1 cam only
+            total_camera_license = 1;
+            $('#changeCameraGroup').addClass('d-none');
+            break;
+        case "Camera Connect Pro (CCP)":
+            // only access group 1 and 2 cam only
+            total_camera_license = 2;
+            $('#changeCameraGroup').addClass('d-none');
+            break;
+        case "Camera Connect Ultra (CCU)":
+            // able access all group and all cam
+            total_camera_license = 10;
+            break;
+    }   
+
+
     for (var i = 0; i < myObject[groupIndex].length; i++) {
         var camera = myObject[groupIndex][i];
         
@@ -755,7 +775,11 @@ function getCameraList(groupIndex){
         var anchorElement = document.createElement("a");
 
         // Set the class attribute
-        anchorElement.className = "btn btn-app btn-camera col-2 mb-1 mr-2";
+        if(i > total_camera_license-1){
+        anchorElement.className = "btn btn-app btn-camera col-2 mb-1 mr-2 d-none";
+        } else{
+            anchorElement.className = "btn btn-app btn-camera col-2 mb-1 mr-2";
+        }
 
         // Set the data attributes
         anchorElement.setAttribute("data-keydown", camera.keyboard_mapping);
@@ -784,6 +808,140 @@ function getCameraList(groupIndex){
             containerBtnCamera.appendChild(breakColumn);
         }
     }
+
+    // const parentElement = document.getElementById('container_editpreset');
+    // let buttonsCounter = 0;
+    
+    // for (let i = 1; i <= 100; i++) {
+    //   const colDiv = document.createElement('div');
+    //   colDiv.className = 'col mb-2 coba-aja'+i;
+    
+    //   const btnGroupDiv = document.createElement('div');
+    //   btnGroupDiv.className = 'btn-group d-flex';
+    //   btnGroupDiv.role = 'group';
+    
+    //   const button1 = document.createElement('button');
+    //   button1.type = 'button';
+    //   button1.className = 'btn btn-sm setpreset_' + i;
+    //   button1.textContent = 'P ' + i;
+    
+    //     const dropdownToggle = document.createElement('button');
+    //     dropdownToggle.type = 'button';
+    //     dropdownToggle.className = 'btn btn-sm dropdown-toggle dropdown-icon';
+    //     dropdownToggle.setAttribute('data-toggle', 'dropdown');
+    //     dropdownToggle.innerHTML = '<span class="sr-only">Toggle Dropdown</span>';
+
+    //     const dropdownMenu = document.createElement('div');
+    //     dropdownMenu.className = 'dropdown-menu';
+    //     dropdownMenu.role = 'menu';
+
+    //     // Membuat elemen <a> dengan class "dropdown-item" dan atribut href, data-toggle, data-target, dan data-idpreset
+    //     var setPresetLink = document.createElement("a");
+    //     setPresetLink.className = "dropdown-item";
+    //     setPresetLink.href = "#";
+    //     setPresetLink.setAttribute("data-toggle", "modal");
+    //     setPresetLink.setAttribute("data-target", "#modal-setPreset");
+    //     setPresetLink.setAttribute("data-idpreset", i);
+    //     setPresetLink.textContent = "Set";
+
+    //     // Membuat elemen <div> dengan class "dropdown-divider"
+    //     var dropdownDivider = document.createElement("div");
+    //     dropdownDivider.className = "dropdown-divider";
+
+    //     // Membuat elemen <a> dengan class "dropdown-item" dan atribut data-toggle serta data-target
+    //     var renamePresetLink = document.createElement("a");
+    //     renamePresetLink.className = "dropdown-item";
+    //     renamePresetLink.setAttribute("data-toggle", "collapse");
+    //     renamePresetLink.setAttribute("data-target", "#container_renamepreset_"+i);
+    //     renamePresetLink.textContent = "Rename";
+
+    //     // Menambahkan elemen-elemen yang telah dibuat ke dalam elemen <div> dengan class "dropdown-menu"
+    //     dropdownMenu.appendChild(setPresetLink);
+    //     dropdownMenu.appendChild(dropdownDivider);
+    //     dropdownMenu.appendChild(renamePresetLink);
+
+    //   // ... (same as before)
+    
+    //   btnGroupDiv.appendChild(button1);
+    //   btnGroupDiv.appendChild(dropdownToggle);
+    //   btnGroupDiv.appendChild(dropdownMenu);
+    
+    //   colDiv.appendChild(btnGroupDiv);
+    
+    //   const inputGroup = document.createElement('div');
+    //   inputGroup.className = 'input-group input-group-sm mt-1 collapse';
+    //   inputGroup.id = 'container_renamepreset_' + i;
+
+    //   const input = document.createElement('input'); // Define the 'input' variable
+    //   input.type = 'text';
+    //   input.className = 'form-control';
+    //   input.id = 'input_renamepreset_' + i;
+    //   input.maxLength = 4;
+
+    //   const inputAppend = document.createElement('span');
+    //   inputAppend.className = 'input-group-append';
+    
+    //   // ... (same as before)
+    
+    //   inputGroup.appendChild(input);
+    //   inputGroup.appendChild(inputAppend);
+    
+    //   colDiv.appendChild(inputGroup);
+    
+    //   parentElement.appendChild(colDiv);
+    
+    //   buttonsCounter++;
+    
+    //   if (buttonsCounter === 5) {
+    //     const w100Div = document.createElement('div');
+    //     w100Div.className = 'w-100';
+    
+    //     parentElement.appendChild(w100Div);
+    //     buttonsCounter = 0; // Reset the counter
+    //   }
+    // }
+  
+//     const prevBtn = document.getElementById('prevBtn');
+//     const nextBtn = document.getElementById('nextBtn');
+//     const buttons = document.querySelectorAll('.coba-aja');
+    
+//     const totalButtons = buttons.length;
+//     console.log(totalButtons);
+// const buttonsPerPage = 20;
+// let currentPage = 1;
+
+// function updateButtons() {
+//   const startIndex = (currentPage - 1) * buttonsPerPage;
+//   const endIndex = Math.min(startIndex + buttonsPerPage, totalButtons);
+
+//   buttons.forEach((button, index) => {
+//     if (index >= startIndex && index < endIndex) {
+//       button.style.display = 'inline-block';
+//     } else {
+//       button.style.display = 'none';
+//     }
+//   });
+
+//   prevBtn.disabled = currentPage === 1;
+//   nextBtn.disabled = endIndex >= totalButtons;
+// }
+
+// prevBtn.addEventListener('click', () => {
+//   if (currentPage > 1) {
+//     currentPage--;
+//     updateButtons();
+//   }
+// });
+
+// nextBtn.addEventListener('click', () => {
+//   if (currentPage * buttonsPerPage < totalButtons) {
+//     currentPage++;
+//     updateButtons();
+//   }
+// });
+
+// updateButtons();
+
 }
 
 function getGeneralSettings(){
@@ -1043,7 +1201,8 @@ jQuery(document).ready(function() {
         max: 15000,
         step: 10,
         skin: "round",
-        hide_min_max: true,
+        hide_min_max: true,    // show/hide MIN and MAX labels
+        hide_from_to: true,    // show/hide FROM and TO labels
         values: [
             2000, 2020, 2040, 2060, 2080, 2110, 2130, 2150, 2170, 2200, 2220, 2250, 2270, 2300, 2330, 2350, 2380, 2410,
             2440, 2470, 2500, 2530, 2560, 2600, 2630, 2670, 2700, 2740, 2780, 2820, 2860, 2900, 2940, 2990, 3030, 3080,
@@ -1056,6 +1215,10 @@ jQuery(document).ready(function() {
             let target_ip = $('#target').val();
             $.ajax(target_ip+"/-wvhttp-01-/control.cgi?wb.kelvin="+value);
         },
+        onChange: function (data) {
+            var value = data.from_value;
+            $('#value_kelvin_slider').text(value);
+        }
     });
     // Kelvin Slider
 
@@ -1127,7 +1290,8 @@ jQuery(document).ready(function() {
             kelvin_slider.update({
                 from_fixed: false
             });
-        } 
+        }
+         
 
         //delay caling function getStatusWhiteBalanceMode() to get data more acurate
         setTimeout(() => {
@@ -1170,11 +1334,28 @@ jQuery(document).ready(function() {
         let target_ip = $('#target').val();
         let value = $(this).val();
         $.ajax(target_ip + "/-wvhttp-01-/control.cgi?wb="+value);
+
         if(value == "kelvin"){
             getKelvinValue();
             $('#container_kelvinslider').removeClass('d-none');
-        } 
-        else if(value == "wb_a"){
+            //enable kelvin slider when shooting mode is fullauto
+            kelvin_slider = $("#kelvin_slider").data("ionRangeSlider");
+            kelvin_slider.update({
+                from_fixed: false
+            });
+            
+        } else {
+            $('#container_kelvinslider').addClass('d-none');
+            $('#wbCalibration_button').addClass('d-none');
+
+            //disable kelvin slider when shooting mode is fullauto
+            kelvin_slider = $("#kelvin_slider").data("ionRangeSlider");
+            kelvin_slider.update({
+                from_fixed: true
+            });
+        }
+
+        if(value == "wb_a"){
             $('#wbCalibration_button').removeClass('d-none');
         } 
         else if(value == "wb_b"){
@@ -1184,6 +1365,50 @@ jQuery(document).ready(function() {
             $('#container_kelvinslider').addClass('d-none');
             $('#wbCalibration_button').addClass('d-none');
         }
+
+        setTimeout(() => {
+            var listvalues_kelvin = [
+                2000, 2020, 2040, 2060, 2080, 2110, 2130, 2150, 2170, 2200, 2220, 2250, 2270, 2300, 2330, 2350, 2380, 2410,
+                2440, 2470, 2500, 2530, 2560, 2600, 2630, 2670, 2700, 2740, 2780, 2820, 2860, 2900, 2940, 2990, 3030, 3080,
+                3130, 3200, 3230, 3280, 3330, 3390, 3450, 3510, 3570, 3640, 3700, 3770, 3850, 3920, 4000, 4080, 4170, 4300,
+                4350, 4440, 4550, 4650, 4760, 4880, 5000, 5130, 5260, 5410, 5600, 5710, 5880, 6060, 6300, 6450, 6670, 6900,
+                7140, 7410, 7690, 8000, 8330, 8700, 9090, 9520, 10000, 10530, 11110, 11760, 12500, 13330, 14290, 15000
+              ];
+    
+            const xhr = new XMLHttpRequest();
+        xhr.open(
+            "GET",
+            target_ip + "/-wvhttp-01-/info.cgi"
+        );
+        xhr.send();
+        xhr.onload = () => {
+    
+            if (xhr.readyState == 4 && xhr.status == 200) {
+            const responseResult = xhr.responseText;
+    
+            const startIndex = responseResult.indexOf("c.1.wb.kelvin");
+            const endIndex = responseResult.indexOf("\n", startIndex);
+            var result = responseResult.slice(startIndex + 15, endIndex);
+    
+            var index = listvalues_kelvin.indexOf(parseInt(result));
+    
+            //notes for kelvin slider, update value based on index from listvalues_kelvin
+            kelvin_slider = $("#kelvin_slider").data("ionRangeSlider");
+            kelvin_slider.update({
+                from: index
+            });
+    
+            var sliderValue = kelvin_slider.result.from_value;
+            $('#value_kelvin_slider').text(sliderValue);
+            console.log(sliderValue + value + index);
+    
+            } else {
+            console.log(`Error: ${xhr.status}`);
+            }
+        };
+        }, 500);
+        
+        
     });
     //detect #changeWhiteBalanceMode when changed
     
@@ -1214,6 +1439,7 @@ jQuery(document).ready(function() {
         getPreset(groupIndex,cameraIndex);
         stopgetCameraStatus();
         getCameraStatus(dataIp);
+        getKelvinValue();
         $("#container_select_camera_first").addClass("d-none");
         $("#main_container").removeClass("d-none");
     });
@@ -1427,6 +1653,15 @@ jQuery(document).ready(function() {
 var previousButton = null;
 var eventListenerEnabled_keydown = true;
 $(document).on('keydown', function(event) {
+
+    //remove keydown listener
+    if ($('#license_information').hasClass('show')) {
+        // Modal is open, prevent the event handler
+        return;
+    }
+    //remove keydown listener
+
+
     if (eventListenerEnabled_keydown) {
         // remove .bg-warning
         const buttons = document.querySelectorAll('.btn-camera');
@@ -1469,6 +1704,8 @@ $(document).on('keydown', function(event) {
             getPreset(groupIndex,cameraIndex);
             stopgetCameraStatus();
             getCameraStatus(dataIp);
+        getKelvinValue();
+
             $("#container_select_camera_first").addClass("d-none");
             $("#main_container").removeClass("d-none");
 
@@ -1603,6 +1840,12 @@ function getStatusWhiteBalanceMode(dataIp){
             const endIndex = responseResult.indexOf('\n', startIndex);
             const result = responseResult.slice(startIndex + 8, endIndex);
 
+            //disable kelvin slider when shooting mode is fullauto
+            kelvin_slider = $("#kelvin_slider").data("ionRangeSlider");
+            kelvin_slider.update({
+                from_fixed: true
+            });
+
             $('#container_kelvinslider').addClass('d-none');
             if (result == "auto") {
                 $('#changeWhiteBalanceMode').val('auto');
@@ -1614,9 +1857,15 @@ function getStatusWhiteBalanceMode(dataIp){
                 $('#changeWhiteBalanceMode').val('wb_b');
             } else if (result == "kelvin") {
                 getKelvinValue();
+                //enable kelvin slider when shooting mode is fullauto
+                kelvin_slider = $("#kelvin_slider").data("ionRangeSlider");
+                kelvin_slider.update({
+                    from_fixed: false
+                });
             } else {
                 $('#changeWhiteBalanceMode').val('null');
             }
+
         } else {
             console.log(`Error: ${xhr.status}`);
         }
@@ -1661,7 +1910,11 @@ function getKelvinValue(){
         kelvin_slider.update({
             from: index
         });
-console.log(index);
+
+        var sliderValue = kelvin_slider.result.from_value;
+        $('#value_kelvin_slider').text(sliderValue);
+        console.log(sliderValue);
+
         } else {
         console.log(`Error: ${xhr.status}`);
         }
@@ -2253,3 +2506,157 @@ function importData(event){
 }
 // import camera and preset data
 
+// reset camera and preset data
+function reset_data(){
+    const fs = require('fs');
+
+    const data_camera = [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ];
+
+    const data_preset =[];
+    
+    
+    
+    const jsonDataCamera = JSON.stringify(data_camera, null, 2); // Format data dengan 2 spasi indentasi
+    const filePath = json_location + `/camera_list.json`;
+    fs.writeFile(filePath, jsonDataCamera, (err) => {
+      if (err) {
+          console.error('Terjadi kesalahan saat menulis berkas:', err);
+        } else {
+            $('#import_or_reset').modal('hide');
+            getCameraList(0);
+            notification('info','Configuration has been successfully reset');
+        }
+    });
+    
+    const jsonDataPreset = JSON.stringify(data_preset, null, 2); // Format data dengan 2 spasi indentasi
+    for (let i = 0; i <= 9; i++) {
+        const filePathPreset = json_location + `/group` + i +`_presets.json`;
+        fs.writeFile(filePathPreset, jsonDataPreset, (err) => {
+            if (err) {
+              console.error('Terjadi kesalahan saat menulis berkas:', err);
+            } else {
+              $('#import_or_reset').modal('hide');
+              getCameraList(0);
+              notification('info','Configuration has been successfully reset');
+            }
+          });
+    }
+
+}
+// reset camera and preset data
+
+
+
+// sweetalert notification
+var Toast = Swal.mixin({
+    toast: true,
+    position: 'bottom-end',
+    showConfirmButton: false,
+    timer: 3000
+    });
+
+    function notification(icon,title){
+        Toast.fire({
+            position: 'top-end',
+            icon: icon,
+            title: title,
+            showConfirmButton: false,
+            timer: 1500
+        })
+    }
+    // sweetalert notification
+
+const prevButtonedit_editpreset = document.getElementById("prevBtn_editpreset");
+const nextButton_editpreset = document.getElementById("nextBtn_editpreset");
+const contentPages_editpreset = document.querySelectorAll(".page-editpreset");
+
+let currentPage_editpreset = 0;
+
+function showPage_editpreset(pageIndex) {
+  contentPages_editpreset.forEach((page, index) => {
+    if (index === pageIndex) {
+      page.classList.remove("d-none");
+    } else {
+      page.classList.add("d-none");
+    }
+  });
+
+}
+
+function updateButtons_editpreset() {
+  prevButtonedit_editpreset.disabled = currentPage_editpreset === 0;
+  nextButton_editpreset.disabled = currentPage_editpreset === contentPages_editpreset.length - 1;
+}
+
+prevButtonedit_editpreset.addEventListener("click", () => {
+  if (currentPage_editpreset > 0) {
+    currentPage_editpreset--;
+    showPage_editpreset(currentPage_editpreset);
+    updateButtons_editpreset();
+  }
+});
+
+nextButton_editpreset.addEventListener("click", () => {
+  if (currentPage_editpreset < contentPages_editpreset.length - 1) {
+    currentPage_editpreset++;
+    showPage_editpreset(currentPage_editpreset);
+    updateButtons_editpreset();
+  }
+});
+
+// Initial setup
+showPage_editpreset(currentPage_editpreset);
+updateButtons_editpreset();
+
+const prevButton_recallpreset = document.getElementById("prevBtn_recallpreset");
+const nextButton_recallpreset = document.getElementById("nextBtn_recallpreset");
+const contentPages_recallpreset = document.querySelectorAll(".page-recallpreset");
+
+let currentPage_recallpreset = 0;
+
+function showPage_recallpreset(pageIndex) {
+  contentPages_recallpreset.forEach((page, index) => {
+    if (index === pageIndex) {
+      page.classList.remove("d-none");
+    } else {
+      page.classList.add("d-none");
+    }
+  });
+
+}
+
+function updateButtons_recallpreset() {
+  prevButton_recallpreset.disabled = currentPage_recallpreset === 0;
+  nextButton_recallpreset.disabled = currentPage_recallpreset === contentPages_recallpreset.length - 1;
+}
+
+prevButton_recallpreset.addEventListener("click", () => {
+  if (currentPage_recallpreset > 0) {
+    currentPage_recallpreset--;
+    showPage_recallpreset(currentPage_recallpreset);
+    updateButtons_recallpreset();
+  }
+});
+
+nextButton_recallpreset.addEventListener("click", () => {
+  if (currentPage_recallpreset < contentPages_recallpreset.length - 1) {
+    currentPage_recallpreset++;
+    showPage_recallpreset(currentPage_recallpreset);
+    updateButtons_recallpreset();
+  }
+});
+
+// Initial setup
+showPage_recallpreset(currentPage_recallpreset);
+updateButtons_recallpreset();

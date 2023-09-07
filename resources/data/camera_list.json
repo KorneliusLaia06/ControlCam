@@ -1,45 +1,34 @@
 [
   [
     {
-      "id": 1692013717321,
+      "id": 1693243845664,
       "camera_name": "Cam 01",
       "ip_address": "hq.vstream.asia:801",
       "keyboard_mapping": "1",
       "keyboard_code": "49"
     },
     {
-      "id": 1692013784916,
+      "id": 1693243849857,
       "camera_name": "Cam 02",
       "ip_address": "hq.vstream.asia:802",
       "keyboard_mapping": "2",
       "keyboard_code": "50"
-    }
-  ],
-  [],
-  [],
-  [],
-  [
+    },
     {
-      "id": 1687654263975,
-      "camera_name": "Venue #3",
-      "ip_address": "http://hq.vstream.asia:803",
-      "controller_name": "Canon N300",
-      "keyboard_mapping": "C",
-      "keyboard_code": "67"
+      "id": 1693243854615,
+      "camera_name": "Cam 03",
+      "ip_address": "hq.vstream.asia:803",
+      "keyboard_mapping": "3",
+      "keyboard_code": "51"
     }
   ],
   [],
   [],
   [],
   [],
-  [
-    {
-      "id": 1687654081073,
-      "camera_name": "Venue #2",
-      "ip_address": "http://hq.vstream.asia:802",
-      "controller_name": "Canon N300",
-      "keyboard_mapping": "B",
-      "keyboard_code": "66"
-    }
-  ]
+  [],
+  [],
+  [],
+  [],
+  []
 ]
