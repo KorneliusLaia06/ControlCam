@@ -35,6 +35,12 @@
             href="../assets/AdminLTE-3.2.0/plugins/bootstrap-switch/css/bootstrap3/bootstrap-switch.css"
             type="text/css">
 
+        <!-- sweetalert2.min.css -->
+        <link
+        rel="stylesheet"
+        href="../assets/AdminLTE-3.2.0/plugins/sweetalert2/sweetalert2.min.css"
+        type="text/css">
+
         <!-- adminlte.min.css -->
         <link
             rel="stylesheet"
@@ -161,16 +167,19 @@
                     <div class="modal-body">
                         <ul class="list-group list-group-unbordered mb-3">
                             <li class="list-group-item border-top-0">
-                            <b>E-mail</b> <a class="float-right" id="email_info"></a>
+                                <b>Version</b> <a class="float-right" id="version_info"></a>
+                            </li>
+                            <li class="list-group-item border-top-0">
+                                <b>E-mail</b> <a class="float-right" id="email_info"></a>
                             </li>
                             <li class="list-group-item">
-                            <b>License key</b> <a class="float-right" id="license_key_info"></a>
+                                <b>License key</b> <a class="float-right" id="license_key_info"></a>
                             </li>
                             <li class="list-group-item">
                                 <b>Package</b> <a class="float-right" id="package_info"></a>
                             </li>
                             <li class="list-group-item">
-                            <b>Hardware ID</b> <a class="float-right" id="hardware_id_info"></a>
+                                <b>Hardware ID</b> <a class="float-right" id="hardware_id_info"></a>
                             </li>
                         </ul>
 
@@ -186,7 +195,7 @@
                                     <label for="license">License Key:</label>
                                     <input type="text" class="form-control" id="licensekey" placeholder="Enter license key" required>
                                 </div>
-                                <p class="text-danger float-left" id="respons_error"></p>
+                                <p class="text-danger float-left" id="response_error"></p>
                                 <button type="submit" id="submit" class="btn btn-primary float-right">Submit</button>
                             </form>
                         </div>
@@ -203,6 +212,11 @@
         
        <!-- popper.min.js -->
         <script src="../assets/js/popper.min.js"></script>
+
+        <!-- sweetalert2.min.js -->
+       <script
+       type="text/javascript"
+       src="../assets/AdminLTE-3.2.0/plugins/sweetalert2/sweetalert2.min.js"></script>
    
         <!-- bootstrap.bundle.min.js -->
         <script type="text/javascript" src="../assets/AdminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -226,7 +240,27 @@
                         icon.removeClass('fa-arrow-right').addClass('fa-arrow-left');
                     }
                 });
+
             });
+
+            // sweetalert notification
+            var Toast = Swal.mixin({
+                toast: true,
+                position: 'bottom-end',
+                showConfirmButton: false,
+                timer: 3000
+                });
+
+            function notification(icon,title){
+                Toast.fire({
+                    position: 'top-end',
+                    icon: icon,
+                    title: title,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+            // sweetalert notification
         </script>
     </body>
 </html>

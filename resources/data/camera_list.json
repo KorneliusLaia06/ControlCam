@@ -1,25 +1,11 @@
 [
   [
     {
-      "id": 1693243845664,
-      "camera_name": "Cam 01",
+      "id": 1694781774315,
+      "camera_name": "ASSD",
       "ip_address": "hq.vstream.asia:801",
       "keyboard_mapping": "1",
       "keyboard_code": "49"
-    },
-    {
-      "id": 1693243849857,
-      "camera_name": "Cam 02",
-      "ip_address": "hq.vstream.asia:802",
-      "keyboard_mapping": "2",
-      "keyboard_code": "50"
-    },
-    {
-      "id": 1693243854615,
-      "camera_name": "Cam 03",
-      "ip_address": "hq.vstream.asia:803",
-      "keyboard_mapping": "3",
-      "keyboard_code": "51"
     }
   ],
   [],

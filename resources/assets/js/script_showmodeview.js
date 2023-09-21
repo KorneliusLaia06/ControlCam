@@ -1030,6 +1030,8 @@ function stopgetCameraStatus() {
 
 jQuery(document).ready(function() {
 
+
+    
     $('.checkbox_setpreset').on('change', function() {
         // Get the count of checked checkboxes with class "checkbox_setpreset"
         var checkedCount = $('.checkbox_setpreset:checked').length;
@@ -1281,19 +1283,49 @@ jQuery(document).ready(function() {
             $('#changeWhiteBalanceMode').attr('disabled', 'disabled');
             $('#wbCalibration_button').addClass('d-none');
             
+            $('#gainup_button').attr('disabled', 'disabled');
+            $('#gaindown_button').attr('disabled', 'disabled');
+            $('#irisup_button').attr('disabled', 'disabled');
+            $('#irisdown_button').attr('disabled', 'disabled');
+
             //disable kelvin slider when shooting mode is fullauto
             kelvin_slider = $("#kelvin_slider").data("ionRangeSlider");
             kelvin_slider.update({
                 from_fixed: true
             });
+            setTimeout(() => {
+            getGainValue(target_ip, function(gainValue) {
+                $('#gain_value').text((gainValue/10));
+            });
+            getIrisValue(target_ip, function(irisValue) {
+                $('#iris_value').text((irisValue/100));
+            });
+            }, 2000);
+
+
         } else if( value == "manual"){
             $('#changeWhiteBalanceMode').removeAttr('disabled');
             
+
+            $('#gainup_button').removeAttr('disabled');
+            $('#gaindown_button').removeAttr('disabled');
+            $('#irisup_button').removeAttr('disabled');
+            $('#irisdown_button').removeAttr('disabled');
+
             //enable kelvin slider when shooting mode is manual
             kelvin_slider = $("#kelvin_slider").data("ionRangeSlider");
             kelvin_slider.update({
                 from_fixed: false
             });
+
+            setTimeout(() => {
+                getGainValue(target_ip, function(gainValue) {
+                    $('#gain_value').text((gainValue/10));
+                });
+                getIrisValue(target_ip, function(irisValue) {
+                    $('#iris_value').text((irisValue/100));
+                });
+                }, 2000);
         }
          
 
@@ -1445,7 +1477,7 @@ jQuery(document).ready(function() {
         getCameraStatus(dataIp);
         getKelvinValue();
         getGainValue(dataIp, function(gainValue) {
-            $('#gain_value').text(((gainValue+5)/10));
+            $('#gain_value').text((gainValue/10));
         });
         getIrisValue(dataIp, function(irisValue) {
             $('#iris_value').text((irisValue/100));
@@ -1562,6 +1594,9 @@ jQuery(document).ready(function() {
         var id_preset = $('#text_idpreset').val();
         var text_shootingmode=  $('#text_shootingmode').val();
         var text_shootingmodevalue=  $('#text_shootingmodevalue').val();
+        var input_renamepreset =  $('#input_renamepreset').val();
+
+
 
         const buttons = document.querySelectorAll('.btn-camera');
         buttons.forEach(function(button) {
@@ -1585,6 +1620,7 @@ jQuery(document).ready(function() {
                     preset_list[dataIndexCamera][index].disabled = false;
                     preset_list[dataIndexCamera][index].shootingmode = text_shootingmode;
                     preset_list[dataIndexCamera][index].shootingmode_value = text_shootingmodevalue;
+                    preset_list[dataIndexCamera][index].name_button = input_renamepreset;
 
                     
 
@@ -1716,7 +1752,7 @@ $(document).on('keydown', function(event) {
             getCameraStatus(dataIp);
             getKelvinValue();
             getGainValue(dataIp, function(gainValue) {
-                $('#gain_value').text(((gainValue+5)/10));
+                $('#gain_value').text((gainValue/10));
             });
             getIrisValue(dataIp, function(irisValue) {
                 $('#iris_value').text((irisValue/100));
@@ -1826,6 +1862,12 @@ function getStatusShootingMode(dataIp){
             if (result == "fullauto") {
                 $("#changeShootingMode").val('fullauto');
                 $("#changeWhiteBalanceMode").attr('disabled', 'disabled');
+
+                $('#gainup_button').attr('disabled', 'disabled');
+                $('#gaindown_button').attr('disabled', 'disabled');
+                $('#irisup_button').attr('disabled', 'disabled');
+                $('#irisdown_button').attr('disabled', 'disabled');
+                
             } else if (result == "manual") {
                 $("#changeShootingMode").val('manual');
                 $("#changeWhiteBalanceMode").removeAttr('disabled');
@@ -2419,7 +2461,9 @@ $('.btngroupspeedmode .btn').click(function() {
 //funtion will active when detect #modal-setPreset opened
 $('#modal-setPreset').on('show.bs.modal', function(e) {
     var idpreset = $(e.relatedTarget).data('idpreset');
+    var getNamePreset = $('.setpreset_'+idpreset).text();
     $('#text_idpreset').val(idpreset); 
+    $('#input_renamepreset').val(getNamePreset); 
 });
 //funtion will active when detect #modal-setPreset opened
 
@@ -2444,7 +2488,8 @@ function export_data(){
     
     var mergedData = {
         camera_data: [],
-        preset_data: []
+        preset_data: [],
+        general_settings: []
     };
     
     for (var i = 0; i < 10; i++) {
@@ -2454,8 +2499,12 @@ function export_data(){
     }
     
     var jsonCamera = fs.readFileSync(json_location + `/camera_list.json`);
-      var jsonCameraItem = JSON.parse(jsonCamera);
-      mergedData.camera_data.push(jsonCameraItem);
+    var jsonCameraItem = JSON.parse(jsonCamera);
+    mergedData.camera_data.push(jsonCameraItem);
+
+    var jsonGeneralSettings = fs.readFileSync(json_location + `/general_settings.json`);
+    var jsonGeneralSettingsItem = JSON.parse(jsonGeneralSettings);
+    mergedData.general_settings.push(jsonGeneralSettingsItem);
     
     
     // download data
@@ -2480,6 +2529,8 @@ function importData(event){
       var importedData = JSON.parse(reader.result);
       var cameraData = importedData.camera_data[0];
       var presetData = importedData.preset_data;
+      var generalSettingsData = importedData.general_settings;
+
   
       // Lakukan operasi yang diperlukan dengan cameraData dan presetData
       // ...
@@ -2497,6 +2548,13 @@ function importData(event){
       } else {
         console.log("preset_data does not exist or is empty.");
       }
+
+      if (importedData.general_settings && importedData.general_settings.length > 0) {
+        console.log("preset_data exists.");
+        // console.log(presetData);
+      } else {
+        console.log("preset_data does not exist or is empty.");
+      }
   
       for (var i = 0; i < 10; i++) {
           fs.writeFile(json_location + `/group${i}_presets.json`, JSON.stringify(presetData[i]), 'utf8', function(err) {
@@ -2506,6 +2564,7 @@ function importData(event){
                 }
             });
         }
+
         fs.writeFile(json_location + '/camera_list.json', JSON.stringify(cameraData), 'utf8', function(err) {
                 if (err) {
                     console.error(err);
@@ -2514,6 +2573,15 @@ function importData(event){
                     location.reload();
                 }
         });
+
+        fs.writeFile(json_location + '/general_settings.json', JSON.stringify(generalSettingsData[0]), 'utf8', function(err) {
+            if (err) {
+                console.error(err);
+                return;
+            } else {
+                location.reload();
+        }
+    });
         
     };
     
@@ -2676,3 +2744,113 @@ nextButton_recallpreset.addEventListener("click", () => {
 // Initial setup
 showPage_recallpreset(currentPage_recallpreset);
 updateButtons_recallpreset();
+
+
+//Set focus behavior
+
+function focus_mouseevent(event) {
+    // Your click event handling code here
+    var selected_camera_panel = document.getElementById("selected_camera_panel");
+    let target_ip = $('#target').val();
+    var offsetX = event.clientX - selected_camera_panel.getBoundingClientRect().left;
+    var offsetY = event.clientY - selected_camera_panel.getBoundingClientRect().top;
+    var koordinatX = Math.floor(offsetX / selected_camera_panel.offsetWidth * 10000) + 1;
+    var koordinatY = Math.floor(offsetY / selected_camera_panel.offsetHeight * 10000) + 1;
+    $.ajax(target_ip+"/-wvhttp-01-/control.cgi?focus.frame.1.x="+koordinatX+"&focus.frame.1.y="+koordinatY+"&focus.action=one_shot");
+}
+//Set focus behavior
+
+//moving ptz by mouse event
+
+function ptz_mouseevent(event) {
+    var selected_camera_panel = $("#selected_camera_panel");
+    let offsetX = event.pageX - selected_camera_panel.offset().left;
+    let offsetY = event.pageY - selected_camera_panel.offset().top;
+    let centerX = selected_camera_panel.width() / 2;
+    let centerY = selected_camera_panel.height() / 2;
+
+    let x = (offsetX - centerX) * 700 / centerX;
+    let y = (centerY - offsetY) * 300 / centerY;
+
+    x = Math.min(Math.max(x, -700), 700);
+    y = Math.min(Math.max(y, -300), 300);
+
+    x = Math.round(x);
+    y = Math.round(y);
+
+    let target_ip = $('#target').val();
+
+    const xhr = new XMLHttpRequest();
+    xhr.open(
+        "GET",
+        target_ip + "/-wvhttp-01-/info.cgi"
+    );
+    xhr.send();
+    xhr.onload = () => {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+        const responseResult = xhr.responseText;
+
+        const startIndex_pan = responseResult.indexOf("c.1.pan");
+        const endIndex_pan = responseResult.indexOf("\n", startIndex_pan);
+        let panValue = parseInt(responseResult.slice(startIndex_pan + 9, endIndex_pan));
+
+        const startIndex_tilt = responseResult.indexOf("c.1.tilt");
+        const endIndex_tilt = responseResult.indexOf("\n", startIndex_tilt);
+        let tiltValue = parseInt(responseResult.slice(startIndex_tilt + 10, endIndex_tilt));
+
+        let move_pan = panValue + x;
+        let move_tilt = tiltValue + y;
+        $.ajax(target_ip+"/-wvhttp-01-/control.cgi?pan="+move_pan+"&tilt="+move_tilt+"&pan.speed.pos=10000&tilt.speed.pos=10000");
+        } else {
+        console.log(`Error: ${xhr.status}`);
+        }
+    };    
+};
+
+function updateNilai() {
+    let target_ip = $('#target').val();
+    $.ajax(target_ip + "/-wvhttp-01-/control.cgi?zoom=stop");
+    // Memperbarui tampilan nilai
+}
+
+var selected_camera_panel = document.getElementById("selected_camera_panel");
+
+// Mendeteksi scroll mouse
+function zoom_mouseevent(event) {
+    let z_speed = $('#zoom_speed_range').val();
+    let target_ip = $('#target').val();
+    if (event.deltaY > 0) {
+        // Scroll ke bawah (mengurangi nilai)
+        $.ajax(target_ip + "/-wvhttp-01-/control.cgi?zoom=wide&zoom.speed.dir=" + z_speed, {
+            complete: function () {
+                setTimeout(updateNilai, 500); // Menggunakan setTimeout dengan benar
+            }
+        });
+    } else if (event.deltaY < 0) {
+        // Scroll ke atas (menambah nilai)
+        $.ajax(target_ip + "/-wvhttp-01-/control.cgi?zoom=tele&zoom.speed.dir=" + z_speed, {
+            complete: function () {
+                setTimeout(updateNilai, 500); // Menggunakan setTimeout dengan benar
+            }
+        });
+    }
+};
+
+//moving ptz by mouse event
+
+$('#radio_pt, #radio_focusbehaviour').on('change', function() {
+    var selected_camera_panel = document.getElementById("selected_camera_panel");
+    if ($('#radio_focusbehaviour').is(':checked')) {
+        selected_camera_panel.addEventListener("click", focus_mouseevent);
+        selected_camera_panel.removeEventListener("click", ptz_mouseevent);
+        selected_camera_panel.removeEventListener("wheel", zoom_mouseevent);
+        $('#selected_camera_panel').css('cursor', 'url(../assets/img/asset_icon/oneshotAF.png), auto'); 
+    }
+    if ($('#radio_pt').is(':checked')) {
+        selected_camera_panel.removeEventListener("click", focus_mouseevent);
+        selected_camera_panel.addEventListener("click", ptz_mouseevent);
+        selected_camera_panel.addEventListener("wheel", zoom_mouseevent);
+        $('#selected_camera_panel').css('cursor', 'auto'); 
+      }
+});
+

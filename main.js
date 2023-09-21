@@ -1,6 +1,11 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 const si = require('systeminformation');
+const screen = require('electron').screen;
+
+ipcMain.on('get-app-version', (event) => {
+  event.returnValue = app.getVersion();
+});
 
 let hid = '';
 
@@ -13,13 +18,21 @@ let mainWindow
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
 function createWindow () {
+  const primaryDisplay = screen.getPrimaryDisplay();
+  const screenWidth = primaryDisplay.workAreaSize.width;
+  const screenHeight = primaryDisplay.workAreaSize.height;
+
+  const percentageWidth = 100;
+  const percentageHeight=100;
+
+  const windowWidth = (screenWidth * percentageWidth) / 100;
+  const windowHeight = (screenHeight * percentageHeight) / 100;
   mainWindow = new BrowserWindow({
-    width: 1400,
-    height: 800,
-    minWidth: 1400,
-    minHeight: 800,
+    height: windowHeight,
+    width: windowWidth,
+    minWidth:windowWidth,
+    minHeight:windowHeight,
     icon: path.join(__dirname, 'resources/assets/img/icon.ico'),
-    
     // frame:false,
     //remove menubar electron
     autoHideMenuBar: true,
@@ -32,10 +45,12 @@ function createWindow () {
       // devTools: false,
 
     preload: path.join(__dirname, 'preload.js')
-  }})
+  }
+  })
   // win.webContents.openDevTools();
   mainWindow.loadFile(path.join(__dirname, 'resources/views/index.html'));
 }
+
 
 async function createBackgroundTask () {
   while(true) {
@@ -72,6 +87,7 @@ async function createBackgroundTask () {
 app.whenReady().then(() => {
   createWindow()
   createBackgroundTask()
+  mainWindow.maximize()
   //Untuk Mac os perlu melakukan create Window saat active
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {

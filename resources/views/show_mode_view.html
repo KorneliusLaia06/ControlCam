@@ -2421,7 +2421,7 @@
                                                         <div class="col-4">
                                                             <div class="row">
                                                                 <div class="col-12">
-                                                                    <button class="btn btn-block mb-2 d-block text-bold" id="btn_one_shot_af">AF</button>
+                                                                    <button class="btn btn-block mb-2 d-block text-bold" id="btn_one_shot_af">One-Shot AF</button>
                                                                 </div>
                                                                 <div class="col-12">
                                                                     <button class="btn btn-block mb-2 d-block text-bold" id="btn_awb">AWB</button>
@@ -2629,8 +2629,18 @@
                                             <div class="row">
                                                 <div class="col-6 panel-video">
                                                     <div class="card mb-0">
-                                                        <div class="card-header text-center text-white text-bold">
-                                                            Selected Camera
+                                                        <div class="card-header" style="padding:5px 3px !important;">
+                                                            <h6 class="col-6 card-title text-white text-bold">Selected Camera</h6>
+                                                            <div class="card-tools col-6">
+                                                                <div class="btn-group btn-group-toggle float-right " data-toggle="buttons" >
+                                                                    <label class="btn active btn-sm" id="mode_focusbehaviour">
+                                                                        <input type="radio" name="options" autocomplete="off" id="radio_focusbehaviour"> &nbsp;F&nbsp;
+                                                                    </label>
+                                                                    <label class="btn active btn-sm" id="mode_pt">
+                                                                        <input type="radio" name="options" autocomplete="off" id="radio_pt"> PTZ
+                                                                    </label>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                         <div class="card-body px-0 py-0">
                                                             <img src="../assets/img/video-output.svg" class="img-fluid" id="selected_camera_panel">
@@ -2693,11 +2703,11 @@
                                                 </div>
                                                 <div class="col-6 panel-video">
                                                     <div class="card border-light">
-                                                        <div class="card-header pb-1">
+                                                        <div class="card-header" style="padding:5px 3px !important;">
                                                             <h6 class="col-6 card-title text-white text-bold">PGM</h6>
                                                             <div class="card-tools col-6">
                 
-                                                              <div class="input-group mb-1">
+                                                              <div class="input-group mb-1 float-right">
                                                                   <select class="form-control form-control-sm" id="list_webcam">
                                                                 </select>
                                                                 <div class="input-group-prepend">
@@ -2771,6 +2781,14 @@
                         </div>
                         <div class="border-top mt-3 mb-3"></div>
                         <div class="row">
+                            <div class="col-12">
+                                <div class="form-group row">
+                                    <label for="PresetName" class="col-sm-4 col-form-label">Preset Name</label>
+                                    <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="input_renamepreset" maxlength="4">
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-6">
                                 <div class="icheck-primary">
                                     <input type="checkbox" class="checkbox_setpreset" id="checkbox_ptzf" checked/>
@@ -2787,7 +2805,7 @@
 
                         <input type="text" id="text_shootingmode" class="d-none" value="time">
                         <input type="text" id="text_shootingmodevalue" class="d-none" value="2">
-                        <input type="text" id="text_idpreset"class="d-none">
+                        <input type="text" id="text_idpreset" class="d-none">
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -2828,16 +2846,19 @@
                     <div class="modal-body">
                         <ul class="list-group list-group-unbordered mb-3">
                             <li class="list-group-item border-top-0">
-                            <b>E-mail</b> <a class="float-right" id="email_info"></a>
+                                <b>Version</b> <a class="float-right" id="version_info"></a>
+                            </li>
+                            <li class="list-group-item border-top-0">
+                                <b>E-mail</b> <a class="float-right" id="email_info"></a>
                             </li>
                             <li class="list-group-item">
-                            <b>License key</b> <a class="float-right" id="license_key_info"></a>
+                                <b>License key</b> <a class="float-right" id="license_key_info"></a>
                             </li>
                             <li class="list-group-item">
                                 <b>Package</b> <a class="float-right" id="package_info"></a>
                             </li>
                             <li class="list-group-item">
-                            <b>Hardware ID</b> <a class="float-right" id="hardware_id_info"></a>
+                                <b>Hardware ID</b> <a class="float-right" id="hardware_id_info"></a>
                             </li>
                         </ul>
 
@@ -2853,7 +2874,7 @@
                                     <label for="license">License Key:</label>
                                     <input type="text" class="form-control" id="licensekey" placeholder="Enter license key" required>
                                 </div>
-                                <p class="text-danger float-left" id="respons_error"></p>
+                                <p class="text-danger float-left" id="response_error"></p>
                                 <button type="submit" id="submit" class="btn btn-primary float-right">Submit</button>
                             </form>
                         </div>
@@ -2898,7 +2919,7 @@
            type="text/javascript"
            src="../assets/AdminLTE-3.2.0/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 
-        <!-- bsweetalert2.min.js -->
+        <!-- sweetalert2.min.js -->
        <script
        type="text/javascript"
        src="../assets/AdminLTE-3.2.0/plugins/sweetalert2/sweetalert2.min.js"></script>

@@ -471,3 +471,17 @@ input[type=range]:focus {
 input[type=range]:focus::-webkit-slider-runnable-track {
     background: #ccc;
 } */
+#mode_focusbehaviour, #mode_pt{
+    border: 2px rgb(206, 203, 203) solid !important;
+    color: white !important;
+}
+
+#mode_focusbehaviour:active, #mode_pt:active{
+    background-color: #474747 !important;
+    border:2px solid #A2D664 !important;
+}
+
+#mode_focusbehaviour.active, #mode_pt.active{
+    background-color: #474747 !important;
+    border:2px solid #A2D664 !important;
+}
