@@ -1664,11 +1664,11 @@ jQuery(document).ready(function() {
         const shootingmodevalue = $(this).data('shootingmodevalue');
         var element = $(this);
 
-        $(this).addClass('bg-gradient-warning');
+        $('.recall-preset').removeClass('bg-gradient-warning');
 
         setTimeout(function() {
-            element.removeClass('bg-gradient-warning');
-        }, 250);
+            element.addClass('bg-gradient-warning');
+        }, 10);
 
         if(shootingmode=="time"){
             $.ajax(target_ip+"/-wvhttp-01-/control.cgi?p="+ id_preset + "&p.ptztime=" + shootingmodevalue);
@@ -2779,6 +2779,7 @@ function ptz_mouseevent(event) {
     y = Math.round(y);
 
     let target_ip = $('#target').val();
+    let direction_speed = $('#direction_speed').val();
 
     const xhr = new XMLHttpRequest();
     xhr.open(
@@ -2800,7 +2801,7 @@ function ptz_mouseevent(event) {
 
         let move_pan = panValue + x;
         let move_tilt = tiltValue + y;
-        $.ajax(target_ip+"/-wvhttp-01-/control.cgi?pan="+move_pan+"&tilt="+move_tilt+"&pan.speed.pos=10000&tilt.speed.pos=10000");
+        $.ajax(target_ip+"/-wvhttp-01-/control.cgi?pan="+move_pan+"&tilt="+move_tilt+"&pan.speed.pos="+direction_speed+"&tilt.speed.pos="+direction_speed);
         } else {
         console.log(`Error: ${xhr.status}`);
         }

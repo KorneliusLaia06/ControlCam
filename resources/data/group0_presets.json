@@ -14,7 +14,9 @@
       "id_preset": 2,
       "name_button": "P2",
       "name_preset": "P2",
-      "disabled": true
+      "disabled": false,
+      "shootingmode": "time",
+      "shootingmode_value": "2000"
     },
     {
       "id_camera": 1694781774315,

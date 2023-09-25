@@ -485,3 +485,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     background-color: #474747 !important;
     border:2px solid #A2D664 !important;
 }
+
+.recall-presetactive{
+
+}
