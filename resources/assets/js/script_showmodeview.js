@@ -7,6 +7,9 @@ let default_value_focus_far = 0;
 let default_value_zoom_in = 0;
 let default_value_zoom_out = 0;
 
+//show or show mode
+let mode = "show";
+
 // const json_location = "src/data";
 const json_location = "resources/data";
 
@@ -166,8 +169,7 @@ if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
     });
 
     home_button.addEventListener('touchstart', () => {
-        let target_ip = $('#target').val();
-        $.ajax(target_ip+"/-wvhttp-01-/control.cgi?pan=0&tilt=0");
+        trigger_home();
     });
 
     awb_button.addEventListener('touchstart', () => {
@@ -447,11 +449,75 @@ if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
     });
 
     home_button.addEventListener('mousedown', () => {
-        let target_ip = $('#target').val();
-        $.ajax(target_ip+"/-wvhttp-01-/control.cgi?pan=0&tilt=0");
+        trigger_home();
     });
 }
 //detect mobile or desktop browser
+
+
+function trigger_home(){
+    if(mode=="edit"){
+        $("#modal-setPreset").modal('show');
+        $('#input_renamepreset').val("HOME"); 
+        $('#text_idpreset').val("100"); 
+        $('#input_renamepreset').attr('disabled',true);
+        $('#checkbox_ptzf').prop("checked", true);
+        $('#checkbox_camerasettings').prop("checked", true);
+        // let target_ip = $('#target').val();
+        // $.ajax(target_ip+"/-wvhttp-01-/control.cgi?pan=0&tilt=0");
+    } else if (mode="show"){
+        const fs = require('fs');
+        let groupIndex = $("#changeCameraGroup").val();
+        let target_ip = $('#target').val();
+
+        
+        //get indexcamera from .btn-camera that have active class
+        $('.btn-camera').each(function() {
+            // Check if the current element has the class 'active'
+            if ($(this).hasClass('active')) {
+                // Get the 'data-indexcamera' value for the element
+                const indexCameraValue = $(this).data('indexcamera');
+                
+                // Baca file JSON
+                fs.readFile(json_location + "/group"+groupIndex+"_presets.json", 'utf8', (err, data) => {
+                    if (err) {
+                        console.error('Gagal membaca file:', err);
+                        return;
+                    }
+
+                    try {
+                        // Parse data JSON
+                        const dataArray = JSON.parse(data);
+
+                        if (dataArray[indexCameraValue].length >= 100 && dataArray[indexCameraValue][99].disabled == true) {
+                            $.ajax(target_ip+"/-wvhttp-01-/control.cgi?pan=0&tilt=0");
+                        } else {
+                            let shootingmode = $('#recallpreset_100').data('shootingmode');
+                            let shootingmodevalue = $('#recallpreset_100').data('shootingmodevalue');
+                            if(shootingmode=="time"){
+                                $.ajax(target_ip+"/-wvhttp-01-/control.cgi?p=100&p.ptztime=" + shootingmodevalue);
+                            } else if (shootingmode=="speedlevel"){
+                                $.ajax(target_ip+"/-wvhttp-01-/control.cgi?p=100&p.ptzspeed=" + shootingmodevalue);
+                            }
+                        }
+
+                        // Change the fill attribute to a new color (e.g., red)
+                        $('#home_button circle').attr('fill', '#FFC107');
+
+                    } catch (error) {
+                        console.error('Gagal mengurai data JSON:', error);
+                    }
+                });
+            }
+            if ($('.recall-preset').hasClass('bg-gradient-warning')){
+                    $('.recall-preset').removeClass("bg-gradient-warning");
+                    $('#recallpreset_100').addClass("bg-gradient-warning");
+            }
+
+        });
+        //get indexcamera from .btn-camera that have active class
+    }
+}
 
 function trigger_moveleftup() {
     if (isButtonPressed_moveleftup) {
@@ -813,139 +879,6 @@ function getCameraList(groupIndex){
         }
     }
 
-    // const parentElement = document.getElementById('container_editpreset');
-    // let buttonsCounter = 0;
-    
-    // for (let i = 1; i <= 100; i++) {
-    //   const colDiv = document.createElement('div');
-    //   colDiv.className = 'col mb-2 coba-aja'+i;
-    
-    //   const btnGroupDiv = document.createElement('div');
-    //   btnGroupDiv.className = 'btn-group d-flex';
-    //   btnGroupDiv.role = 'group';
-    
-    //   const button1 = document.createElement('button');
-    //   button1.type = 'button';
-    //   button1.className = 'btn btn-sm setpreset_' + i;
-    //   button1.textContent = 'P ' + i;
-    
-    //     const dropdownToggle = document.createElement('button');
-    //     dropdownToggle.type = 'button';
-    //     dropdownToggle.className = 'btn btn-sm dropdown-toggle dropdown-icon';
-    //     dropdownToggle.setAttribute('data-toggle', 'dropdown');
-    //     dropdownToggle.innerHTML = '<span class="sr-only">Toggle Dropdown</span>';
-
-    //     const dropdownMenu = document.createElement('div');
-    //     dropdownMenu.className = 'dropdown-menu';
-    //     dropdownMenu.role = 'menu';
-
-    //     // Membuat elemen <a> dengan class "dropdown-item" dan atribut href, data-toggle, data-target, dan data-idpreset
-    //     var setPresetLink = document.createElement("a");
-    //     setPresetLink.className = "dropdown-item";
-    //     setPresetLink.href = "#";
-    //     setPresetLink.setAttribute("data-toggle", "modal");
-    //     setPresetLink.setAttribute("data-target", "#modal-setPreset");
-    //     setPresetLink.setAttribute("data-idpreset", i);
-    //     setPresetLink.textContent = "Set";
-
-    //     // Membuat elemen <div> dengan class "dropdown-divider"
-    //     var dropdownDivider = document.createElement("div");
-    //     dropdownDivider.className = "dropdown-divider";
-
-    //     // Membuat elemen <a> dengan class "dropdown-item" dan atribut data-toggle serta data-target
-    //     var renamePresetLink = document.createElement("a");
-    //     renamePresetLink.className = "dropdown-item";
-    //     renamePresetLink.setAttribute("data-toggle", "collapse");
-    //     renamePresetLink.setAttribute("data-target", "#container_renamepreset_"+i);
-    //     renamePresetLink.textContent = "Rename";
-
-    //     // Menambahkan elemen-elemen yang telah dibuat ke dalam elemen <div> dengan class "dropdown-menu"
-    //     dropdownMenu.appendChild(setPresetLink);
-    //     dropdownMenu.appendChild(dropdownDivider);
-    //     dropdownMenu.appendChild(renamePresetLink);
-
-    //   // ... (same as before)
-    
-    //   btnGroupDiv.appendChild(button1);
-    //   btnGroupDiv.appendChild(dropdownToggle);
-    //   btnGroupDiv.appendChild(dropdownMenu);
-    
-    //   colDiv.appendChild(btnGroupDiv);
-    
-    //   const inputGroup = document.createElement('div');
-    //   inputGroup.className = 'input-group input-group-sm mt-1 collapse';
-    //   inputGroup.id = 'container_renamepreset_' + i;
-
-    //   const input = document.createElement('input'); // Define the 'input' variable
-    //   input.type = 'text';
-    //   input.className = 'form-control';
-    //   input.id = 'input_renamepreset_' + i;
-    //   input.maxLength = 4;
-
-    //   const inputAppend = document.createElement('span');
-    //   inputAppend.className = 'input-group-append';
-    
-    //   // ... (same as before)
-    
-    //   inputGroup.appendChild(input);
-    //   inputGroup.appendChild(inputAppend);
-    
-    //   colDiv.appendChild(inputGroup);
-    
-    //   parentElement.appendChild(colDiv);
-    
-    //   buttonsCounter++;
-    
-    //   if (buttonsCounter === 5) {
-    //     const w100Div = document.createElement('div');
-    //     w100Div.className = 'w-100';
-    
-    //     parentElement.appendChild(w100Div);
-    //     buttonsCounter = 0; // Reset the counter
-    //   }
-    // }
-  
-//     const prevBtn = document.getElementById('prevBtn');
-//     const nextBtn = document.getElementById('nextBtn');
-//     const buttons = document.querySelectorAll('.coba-aja');
-    
-//     const totalButtons = buttons.length;
-//     console.log(totalButtons);
-// const buttonsPerPage = 20;
-// let currentPage = 1;
-
-// function updateButtons() {
-//   const startIndex = (currentPage - 1) * buttonsPerPage;
-//   const endIndex = Math.min(startIndex + buttonsPerPage, totalButtons);
-
-//   buttons.forEach((button, index) => {
-//     if (index >= startIndex && index < endIndex) {
-//       button.style.display = 'inline-block';
-//     } else {
-//       button.style.display = 'none';
-//     }
-//   });
-
-//   prevBtn.disabled = currentPage === 1;
-//   nextBtn.disabled = endIndex >= totalButtons;
-// }
-
-// prevBtn.addEventListener('click', () => {
-//   if (currentPage > 1) {
-//     currentPage--;
-//     updateButtons();
-//   }
-// });
-
-// nextBtn.addEventListener('click', () => {
-//   if (currentPage * buttonsPerPage < totalButtons) {
-//     currentPage++;
-//     updateButtons();
-//   }
-// });
-
-// updateButtons();
-
 }
 
 function getGeneralSettings(){
@@ -1029,8 +962,6 @@ function stopgetCameraStatus() {
 // get camera status prev or program 
 
 jQuery(document).ready(function() {
-
-
     
     $('.checkbox_setpreset').on('change', function() {
         // Get the count of checked checkboxes with class "checkbox_setpreset"
@@ -1270,7 +1201,7 @@ jQuery(document).ready(function() {
         $('#container_preset').addClass('d-none');
         $("#main_container").addClass("d-none");
         $("#container_select_camera_first").removeClass("d-none");
-
+        $('#bridgeCameraBtn').prop("disabled", true);
     });
     //detect #changeCameraGroup when its changed it will call getCameraList()
     
@@ -1458,6 +1389,8 @@ jQuery(document).ready(function() {
         $('.btn-camera').removeClass('active'); // Remove the class from all buttons
         $(this).addClass('active'); // Add the class to the clicked button
         $('#selected_camera_panel').removeClass('border-program border-preview');
+        $('#bridgeCameraBtn').prop("disabled", false);
+
 
         const dataIp = "http://" + $(this).data('ip');
         const groupIndex = $("#changeCameraGroup").val();
@@ -1507,6 +1440,7 @@ jQuery(document).ready(function() {
                 $('#container_showpreset').collapse('hide');
             })
         }
+        mode = "edit";
         // To disable the event listener
         eventListenerEnabled_keydown = false;
         $('.badge-shorcut').removeClass('bg-primary');
@@ -1524,12 +1458,68 @@ jQuery(document).ready(function() {
                 $('#container_editpreset').collapse('hide');
             })
         }
+        mode = "show";
+
         // To ENABLE the event listener
         eventListenerEnabled_keydown = true;
         $('.badge-shorcut').removeClass('bg-secondary');
         $('.badge-shorcut').addClass('bg-primary');
     });
     //hide container_editpreset
+
+    //resetPreset
+    $('.resetPreset').click(function() {
+        let target_ip = $('#target').val();
+        let id_preset = $(this).data('idpreset');
+
+        const buttons = document.querySelectorAll('.btn-camera');
+        buttons.forEach(function(button) {
+            if (button.classList.contains('active')) {
+                const groupIndex = $("#changeCameraGroup").val();
+                const dataIndexCamera = button.dataset.indexcamera;
+
+
+                var fs = require('fs');        
+
+                // read file JSON based on groupIndex
+                var data = fs.readFileSync(json_location + "/group"+groupIndex+"_presets.json");
+
+                /// Parse JSON to objek JavaScripts
+                var preset_list = JSON.parse(data);
+
+                // find data based on id from dataIndexCamera
+                var index = preset_list[dataIndexCamera].findIndex(obj => obj.id_preset == id_preset);
+                if (index !== -1) {
+
+                    preset_list[dataIndexCamera][index].disabled = true;
+                    //id preset 100 is home button
+                    if(id_preset==100){
+                        preset_list[dataIndexCamera][index].name_button = "HOME";
+                    } else {
+                        preset_list[dataIndexCamera][index].name_button = "P"+id_preset;
+                    }
+
+                    // update array to file json
+                    fs.writeFile(json_location + "/group"+groupIndex+"_presets.json", JSON.stringify(preset_list, null, 2), function(err) {
+                        if (err) {
+                            notification('info','Failed to Rename Preset');
+                            return;
+                            // console.error(err);
+                        }
+                        getPreset(groupIndex,dataIndexCamera);
+                        notification('info','The preset has been successfully reset');
+                    });
+
+                    $.ajax(target_ip+"/-wvhttp-01-/preset/set?p="+id_preset+"&name=&all=disabled");
+
+                } else {
+                    notification('info','No Matching Data Found for the ID Preset');
+                }
+
+            }
+        });
+    })
+    //resetPreset
 
     //detected set-presetname clicked and save name preset into json
     $('.set-presetname').click(function() {
@@ -1544,7 +1534,6 @@ jQuery(document).ready(function() {
         }
         else
         {
-
             const buttons = document.querySelectorAll('.btn-camera');
             buttons.forEach(function(button) {
                 if (button.classList.contains('active')) {
@@ -1655,17 +1644,17 @@ jQuery(document).ready(function() {
         });
     });
     // when element .set-preset clicked it will trigger api and change disabled to false on file json, false it means the button can recall preset    
-
+    
     // when element .recall-preset clicked it will recall preset
     $(document).on('click', '.recall-preset', function() {
-        const target_ip = $('#target').val();
-        const id_preset = $(this).data('idpreset');
-        const shootingmode = $(this).data('shootingmode');
-        const shootingmodevalue = $(this).data('shootingmodevalue');
+        var target_ip = $('#target').val();
+        var id_preset = $(this).data('idpreset');
+        var shootingmode = $(this).data('shootingmode');
+        var shootingmodevalue= $(this).data('shootingmodevalue');
         var element = $(this);
 
         $('.recall-preset').removeClass('bg-gradient-warning');
-
+        
         setTimeout(function() {
             element.addClass('bg-gradient-warning');
         }, 10);
@@ -1675,12 +1664,16 @@ jQuery(document).ready(function() {
         } else if (shootingmode=="speedlevel"){
             $.ajax(target_ip+"/-wvhttp-01-/control.cgi?p="+ id_preset + "&p.ptzspeed=" + shootingmodevalue);
         }
+
+        //id preset 100 is home button
+        if(id_preset==100){
+            $('#home_button circle').attr('fill', '#FFC107');
+        } else {
+            $('#home_button circle').attr('fill', '#4E4C4D');
+        }
+
     });
     // when element .recall-preset clicked it will recall preset
-    
-    
-    
-    
 
     $('#recallpreset_timemode').click(function() {
         $('#containerslider_timemode').removeClass('d-none');
@@ -1691,9 +1684,8 @@ jQuery(document).ready(function() {
         $('#containerslider_speedlevel').removeClass('d-none');
         $('#containerslider_timemode').addClass('d-none');
     });
-    
-});
 
+});
 
 //detect keyboard shorcuts
 var previousButton = null;
@@ -1728,6 +1720,8 @@ $(document).on('keydown', function(event) {
             
             // call removeBgSuccessClass()
             removeBgSuccessClass();
+            
+            $('#bridgeCameraBtn').prop("disabled", false);
             
             var dataIp = "http://" + link.data('ip');
             $('#target').val(dataIp);
@@ -1971,7 +1965,7 @@ function getKelvinValue(){
 
         var sliderValue = kelvin_slider.result.from_value;
         $('#value_kelvin_slider').text(sliderValue);
-        console.log(sliderValue);
+        // console.log(sliderValue);
 
         } else {
         console.log(`Error: ${xhr.status}`);
@@ -2024,9 +2018,9 @@ function getPreset(groupIndex,cameraIndex){
         
         $("#recallpreset_"+(i+1)).text(preset_list.name_button);
 
-        $("#recallpreset_"+(i+1)).attr('data-shootingmode', preset_list.shootingmode);
+        $("#recallpreset_"+(i+1)).data('shootingmode', preset_list.shootingmode);
 
-        $("#recallpreset_"+(i+1)).attr('data-shootingmodevalue', preset_list.shootingmode_value);
+        $("#recallpreset_"+(i+1)).data('shootingmodevalue', preset_list.shootingmode_value);
 
         //checking status preset is enabled or disabled, if disabled is true then the button will not clickable
         $("#recallpreset_"+(i+1)).prop("disabled", preset_list.disabled);
@@ -2458,15 +2452,119 @@ $('.btngroupspeedmode .btn').click(function() {
     $(this).addClass('active');
 });
 
-//funtion will active when detect #modal-setPreset opened
+//function will active when detect #modal-setPreset opened
 $('#modal-setPreset').on('show.bs.modal', function(e) {
     var idpreset = $(e.relatedTarget).data('idpreset');
-    var getNamePreset = $('.setpreset_'+idpreset).text();
-    $('#text_idpreset').val(idpreset); 
-    $('#input_renamepreset').val(getNamePreset); 
+    $('#text_idpreset').val(idpreset);
+    
+    //detect id preset based on button in edit section
+    if(idpreset==100){
+        $('#input_renamepreset').val("HOME"); 
+        $('#input_renamepreset').attr('disabled',true);
+        $('#checkbox_ptzf').prop("checked", true);
+        $('#checkbox_camerasettings').prop("checked", true);
+    } else {
+        var getNamePreset = $('.setpreset_'+idpreset).text();
+        $('#input_renamepreset').val(getNamePreset); 
+        $('#input_renamepreset').prop("disabled", false);
+        $('#checkbox_ptzf').prop("checked", true);
+        $('#checkbox_camerasettings').prop("checked", false);
+    }
 });
-//funtion will active when detect #modal-setPreset opened
+//function will active when detect #modal-setPreset opened
 
+
+//function bridge camera for get presets data
+$('#modal-bridgeCamera').on('show.bs.modal', function(e) {
+    const activeButton = $('.btn-camera.active');
+    const buttonText = activeButton.contents().filter(function() {
+        return this.nodeType === 3; // Filter out text nodes
+      }).text();
+    $('#text-bridgeConfirmation').html(`do you want to do bridge for <span class='badge badge-primary'>${buttonText}</span> camera?`);
+});
+
+
+$('#bridgeCameraBtn_yes').click(function(){
+
+    const buttons = document.querySelectorAll('.btn-camera');
+    buttons.forEach(function(button) {
+        if (button.classList.contains('active')) {
+            let target_ip = $('#target').val();
+            const groupIndex = $("#changeCameraGroup").val();
+            const dataIndexCamera = button.dataset.indexcamera;
+
+            var fs = require('fs');        
+
+            // read file JSON based on groupIndex
+            var data = fs.readFileSync(json_location + "/group"+groupIndex+"_presets.json");
+
+            /// Parse JSON to objek JavaScripts
+            var preset_list = JSON.parse(data);
+
+            // find data based on id from dataIndexCamera
+            var index = preset_list[dataIndexCamera];
+            if (index !== -1) {
+
+                const xhr = new XMLHttpRequest();
+                xhr.open(
+                    "GET",
+                    target_ip + "/-wvhttp-01-/info.cgi"
+                );
+                xhr.send();
+                xhr.onload = () => {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        const responseResult = xhr.responseText;
+                        
+                        let indexPresets = 0;
+                        for (let i = 1; i <= 100; i++) {
+                            const pattern = `p.${i}.content:=`;
+                            const startIndex = responseResult.indexOf(pattern);
+                            if (startIndex !== -1) {
+                                // Temukan nilai setelah p.x.content:=
+                                const endIndex = responseResult.indexOf("\n", startIndex);
+                                const value = responseResult.slice(startIndex + pattern.length, endIndex).trim();
+                                if(value == "enabled"){
+                                    if(preset_list[dataIndexCamera][indexPresets].disabled == false){
+                                        
+                                    } else {
+                                        preset_list[dataIndexCamera][indexPresets].disabled = false;
+                                        preset_list[dataIndexCamera][indexPresets].shootingmode = "time";
+                                        preset_list[dataIndexCamera][indexPresets].shootingmode_value = "2000";
+                                    }
+                                    console.log(`${dataIndexCamera} lalu ${indexPresets} lalu ${value}`);
+                                } else {
+                                    preset_list[dataIndexCamera][indexPresets].disabled = true;
+                                    // console.log(`${dataIndexCamera} lalu ${indexPresets} lalu ${value}`);
+                                }
+                                indexPresets++;
+
+                                // update array to file json
+                                fs.writeFile(json_location + "/group"+groupIndex+"_presets.json", JSON.stringify(preset_list, null, 2), function(err) {
+                                    if (err) {
+                                        notification('info','Failed to bridge camera');
+                                        return;
+                                        // console.error(err);
+                                    }
+                                    getPreset(groupIndex,dataIndexCamera);
+                                    notification('info','Camera successfully bridged');
+                                });
+                
+                            }
+                        }
+                    } else {
+                        console.log(`Error: ${xhr.status}`);
+                    }
+                };
+                
+
+            } else {
+                notification('info','No matching data found for the ID Camera');
+            }
+
+        }
+    });
+});
+//function bridge camera for get presets data
 
 // change value for #text_shootingmode and #text_shootingmode
 $('#recallpreset_timemode').click(function(){
@@ -2589,6 +2687,30 @@ function importData(event){
     reader.readAsText(file);
 }
 // import camera and preset data
+
+function bridge_data(){
+    let target_ip = $('#target').val();
+    const xhr = new XMLHttpRequest();
+    xhr.open(
+        "GET",
+        target_ip + "/-wvhttp-01-/info.cgi"
+    );
+    xhr.send();
+    xhr.onload = () => {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+        const responseResult = xhr.responseText;
+
+        const startIndex_pan = responseResult.indexOf("p.5.content");
+        const endIndex_pan = responseResult.indexOf("\n", startIndex_pan);
+        let preset = responseResult.slice(startIndex_pan + 13, endIndex_pan);
+
+
+        alert(preset);
+        } else {
+        console.log(`Error: ${xhr.status}`);
+        }
+    }; 
+}
 
 // reset camera and preset data
 function reset_data(){

@@ -400,13 +400,23 @@
                     var newData = [];
 
                     for (let i = 1; i <= 100; i++) {
-                    newData.push({
-                        "id_camera": timestampId,
-                        "id_preset": i,
-                        "name_button": "P" + i,
-                        "name_preset": "P" + i,
-                        "disabled": true
-                    });
+                        if (i === 100) {
+                            newData.push({
+                              "id_camera": timestampId,
+                              "id_preset": i,
+                              "name_button": "HOME", // Set name_button to "home"
+                              "name_preset": "P" + i,
+                              "disabled": true
+                            });
+                          } else {
+                            newData.push({
+                              "id_camera": timestampId,
+                              "id_preset": i,
+                              "name_button": "P" + i,
+                              "name_preset": "P" + i,
+                              "disabled": true
+                            });
+                          }
                     }
 
                     generate_preset.push(newData);

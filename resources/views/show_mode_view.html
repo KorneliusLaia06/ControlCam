@@ -156,6 +156,9 @@
                 <!-- Right navbar links -->
                 <ul class="navbar-nav">
                     <div class="btn-group mt-1">
+                        <button type="button" class="btn btn-default" id="bridgeCameraBtn" data-toggle="modal" data-target="#modal-bridgeCamera" disabled>                        
+                            Bridge
+                        </button> 
                         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#import_or_reset">                        
                             Import
                             <input type="file" id="import_data" style="display: none;" accept=".json" onchange="importData(event)">
@@ -246,6 +249,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="1">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_1">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="1">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_1">
@@ -256,23 +261,25 @@
                                                 </div>
                                             </div>
                                             <div class="col mb-2">
-                                            <div class="btn-group d-flex" role="group">
-                                                <button type="button" class="btn btn-sm setpreset_2">____</button>
-                                                <button type="button" class="btn btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                    <span class="sr-only">Toggle Dropdown</span>
-                                                </button>
-                                                <div class="dropdown-menu" role="menu">
-                                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="2">Set</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_2">Rename</a>
+                                                <div class="btn-group d-flex" role="group">
+                                                    <button type="button" class="btn btn-sm setpreset_2">____</button>
+                                                    <button type="button" class="btn btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                                                        <span class="sr-only">Toggle Dropdown</span>
+                                                    </button>
+                                                    <div class="dropdown-menu" role="menu">
+                                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="2">Set</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_2">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="2">Delete</a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_2">
-                                                <input type="text" class="form-control" id="input_renamepreset_2" maxlength="4" />
-                                                <span class="input-group-append">
-                                                    <button type="button" class="btn btn-primary btn-block set-presetname" data-toggle="collapse" data-target="#container_renamepreset_2" data-input="input_renamepreset_2" data-idpreset="2">OK</button>
-                                                </span>
-                                            </div>
+                                                <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_2">
+                                                    <input type="text" class="form-control" id="input_renamepreset_2" maxlength="4" />
+                                                    <span class="input-group-append">
+                                                        <button type="button" class="btn btn-primary btn-block set-presetname" data-toggle="collapse" data-target="#container_renamepreset_2" data-input="input_renamepreset_2" data-idpreset="2">OK</button>
+                                                    </span>
+                                                </div>
                                             </div>
                                             <div class="col mb-2">
                                             <div class="btn-group d-flex" role="group">
@@ -284,6 +291,8 @@
                                                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="3">Set</a>
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_3">Rename</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item resetPreset" data-idpreset="3">Delete</a>
                                                 </div>
                                             </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_3">
@@ -303,6 +312,8 @@
                                                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="4">Set</a>
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_4">Rename</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item resetPreset" data-idpreset="4">Delete</a>
                                                 </div>
                                             </div>
                                             <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_4">
@@ -322,6 +333,8 @@
                                                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="5">Set</a>
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_5">Rename</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item resetPreset" data-idpreset="5">Delete</a>
                                                 </div>
                                             </div>
                                             <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_5">
@@ -342,6 +355,8 @@
                                                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="6">Set</a>
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_6">Rename</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item resetPreset" data-idpreset="6">Delete</a>
                                                 </div>
                                             </div>
                                             <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_6">
@@ -361,6 +376,8 @@
                                                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="7">Set</a>
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_7">Rename</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item resetPreset" data-idpreset="7">Delete</a>
                                                 </div>
                                             </div>
                                             <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_7">
@@ -380,6 +397,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="8">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_8">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="8">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_8">
@@ -399,6 +418,8 @@
                                                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="9">Set</a>
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_9">Rename</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item resetPreset" data-idpreset="9">Delete</a>
                                                 </div>
                                             </div>
                                             <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_9">
@@ -418,6 +439,8 @@
                                                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="10">Set</a>
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_10">Rename</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item resetPreset" data-idpreset="10">Delete</a>
                                                 </div>
                                             </div>
                                             <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_10">
@@ -439,6 +462,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="11">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_11">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="11">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_11">
@@ -458,6 +483,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="12">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_12">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="12">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_12">
@@ -477,6 +504,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="13">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_13">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="13">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_13">
@@ -496,6 +525,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="14">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_14">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="14">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_14">
@@ -515,6 +546,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="15">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_15">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="15">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_15">
@@ -535,6 +568,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="16">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_16">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="16">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_16">
@@ -554,6 +589,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="17">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_17">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="17">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_17">
@@ -573,6 +610,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="18">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_18">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="18">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_18">
@@ -592,6 +631,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="19">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_19">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="19">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_19">
@@ -611,6 +652,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="20">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_20">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="20">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_20">
@@ -632,6 +675,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="21">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_21">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="21">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_21">
@@ -651,6 +696,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="22">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_22">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="22">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_22">
@@ -670,6 +717,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="23">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_23">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="23">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_23">
@@ -689,6 +738,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="24">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_24">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="24">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_24">
@@ -708,6 +759,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="25">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_25">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="25">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_25">
@@ -728,6 +781,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="26">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_26">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="26">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_26">
@@ -747,6 +802,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="27">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_27">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="27">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_27">
@@ -766,6 +823,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="28">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_28">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="28">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_28">
@@ -785,6 +844,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="29">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_29">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="29">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_29">
@@ -804,6 +865,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="30">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_30">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="30">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_30">
@@ -825,6 +888,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="31">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_31">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="31">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_31">
@@ -844,6 +909,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="32">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_32">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="32">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_32">
@@ -863,6 +930,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="33">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_33">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="33">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_33">
@@ -882,6 +951,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="34">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_34">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="34">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_34">
@@ -901,6 +972,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="35">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_35">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="35">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_35">
@@ -921,6 +994,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="36">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_36">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="36">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_36">
@@ -940,6 +1015,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="37">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_37">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="37">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_37">
@@ -959,6 +1036,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="38">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_38">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="38">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_38">
@@ -978,6 +1057,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="39">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_39">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="39">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_39">
@@ -997,6 +1078,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="40">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_40">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="40">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_40">
@@ -1018,6 +1101,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="41">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_41">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="41">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_41">
@@ -1037,6 +1122,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="42">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_42">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="42">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_42">
@@ -1056,6 +1143,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="43">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_43">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="43">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_43">
@@ -1075,6 +1164,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="44">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_44">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="44">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_44">
@@ -1094,6 +1185,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="45">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_45">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="45">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_45">
@@ -1114,6 +1207,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="46">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_46">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="46">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_46">
@@ -1133,6 +1228,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="47">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_47">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="47">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_47">
@@ -1152,6 +1249,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="48">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_48">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="48">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_48">
@@ -1171,6 +1270,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="49">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_49">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="49">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_49">
@@ -1190,6 +1291,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="50">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_50">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="50">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_50">
@@ -1211,6 +1314,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="51">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_51">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="51">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_51">
@@ -1230,6 +1335,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="52">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_52">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="52">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_52">
@@ -1249,6 +1356,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="53">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_53">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="53">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_53">
@@ -1268,6 +1377,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="54">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_54">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="54">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_54">
@@ -1287,6 +1398,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="55">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_55">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="55">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_55">
@@ -1307,6 +1420,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="56">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_56">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="56">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_56">
@@ -1326,6 +1441,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="57">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_57">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="57">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_57">
@@ -1345,6 +1462,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="58">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_58">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="58">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_58">
@@ -1364,6 +1483,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="59">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_59">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="59">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_59">
@@ -1383,6 +1504,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="60">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_60">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="60">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_60">
@@ -1404,6 +1527,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="61">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_61">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="61">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_61">
@@ -1423,6 +1548,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="62">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_62">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="62">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_62">
@@ -1442,6 +1569,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="63">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_63">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="63">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_63">
@@ -1461,6 +1590,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="64">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_64">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="64">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_64">
@@ -1480,6 +1611,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="65">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_65">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="65">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_65">
@@ -1500,6 +1633,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="66">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_66">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="66">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_66">
@@ -1519,6 +1654,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="67">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_67">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="67">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_67">
@@ -1538,6 +1675,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="68">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_68">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="68">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_68">
@@ -1557,6 +1696,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="69">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_69">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="69">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_69">
@@ -1576,6 +1717,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="70">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_70">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="70">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_70">
@@ -1597,6 +1740,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="71">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_71">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="71">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_71">
@@ -1616,6 +1761,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="72">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_72">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="72">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_72">
@@ -1635,6 +1782,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="73">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_73">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="73">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_73">
@@ -1654,6 +1803,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="74">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_74">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="74">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_74">
@@ -1673,6 +1824,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="75">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_75">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="75">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_75">
@@ -1693,6 +1846,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="76">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_76">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="76">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_76">
@@ -1712,6 +1867,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="77">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_77">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="77">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_77">
@@ -1731,6 +1888,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="78">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_78">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="78">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_78">
@@ -1750,6 +1909,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="79">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_79">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="79">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_79">
@@ -1769,6 +1930,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="80">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_80">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="80">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_80">
@@ -1790,6 +1953,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="81">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_81">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="81">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_81">
@@ -1809,6 +1974,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="82">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_82">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="82">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_82">
@@ -1828,6 +1995,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="83">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_83">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="83">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_83">
@@ -1847,6 +2016,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="84">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_84">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="84">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_84">
@@ -1866,6 +2037,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="85">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_85">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="85">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_85">
@@ -1886,6 +2059,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="86">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_86">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="86">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_86">
@@ -1905,6 +2080,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="87">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_87">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="87">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_87">
@@ -1924,6 +2101,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="88">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_88">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="88">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_88">
@@ -1943,6 +2122,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="89">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_89">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="89">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_89">
@@ -1962,6 +2143,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="90">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_90">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="90">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_90">
@@ -1983,6 +2166,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="91">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_91">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="91">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_91">
@@ -2002,6 +2187,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="92">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_92">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="92">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_92">
@@ -2021,6 +2208,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="93">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_93">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="93">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_93">
@@ -2040,6 +2229,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="94">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_94">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="94">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_94">
@@ -2059,6 +2250,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="95">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_95">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="95">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_95">
@@ -2079,6 +2272,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="96">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_96">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="96">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_96">
@@ -2098,6 +2293,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="97">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_97">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="7">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_97">
@@ -2117,6 +2314,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="98">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_98">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="98">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_98">
@@ -2136,6 +2335,8 @@
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="99">Set</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_99">Rename</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="99">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_99">
@@ -2153,8 +2354,10 @@
                                                     </button>
                                                     <div class="dropdown-menu" role="menu">
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-setPreset" data-idpreset="100">Set</a>
+                                                        <div class="dropdown-divider d-none"></div>
+                                                        <a class="dropdown-item d-none" data-toggle="collapse" data-target="#container_renamepreset_100">Rename</a>
                                                         <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" data-toggle="collapse" data-target="#container_renamepreset_100">Rename</a>
+                                                        <a class="dropdown-item resetPreset" data-idpreset="100">Delete</a>
                                                     </div>
                                                 </div>
                                                 <div class="input-group input-group-sm mt-1 collapse" id="container_renamepreset_100">
@@ -2442,7 +2645,7 @@
                                                                     <circle cx="120" cy="120" r="120" fill="url(#circlePattern)" />
 
                                                                     <!-- Inner Circle -->
-                                                                    <g id="home_button">
+                                                                    <g id="home_button" data-idpreset="100">
                                                                         <circle cx="120" cy="120" r="50" fill="#4E4C4D" />
                                                                         <image href="../assets/img/asset_icon/home.png" x="95" y="95" width="50" height="50"/>
                                                                     </g>
@@ -2818,7 +3021,7 @@
 
             <!-- Modal Import or Reset-->
             <div class="modal fade" id="import_or_reset" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -2884,7 +3087,26 @@
             </div>
             <!-- Modal License Information-->
 
-  
+            <!-- Bridge Camera Modal -->
+            <div class="modal fade" id="modal-bridgeCamera" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Bridge Confirmation</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p id="text-bridgeConfirmation"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" id="close-modal" data-dismiss="modal" aria-label="Close">No</button>
+                            <button id="bridgeCameraBtn_yes" class="btn btn-primary" data-dismiss="modal">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>  
               
 
             
