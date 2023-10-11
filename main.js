@@ -42,7 +42,7 @@ function createWindow () {
       contextIsolation: false,
       
       //disable devtools (ctrl+shift+i)
-      // devTools: false,
+      devTools: false,
 
     preload: path.join(__dirname, 'preload.js')
   }
